@@ -10,6 +10,7 @@ namespace DS
 
         private new Rigidbody rigidbody;
         private GameObject normalCamera;
+        private AnimatorHandler animatorHandler;
 
         [Header("Stats")] 
         [SerializeField] 
@@ -18,14 +19,17 @@ namespace DS
         [SerializeField]
         private float rotationSpeed = 10;
         
-        void Start()
+        private void Start()
         {
             rigidbody = GetComponent<Rigidbody>();
             inputHandler = GetComponent<InputHandler>();
+            animatorHandler = GetComponentInChildren<AnimatorHandler>();
             cameraObject = GameObject.FindWithTag("MainCamera").transform;
+            animatorHandler.Initialize();
+            animatorHandler.CanRotate();
         }
 
-        void Update()
+        private void Update()
         {
             inputHandler.TickInput(Time.deltaTime);
 
@@ -36,6 +40,13 @@ namespace DS
 
             Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
             rigidbody.velocity = projectedVelocity;
+            
+            animatorHandler.UpdateAnimatorValues(inputHandler.moveAmount, 0);
+
+            if (animatorHandler.canRotate)
+            {
+                HandleRotation(Time.deltaTime);
+            }
         }
 
         #region Movement

@@ -4,9 +4,9 @@ namespace DS
 {
     public class InputHandler : MonoBehaviour
     {
-        public float horizontal;
-        public float vertical;
-        public float moveAmount;
+        public float horizontal { get; private set; }
+        public float vertical { get; private set; }
+        public float moveAmount { get; private set; }
         public float mouseX;
         public float mouseY;
 

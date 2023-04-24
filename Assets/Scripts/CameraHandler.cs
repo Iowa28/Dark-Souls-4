@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace DS
 {
@@ -6,11 +7,12 @@ namespace DS
     {
         [SerializeField]
         private Transform targetTransform;
-        private Transform cameraTransform;
         [SerializeField]
         private Transform cameraPivotTransform;
+        private Transform cameraTransform;
         private Vector3 cameraTransformPosition;
         private LayerMask ignoreLayers;
+        private Vector3 cameraFollowVelocity = Vector3.zero;
 
         public static CameraHandler singleton;
 
@@ -21,6 +23,7 @@ namespace DS
         [SerializeField]
         private float pivotSpeed = .03f;
 
+        private float targetPosition;
         private float defaultPosition;
         private float lookAngle;
         private float pivotAngle;
@@ -29,6 +32,13 @@ namespace DS
         [SerializeField]
         private float maximumPivot = 35;
 
+        [SerializeField]
+        private float cameraSphereRadius = .2f;
+        [SerializeField]
+        private float cameraCollisionOffset = .2f;
+        [SerializeField]
+        private float minimumCollisionOffset = .2f;
+        
         private void Awake()
         {
             singleton = this;
@@ -39,8 +49,11 @@ namespace DS
 
         public void FollowTarget(float delta)
         {
-            Vector3 targetPosition = Vector3.Lerp(transform.position, targetTransform.position, delta / followSpeed);
-            transform.position = targetPosition;
+            Vector3 target = Vector3.SmoothDamp(transform.position, targetTransform.position,
+                ref cameraFollowVelocity, delta / followSpeed);
+            transform.position = target;
+            
+            HandleCameraCollisions(delta);
         }
 
         public void HandleCameraRotation(float delta, float mouseXInput, float mouseYInput)
@@ -59,6 +72,30 @@ namespace DS
             
             targetRotation = Quaternion.Euler(rotation);
             cameraPivotTransform.localRotation = targetRotation;
+        }
+
+        private void HandleCameraCollisions(float delta)
+        {
+            targetPosition = defaultPosition;
+            RaycastHit hit;
+            Vector3 direction = cameraTransform.position - cameraPivotTransform.position;
+            direction.Normalize();
+
+            if (Physics.SphereCast(cameraPivotTransform.position, cameraSphereRadius, direction, out hit,
+                    Mathf.Abs(targetPosition), ignoreLayers))
+            {
+                float distance = Vector3.Distance(cameraPivotTransform.position, hit.point);
+                // float distance = (cameraPivotTransform.position - hit.point).sqrMagnitude;
+                targetPosition = -(distance - cameraCollisionOffset);
+            }
+
+            if (Mathf.Abs(targetPosition) < minimumCollisionOffset)
+            {
+                targetPosition = -minimumCollisionOffset;
+            }
+
+            cameraTransformPosition.z = Mathf.Lerp(cameraTransform.localPosition.z, targetPosition, delta / .2f);
+            cameraTransform.localPosition = cameraTransformPosition;
         }
     }
 }

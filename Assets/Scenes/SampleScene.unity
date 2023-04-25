@@ -516,6 +516,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de548349560b1ff4f9d94a1134373178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dampTime: 0.1
+  fadeDuration: 0.2
 --- !u!1 &1657735727
 GameObject:
   m_ObjectHideFlags: 0
@@ -622,6 +624,7 @@ GameObject:
   - component: {fileID: 1658441449}
   - component: {fileID: 1658441448}
   - component: {fileID: 1658441447}
+  - component: {fileID: 1658441451}
   m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
@@ -670,8 +673,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a5e8d62395e1c48a26a392bd53510a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseX: 0
-  mouseY: 0
 --- !u!54 &1658441449
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -702,6 +703,18 @@ CapsuleCollider:
   m_Height: 1.8515303
   m_Direction: 1
   m_Center: {x: 0.0022459626, y: 0.86781204, z: 0}
+--- !u!114 &1658441451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1658441445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b91cf910d7e2286428033e73a1f12bf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2014532195
 GameObject:
   m_ObjectHideFlags: 0

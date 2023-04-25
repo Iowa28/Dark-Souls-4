@@ -55,6 +55,8 @@
      <Compile Include="Assets\Scripts\InputHandler.cs" />
      <Compile Include="Assets\Scripts\PlayerControls.cs" />
      <Compile Include="Assets\Scripts\PlayerLocomotion.cs" />
+     <Compile Include="Assets\Scripts\PlayerManager.cs" />
+     <Compile Include="Assets\Scripts\ResetIsInteracting.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/ACER/Documents/Projects/Unity games/Dark Souls 4/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>

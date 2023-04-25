@@ -1,24 +1,34 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace DS
 {
     public class AnimatorHandler : MonoBehaviour
     {
-        private Animator animator;
-        private int vertical;
-        private int horizontal;
+        public Animator animator { get; private set; }
+        private InputHandler inputHandler;
+        private PlayerLocomotion playerLocomotion;
+        private int verticalHash;
+        private int horizontalHash;
+        private int isInteractingHash;
         public bool canRotate { get; private set; }
 
-        private const float dampTime = .1f;
+        [SerializeField]
+        private float dampTime = .1f;
+        [SerializeField]
+        private float fadeDuration = .2f;
 
         public void Initialize()
         {
             animator = GetComponent<Animator>();
-            vertical = Animator.StringToHash("Vertical");
-            horizontal = Animator.StringToHash("Horizontal");
+            inputHandler = GetComponentInParent<InputHandler>();
+            playerLocomotion = GetComponentInParent<PlayerLocomotion>();
+            verticalHash = Animator.StringToHash("Vertical");
+            horizontalHash = Animator.StringToHash("Horizontal");
+            isInteractingHash = Animator.StringToHash("isInteracting");
         }
 
-        public void UpdateAnimatorValues(float verticalMovement, float horizontalMovement)
+        public void UpdateAnimatorValues(float verticalMovement, float horizontalMovement, bool isSprinting)
         {
             const float limitDelta = .55f;
 
@@ -75,9 +85,22 @@ namespace DS
             // }
 
             #endregion
+
+            if (isSprinting)
+            {
+                v = 2;
+                h = horizontalMovement;
+            }
             
-            animator.SetFloat(vertical, v, dampTime, Time.deltaTime);
-            animator.SetFloat(horizontal, h, dampTime, Time.deltaTime);
+            animator.SetFloat(verticalHash, v, dampTime, Time.deltaTime);
+            animator.SetFloat(horizontalHash, h, dampTime, Time.deltaTime);
+        }
+
+        public void PlayTargetAnimation(string targetAnimation, bool isInteracting)
+        {
+            animator.applyRootMotion = isInteracting;
+            animator.SetBool(isInteractingHash, isInteracting);
+            animator.CrossFade(targetAnimation, fadeDuration);
         }
 
         public void CanRotate()
@@ -88,6 +111,19 @@ namespace DS
         public void StopRotation()
         {
             canRotate = false;
+        }
+
+        private void OnAnimatorMove()
+        {
+            if (!inputHandler.isInteracting)
+                return;
+
+            float delta = Time.deltaTime;
+            playerLocomotion.rigidbody.drag = 0;
+            Vector3 deltaPosition = animator.deltaPosition;
+            deltaPosition.y = 0;
+            Vector3 velocity = deltaPosition / delta;
+            playerLocomotion.rigidbody.velocity = velocity;
         }
     }
 }

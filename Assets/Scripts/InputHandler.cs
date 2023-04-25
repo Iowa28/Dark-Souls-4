@@ -8,8 +8,15 @@ namespace DS
         public float horizontal { get; private set; }
         public float vertical { get; private set; }
         public float moveAmount { get; private set; }
-        public float mouseX;
-        public float mouseY;
+        public float mouseX { get; private set; }
+        public float mouseY { get; private set; }
+        
+        public bool bInput { get; private set; }
+        
+        public bool rollFlag { get; set; }
+        public bool sprintFlag { get; set; }
+        private float rollInputTimer;
+        public bool isInteracting { get; set; }
 
         private PlayerControls inputActions;
         private CameraHandler cameraHandler;
@@ -53,6 +60,7 @@ namespace DS
         public void TickInput(float delta)
         {
             MoveInput(delta);
+            HandleRollInput(delta);
         }
 
         private void MoveInput(float delta)
@@ -62,6 +70,33 @@ namespace DS
             moveAmount = Mathf.Clamp01(Mathf.Abs(horizontal) + Mathf.Abs(vertical));
             mouseX = cameraInput.x;
             mouseY = cameraInput.y;
+        }
+
+        private void HandleRollInput(float delta)
+        {
+            // bInput = inputActions.PlayerActions.Roll.phase == UnityEngine.InputSystem.InputActionPhase.Performed;
+            bInput = inputActions.PlayerActions.Roll.IsPressed();
+            if (bInput)
+            {
+                rollFlag = true;
+            }
+
+
+            // if (bInput)
+            // {
+            //     rollInputTimer += delta;
+            //     sprintFlag = true;
+            // }
+            // else
+            // {
+            //     if (rollInputTimer > 0 && rollInputTimer < .5f)
+            //     {
+            //         sprintFlag = false;
+            //         rollFlag = true;
+            //     }
+            //
+            //     rollInputTimer = 0;
+            // }
         }
     }
 }

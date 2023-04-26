@@ -1,11 +1,11 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace DS
 {
     public class AnimatorHandler : MonoBehaviour
     {
-        public Animator animator { get; private set; }
+        private PlayerManager playerManager;
+        public Animator animator;
         private InputHandler inputHandler;
         private PlayerLocomotion playerLocomotion;
         private int verticalHash;
@@ -20,6 +20,7 @@ namespace DS
 
         public void Initialize()
         {
+            playerManager = GetComponentInParent<PlayerManager>();
             animator = GetComponent<Animator>();
             inputHandler = GetComponentInParent<InputHandler>();
             playerLocomotion = GetComponentInParent<PlayerLocomotion>();
@@ -115,7 +116,7 @@ namespace DS
 
         private void OnAnimatorMove()
         {
-            if (!inputHandler.isInteracting)
+            if (!playerManager.isInteracting)
                 return;
 
             float delta = Time.deltaTime;

@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace DS
 {
@@ -14,7 +13,7 @@ namespace DS
         private LayerMask ignoreLayers;
         private Vector3 cameraFollowVelocity = Vector3.zero;
 
-        public static CameraHandler singleton;
+        public static CameraHandler singleton { get; private set; }
 
         [SerializeField]
         private float lookSpeed = .1f;

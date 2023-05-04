@@ -6,7 +6,7 @@ namespace DS
     {
         private PlayerManager playerManager;
         public Animator animator;
-        private InputHandler inputHandler;
+        // private InputHandler inputHandler;
         private PlayerLocomotion playerLocomotion;
         private int verticalHash;
         private int horizontalHash;
@@ -22,7 +22,7 @@ namespace DS
         {
             playerManager = GetComponentInParent<PlayerManager>();
             animator = GetComponent<Animator>();
-            inputHandler = GetComponentInParent<InputHandler>();
+            // inputHandler = GetComponentInParent<InputHandler>();
             playerLocomotion = GetComponentInParent<PlayerLocomotion>();
             verticalHash = Animator.StringToHash("Vertical");
             horizontalHash = Animator.StringToHash("Horizontal");

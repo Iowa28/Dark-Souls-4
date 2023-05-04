@@ -8,11 +8,14 @@ namespace DS
         private InputHandler inputHandler;
         private PlayerLocomotion playerLocomotion;
         private Animator animator;
-        private AnimatorHandler animatorHandler;
+        // private AnimatorHandler animatorHandler;
         
         public bool isInteracting { get; set; }
         
         public bool isSprinting { get; set; }
+
+        public bool isInAir { get; set; }
+        public bool isGrounded { get; set; }
         
         private void Awake()
         {
@@ -24,7 +27,7 @@ namespace DS
             inputHandler = GetComponent<InputHandler>();
             playerLocomotion = GetComponent<PlayerLocomotion>();
             animator = GetComponentInChildren<Animator>();
-            animatorHandler = GetComponentInChildren<AnimatorHandler>();
+            // animatorHandler = GetComponentInChildren<AnimatorHandler>();
         }
 
         private void Update()
@@ -35,6 +38,7 @@ namespace DS
             inputHandler.TickInput(delta);
             playerLocomotion.HandleMovement(delta);
             playerLocomotion.HandleRollingAndSprinting(delta);
+            playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
         }
         
         private void FixedUpdate()
@@ -53,6 +57,11 @@ namespace DS
             inputHandler.rollFlag = false;
             inputHandler.sprintFlag = false;
             isSprinting = inputHandler.bInput;
+
+            if (isInAir)
+            {
+                playerLocomotion.inAirTimer += Time.deltaTime;
+            }
         }
     }
 }

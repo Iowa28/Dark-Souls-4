@@ -6,7 +6,6 @@ namespace DS
     {
         private PlayerManager playerManager;
         public Animator animator;
-        // private InputHandler inputHandler;
         private PlayerLocomotion playerLocomotion;
         private int verticalHash;
         private int horizontalHash;
@@ -22,7 +21,6 @@ namespace DS
         {
             playerManager = GetComponentInParent<PlayerManager>();
             animator = GetComponent<Animator>();
-            // inputHandler = GetComponentInParent<InputHandler>();
             playerLocomotion = GetComponentInParent<PlayerLocomotion>();
             verticalHash = Animator.StringToHash("Vertical");
             horizontalHash = Animator.StringToHash("Horizontal");
@@ -53,10 +51,6 @@ namespace DS
             {
                 v = -1;
             }
-            // else
-            // {
-            //     v = 0;
-            // }
 
             #endregion
             
@@ -80,16 +74,12 @@ namespace DS
             {
                 h = -1;
             }
-            // else
-            // {
-            //     h = 0;
-            // }
 
             #endregion
 
             if (isSprinting)
             {
-                v = 2;
+                v *= 2;
                 h = horizontalMovement;
             }
             

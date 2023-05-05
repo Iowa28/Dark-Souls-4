@@ -7,7 +7,7 @@ namespace DS
         private PlayerManager playerManager;
         private Transform cameraObject;
         private InputHandler inputHandler;
-        public Vector3 moveDirection { get; set; }
+        public Vector3 moveDirection { get; private set; }
 
         public new Rigidbody rigidbody { get; private set; }
         private GameObject normalCamera { get; set; }
@@ -63,7 +63,6 @@ namespace DS
             moveDirection = cameraObject.forward * inputHandler.vertical;
             moveDirection += cameraObject.right * inputHandler.horizontal;
             moveDirection.Normalize();
-            // moveDirection.y = 0;
             moveDirection = new Vector3(moveDirection.x, 0, moveDirection.z);
             
             float speed = movementSpeed;
@@ -120,7 +119,6 @@ namespace DS
                 if (inputHandler.moveAmount > 0)
                 {
                     animatorHandler.PlayTargetAnimation("Rolling", true);
-                    // moveDirection.y = 0;
                     moveDirection = new Vector3(moveDirection.x, 0, moveDirection.z);
                     Quaternion rollRotation = Quaternion.LookRotation(moveDirection);
                     transform.rotation = rollRotation;
@@ -158,11 +156,9 @@ namespace DS
             Debug.DrawRay(origin, Vector3.down * beginFallMinimumDistance, Color.red, .1f, false);
             if (Physics.Raycast(origin, Vector3.down, out hit, beginFallMinimumDistance, ignoreGroundCheck))
             {
-                normalVector = hit.normal;
-                Vector3 tp = hit.point;
                 playerManager.isGrounded = true;
-                // targetPosition.y = tp.y;
-                targetPosition = new Vector3(targetPosition.x, tp.y, targetPosition.z);
+                normalVector = hit.normal;
+                targetPosition = new Vector3(targetPosition.x, hit.point.y, targetPosition.z);
 
                 if (playerManager.isInAir)
                 {
@@ -194,9 +190,7 @@ namespace DS
                         animatorHandler.PlayTargetAnimation("Falling", true);
                     }
 
-                    Vector3 velocity = rigidbody.velocity;
-                    velocity.Normalize();
-                    rigidbody.velocity = velocity * (movementSpeed / 2);
+                    rigidbody.velocity = rigidbody.velocity.normalized * (movementSpeed / 2);
                     playerManager.isInAir = true;
                 }
             }
@@ -205,7 +199,7 @@ namespace DS
             {
                 if (playerManager.isInteracting || inputHandler.moveAmount > 0)
                 {
-                    transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime);
+                    transform.position = Vector3.Lerp(transform.position, targetPosition, delta);
                 }
                 else
                 {

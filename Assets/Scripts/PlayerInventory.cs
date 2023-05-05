@@ -22,5 +22,15 @@ namespace DS
             weaponSlotManager.LoadWeaponOnSlot(rightWeapon, false);
             weaponSlotManager.LoadWeaponOnSlot(leftWeapon, true);
         }
+
+        public WeaponItem GetRightWeapon()
+        {
+            return rightWeapon;
+        }
+
+        public WeaponItem GetLeftWeapon()
+        {
+            return leftWeapon;
+        }
     }
 }

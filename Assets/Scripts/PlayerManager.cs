@@ -8,8 +8,7 @@ namespace DS
         private InputHandler inputHandler;
         private PlayerLocomotion playerLocomotion;
         private Animator animator;
-        // private AnimatorHandler animatorHandler;
-        
+
         public bool isInteracting { get; set; }
         
         public bool isSprinting { get; set; }
@@ -27,7 +26,6 @@ namespace DS
             inputHandler = GetComponent<InputHandler>();
             playerLocomotion = GetComponent<PlayerLocomotion>();
             animator = GetComponentInChildren<Animator>();
-            // animatorHandler = GetComponentInChildren<AnimatorHandler>();
         }
 
         private void Update()
@@ -56,7 +54,8 @@ namespace DS
         {
             inputHandler.rollFlag = false;
             inputHandler.sprintFlag = false;
-            isSprinting = inputHandler.bInput;
+            inputHandler.rbInput = false;
+            inputHandler.rtInput = false;
 
             if (isInAir)
             {

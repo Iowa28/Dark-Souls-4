@@ -67,12 +67,24 @@ namespace DS
             
             float speed = movementSpeed;
 
-            if (inputHandler.sprintFlag)
+            if (inputHandler.sprintFlag && inputHandler.moveAmount > .5)
             {
                 speed = sprintSpeed;
                 playerManager.isSprinting = true;
+                moveDirection *= speed;
             }
-            moveDirection *= speed;
+            else
+            {
+                if (inputHandler.moveAmount < .5)
+                {
+                    moveDirection *= walkingSpeed;
+                }
+                else
+                {
+                    moveDirection *= speed;
+                }
+                playerManager.isSprinting = false;
+            }
 
             Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
             rigidbody.velocity = projectedVelocity;

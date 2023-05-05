@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace DS
 {
@@ -11,15 +12,25 @@ namespace DS
         public float mouseY { get; private set; }
         
         public bool bInput { get; private set; }
+        public bool rbInput { get; set; }
+        public bool rtInput { get; set; }
         
         public bool rollFlag { get; set; }
         public bool sprintFlag { get; set; }
         private float rollInputTimer;
 
         private PlayerControls inputActions;
+        private PlayerAttacker playerAttacker;
+        private PlayerInventory playerInventory;
 
         private Vector2 movementInput;
         private Vector2 cameraInput;
+
+        private void Awake()
+        {
+            playerAttacker = GetComponent<PlayerAttacker>();
+            playerInventory = GetComponent<PlayerInventory>();
+        }
 
         private void OnEnable()
         {
@@ -42,6 +53,7 @@ namespace DS
         {
             MoveInput(delta);
             HandleRollInput(delta);
+            HandleAttackInput(delta);
         }
 
         private void MoveInput(float delta)
@@ -71,6 +83,22 @@ namespace DS
                 }
             
                 rollInputTimer = 0;
+            }
+        }
+
+        private void HandleAttackInput(float delta)
+        {
+            inputActions.PlayerActions.RB.performed += i => rbInput = true;
+            inputActions.PlayerActions.RT.performed += i => rtInput = true;
+
+            if (rbInput)
+            {
+                playerAttacker.HandleLightAttack(playerInventory.GetRightWeapon());
+            }
+            
+            if (rtInput)
+            {
+                playerAttacker.HandleHeavyAttack(playerInventory.GetRightWeapon());
             }
         }
     }

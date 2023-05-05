@@ -79,7 +79,7 @@ namespace DS
 
             if (isSprinting)
             {
-                v *= 2;
+                v = 2;
                 h = horizontalMovement;
             }
             

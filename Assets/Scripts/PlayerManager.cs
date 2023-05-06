@@ -18,7 +18,7 @@ namespace DS
         
         private void Awake()
         {
-            cameraHandler = CameraHandler.singleton;
+            cameraHandler = FindObjectOfType<CameraHandler>();
         }
 
         private void Start()

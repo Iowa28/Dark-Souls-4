@@ -168,8 +168,8 @@ namespace DS
             Debug.DrawRay(origin, Vector3.down * beginFallMinimumDistance, Color.red, .1f, false);
             if (Physics.Raycast(origin, Vector3.down, out hit, beginFallMinimumDistance))
             {
-                playerManager.isGrounded = true;
                 normalVector = hit.normal;
+                playerManager.isGrounded = true;
                 targetPosition = new Vector3(targetPosition.x, hit.point.y, targetPosition.z);
 
                 if (playerManager.isInAir)
@@ -181,7 +181,7 @@ namespace DS
                     }
                     else
                     {
-                        animatorHandler.PlayTargetAnimation("Locomotion", false);
+                        animatorHandler.PlayTargetAnimation("Empty", false);
                     }
 
                     inAirTimer = 0f;
@@ -207,16 +207,13 @@ namespace DS
                 }
             }
 
-            if (playerManager.isGrounded)
+            if (playerManager.isInteracting || inputHandler.moveAmount > 0)
             {
-                if (playerManager.isInteracting || inputHandler.moveAmount > 0)
-                {
-                    transform.position = Vector3.Lerp(transform.position, targetPosition, delta);
-                }
-                else
-                {
-                    transform.position = targetPosition;
-                }
+                transform.position = Vector3.Lerp(transform.position, targetPosition, delta / .1f);
+            }
+            else
+            {
+                transform.position = targetPosition;
             }
         }
 

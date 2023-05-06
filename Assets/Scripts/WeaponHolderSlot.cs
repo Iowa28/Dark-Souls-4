@@ -12,7 +12,7 @@ namespace DS
         [SerializeField] 
         private bool isRightHandSlot;
 
-        private GameObject currentWeaponModel;
+        public GameObject currentWeaponModel { get; private set; }
 
         public bool IsLeftHandSlot()
         {

@@ -166,7 +166,7 @@ namespace DS
             targetPosition = transform.position;
             
             Debug.DrawRay(origin, Vector3.down * beginFallMinimumDistance, Color.red, .1f, false);
-            if (Physics.Raycast(origin, Vector3.down, out hit, beginFallMinimumDistance, ignoreGroundCheck))
+            if (Physics.Raycast(origin, Vector3.down, out hit, beginFallMinimumDistance))
             {
                 playerManager.isGrounded = true;
                 normalVector = hit.normal;

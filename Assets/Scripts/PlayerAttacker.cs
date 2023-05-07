@@ -24,6 +24,12 @@ namespace DS
                 if (lastAttack == weapon.GetLightAttack1())
                 {
                     animatorHandler.PlayTargetAnimation(weapon.GetLightAttack2(), true);
+                    lastAttack = weapon.GetLightAttack2();
+                }
+                else if (lastAttack == weapon.GetLightAttack2())
+                {
+                    animatorHandler.PlayTargetAnimation(weapon.GetLightAttack3(), true);
+                    lastAttack = weapon.GetLightAttack3();
                 }
             }
         }

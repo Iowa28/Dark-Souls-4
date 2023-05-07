@@ -10,15 +10,21 @@ namespace DS
         [SerializeField]
         private bool isUnarmed;
 
-        [Header("One Handed Attack Animations")]
+        [Header("Attack Animations")]
         [SerializeField]
         private string lightAttack1;
         [SerializeField]
         private string lightAttack2;
         [SerializeField]
-        private string heavyAttack1;
+        private string lightAttack3;
         [SerializeField]
-        private string heavyAttack2;
+        private string heavyAttack1;
+
+        [Header("Idle Animations")]
+        [SerializeField]
+        private string rightHandIdle;
+        [SerializeField]
+        private string leftHandIdle;
 
         public GameObject GetModelPrefab()
         {
@@ -34,15 +40,25 @@ namespace DS
         {
             return lightAttack2;
         }
+        
+        public string GetLightAttack3()
+        {
+            return lightAttack3;
+        }
 
         public string GetHeavyAttack1()
         {
             return heavyAttack1;
         }
-        
-        public string GetHeavyAttack2()
+
+        public string GetRightHandIdle()
         {
-            return heavyAttack2;
+            return rightHandIdle;
+        }
+
+        public string GetLeftHandIdle()
+        {
+            return leftHandIdle;
         }
     }
 }

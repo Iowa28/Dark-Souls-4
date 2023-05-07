@@ -2,10 +2,10 @@
 
 public class ResetAnimatorBool : StateMachineBehaviour
 {
-    [SerializeField]
-    private string targetBool;
-    [SerializeField]
-    private bool status;
+    // [SerializeField]
+    // private string targetBool;
+    // [SerializeField]
+    // private bool status;
     [SerializeField]
     private string[] targetsBool;
     
@@ -15,6 +15,5 @@ public class ResetAnimatorBool : StateMachineBehaviour
         {
             animator.SetBool(target, false);
         }
-        // animator.SetBool(targetBool, status);
     }
 }

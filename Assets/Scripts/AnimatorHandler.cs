@@ -5,11 +5,10 @@ namespace DS
     public class AnimatorHandler : MonoBehaviour
     {
         private PlayerManager playerManager;
-        public Animator animator;
+        private Animator animator;
         private PlayerLocomotion playerLocomotion;
         private int verticalHash;
         private int horizontalHash;
-        private int isInteractingHash;
         public bool canRotate { get; private set; }
 
         [SerializeField]
@@ -24,7 +23,6 @@ namespace DS
             playerLocomotion = GetComponentInParent<PlayerLocomotion>();
             verticalHash = Animator.StringToHash("Vertical");
             horizontalHash = Animator.StringToHash("Horizontal");
-            isInteractingHash = Animator.StringToHash("isInteracting");
         }
 
         public void UpdateAnimatorValues(float verticalMovement, float horizontalMovement, bool isSprinting)
@@ -90,7 +88,7 @@ namespace DS
         public void PlayTargetAnimation(string targetAnimation, bool isInteracting)
         {
             animator.applyRootMotion = isInteracting;
-            animator.SetBool(isInteractingHash, isInteracting);
+            SetBool("isInteracting", isInteracting);
             animator.CrossFade(targetAnimation, fadeDuration);
         }
 
@@ -115,6 +113,26 @@ namespace DS
             deltaPosition.y = 0;
             Vector3 velocity = deltaPosition / delta;
             playerLocomotion.rigidbody.velocity = velocity;
+        }
+
+        public bool GetBool(string parameterName)
+        {
+            return animator.GetBool(parameterName);
+        }
+
+        public void SetBool(string parameterName, bool value)
+        {
+            animator.SetBool(parameterName, value);
+        }
+
+        public void EnableCombo()
+        {
+            SetBool("canDoCombo", true);
+        }
+
+        public void DisableCombo()
+        {
+            SetBool("canDoCombo", false);
         }
     }
 }

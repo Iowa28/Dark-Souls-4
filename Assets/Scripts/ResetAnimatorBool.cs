@@ -6,9 +6,15 @@ public class ResetAnimatorBool : StateMachineBehaviour
     private string targetBool;
     [SerializeField]
     private bool status;
+    [SerializeField]
+    private string[] targetsBool;
     
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.SetBool(targetBool, status);
+        foreach (string target in targetsBool)
+        {
+            animator.SetBool(target, false);
+        }
+        // animator.SetBool(targetBool, status);
     }
 }

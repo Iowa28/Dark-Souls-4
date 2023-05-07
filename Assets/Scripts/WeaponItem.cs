@@ -14,7 +14,11 @@ namespace DS
         [SerializeField]
         private string lightAttack1;
         [SerializeField]
+        private string lightAttack2;
+        [SerializeField]
         private string heavyAttack1;
+        [SerializeField]
+        private string heavyAttack2;
 
         public GameObject GetModelPrefab()
         {
@@ -25,10 +29,20 @@ namespace DS
         {
             return lightAttack1;
         }
+        
+        public string GetLightAttack2()
+        {
+            return lightAttack2;
+        }
 
         public string GetHeavyAttack1()
         {
             return heavyAttack1;
+        }
+        
+        public string GetHeavyAttack2()
+        {
+            return heavyAttack2;
         }
     }
 }

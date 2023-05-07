@@ -7,14 +7,13 @@ namespace DS
         private CameraHandler cameraHandler;
         private InputHandler inputHandler;
         private PlayerLocomotion playerLocomotion;
-        private Animator animator;
+        private AnimatorHandler animatorHandler;
 
-        public bool isInteracting { get; set; }
-        
+        public bool isInteracting { get; private set; }
         public bool isSprinting { get; set; }
-
         public bool isInAir { get; set; }
         public bool isGrounded { get; set; }
+        public bool canDoCombo { get; private set; }
         
         private void Awake()
         {
@@ -25,12 +24,13 @@ namespace DS
         {
             inputHandler = GetComponent<InputHandler>();
             playerLocomotion = GetComponent<PlayerLocomotion>();
-            animator = GetComponentInChildren<Animator>();
+            animatorHandler = GetComponentInChildren<AnimatorHandler>();
         }
 
         private void Update()
         {
-            isInteracting = animator.GetBool("isInteracting");
+            isInteracting = animatorHandler.GetBool("isInteracting");
+            canDoCombo = animatorHandler.GetBool("canDoCombo");
 
             float delta = Time.deltaTime;
             inputHandler.TickInput(delta);

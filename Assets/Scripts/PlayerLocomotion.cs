@@ -120,7 +120,7 @@ namespace DS
 
         public void HandleRollingAndSprinting(float delta)
         {
-            if (animatorHandler.animator.GetBool("isInteracting"))
+            if (animatorHandler.GetBool("isInteracting"))
                 return;
 
             if (inputHandler.rollFlag)

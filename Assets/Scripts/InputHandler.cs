@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace DS
 {
@@ -10,10 +9,14 @@ namespace DS
         public float moveAmount { get; private set; }
         public float mouseX { get; private set; }
         public float mouseY { get; private set; }
-        
-        public bool bInput { get; private set; }
+
+        private bool bInput;
         public bool rbInput { get; set; }
         public bool rtInput { get; set; }
+        public bool dPadUp { get; set; }
+        public bool dPadDown { get; set; }
+        public bool dPadLeft { get; set; }
+        public bool dPadRight { get; set; }
         
         public bool rollFlag { get; set; }
         public bool sprintFlag { get; set; }
@@ -42,6 +45,12 @@ namespace DS
                 inputActions = new PlayerControls();
                 inputActions.PlayerMovement.Movement.performed += input => movementInput = input.ReadValue<Vector2>();
                 inputActions.PlayerMovement.Camera.performed += input => cameraInput = input.ReadValue<Vector2>();
+                inputActions.PlayerActions.RB.performed += i => rbInput = true;
+                inputActions.PlayerActions.RT.performed += i => rtInput = true;
+                inputActions.PlayerQuickSlots.DPadRight.performed += i => dPadRight = true;
+                inputActions.PlayerQuickSlots.DPadLeft.performed += i => dPadLeft = true;
+                inputActions.PlayerQuickSlots.DPadUp.performed += i => dPadUp = true;
+                inputActions.PlayerQuickSlots.DPadDown.performed += i => dPadDown = true;
             }
             
             inputActions.Enable();
@@ -57,6 +66,7 @@ namespace DS
             MoveInput(delta);
             HandleRollInput(delta);
             HandleAttackInput(delta);
+            HandleQuickSlotsInput();
         }
 
         private void MoveInput(float delta)
@@ -91,9 +101,6 @@ namespace DS
 
         private void HandleAttackInput(float delta)
         {
-            inputActions.PlayerActions.RB.performed += i => rbInput = true;
-            inputActions.PlayerActions.RT.performed += i => rtInput = true;
-
             if (rbInput)
             {
                 if (playerManager.canDoCombo)
@@ -111,6 +118,18 @@ namespace DS
             if (rtInput)
             {
                 playerAttacker.HandleHeavyAttack(playerInventory.GetRightWeapon());
+            }
+        }
+
+        private void HandleQuickSlotsInput()
+        {
+            if (dPadRight)
+            {
+                playerInventory.ChangeRightWeapon();
+            }
+            else if (dPadLeft)
+            {
+                playerInventory.ChangeLeftWeapon();
             }
         }
     }

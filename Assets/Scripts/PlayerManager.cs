@@ -56,6 +56,10 @@ namespace DS
             inputHandler.sprintFlag = false;
             inputHandler.rbInput = false;
             inputHandler.rtInput = false;
+            inputHandler.dPadRight = false;
+            inputHandler.dPadLeft = false;
+            inputHandler.dPadUp = false;
+            inputHandler.dPadDown = false;
 
             if (isInAir)
             {

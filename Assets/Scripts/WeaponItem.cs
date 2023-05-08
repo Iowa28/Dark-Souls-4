@@ -26,6 +26,8 @@ namespace DS
         [SerializeField]
         private string leftHandIdle;
 
+        #region Getters
+        
         public GameObject GetModelPrefab()
         {
             return modelPrefab;
@@ -60,5 +62,7 @@ namespace DS
         {
             return leftHandIdle;
         }
+        
+        #endregion
     }
 }

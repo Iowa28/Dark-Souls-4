@@ -11,13 +11,14 @@ namespace DS
         private DamageCollider rightHandDamageCollider;
 
         private Animator animator;
-        
-        [SerializeField]
-        private float fadeDuration = .2f;
-        
+        private const float fadeDuration = .2f;
+
+        private QuickSlotsUI quickSlotsUI;
+
         private void Awake()
         {
             animator = GetComponent<Animator>();
+            quickSlotsUI = FindObjectOfType<QuickSlotsUI>();
             
             WeaponHolderSlot[] weaponHolderSlots = GetComponentsInChildren<WeaponHolderSlot>();
             foreach (WeaponHolderSlot weaponHolderSlot in weaponHolderSlots)
@@ -49,6 +50,8 @@ namespace DS
                 
                 animator.CrossFade(weaponItem != null ? weaponItem.GetRightHandIdle() : "Right Arm Empty", fadeDuration);
             }
+            
+            quickSlotsUI.UpdateWeaponQuickSlotsUI(weaponItem, isLeft);
         }
 
         #region Handle Weapon's Damage Collider

@@ -9,5 +9,14 @@ namespace DS
         private Sprite itemIcon;
         [SerializeField]
         private string itemName;
+
+        #region Getters
+
+        public Sprite GetItemIcon()
+        {
+            return itemIcon;
+        }
+
+        #endregion
     }
 }

@@ -37,6 +37,8 @@ namespace DS
             playerLocomotion.HandleMovement(delta);
             playerLocomotion.HandleRollingAndSprinting(delta);
             playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
+            
+            CheckForInteractableObjects();
         }
         
         private void FixedUpdate()
@@ -56,6 +58,7 @@ namespace DS
             inputHandler.sprintFlag = false;
             inputHandler.rbInput = false;
             inputHandler.rtInput = false;
+            inputHandler.eInput = false;
             inputHandler.dPadRight = false;
             inputHandler.dPadLeft = false;
             inputHandler.dPadUp = false;
@@ -64,6 +67,29 @@ namespace DS
             if (isInAir)
             {
                 playerLocomotion.inAirTimer += Time.deltaTime;
+            }
+        }
+
+        private void CheckForInteractableObjects()
+        {
+            RaycastHit hit;
+
+            if (Physics.SphereCast(transform.position, .5f, transform.forward, out hit, 1f, cameraHandler.ignoreLayers))
+            {
+                if (hit.collider.CompareTag("Interactable"))
+                {
+                    Interactable interactableObject = hit.collider.GetComponent<Interactable>();
+
+                    if (interactableObject != null)
+                    {
+                        string interactableText = interactableObject.GetInteractableText();
+
+                        if (inputHandler.eInput)
+                        {
+                            interactableObject.Interact(this);
+                        }
+                    }
+                }
             }
         }
     }

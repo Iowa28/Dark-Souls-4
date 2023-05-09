@@ -37,6 +37,16 @@ namespace DS
             staminaBar.SetMaxStamina(maxStamina);
         }
 
+        // private void Update()
+        // {
+        //     currentStamina++;
+        //     if (currentStamina > maxStamina)
+        //     {
+        //         currentStamina = maxStamina;
+        //     }
+        //     staminaBar.SetCurrentStamina(currentStamina);
+        // }
+
         private void SetMaxHealth()
         {
             maxHealth = healthLevel * 10;

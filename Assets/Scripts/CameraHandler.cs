@@ -10,7 +10,7 @@ namespace DS
         private Transform cameraPivotTransform;
         private Transform cameraTransform;
         private Vector3 cameraTransformPosition;
-        private LayerMask ignoreLayers;
+        public LayerMask ignoreLayers { get; private set; }
         private Vector3 cameraFollowVelocity = Vector3.zero;
 
         public static CameraHandler singleton { get; private set; }
@@ -85,7 +85,6 @@ namespace DS
                     Mathf.Abs(targetPosition), ignoreLayers))
             {
                 float distance = Vector3.Distance(cameraPivotTransform.position, hit.point);
-                // float distance = (cameraPivotTransform.position - hit.point).sqrMagnitude;
                 targetPosition = -(distance - cameraCollisionOffset);
             }
 

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DS
@@ -19,9 +20,13 @@ namespace DS
         private int currentRightWeaponIndex = -1;
         private int currentLeftWeaponIndex = -1;
 
+        public List<WeaponItem> weaponsInventory { get; set; }
+
         private void Awake()
         {
             weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
+
+            weaponsInventory = new List<WeaponItem>();
         }
 
         private void Start()

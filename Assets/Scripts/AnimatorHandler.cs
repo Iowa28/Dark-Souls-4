@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace DS
 {
@@ -87,6 +88,9 @@ namespace DS
 
         public void PlayTargetAnimation(string targetAnimation, bool isInteracting)
         {
+            if (String.IsNullOrEmpty(targetAnimation))
+                return;
+            
             animator.applyRootMotion = isInteracting;
             SetBool("isInteracting", isInteracting);
             animator.CrossFade(targetAnimation, fadeDuration);

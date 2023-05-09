@@ -13,6 +13,7 @@ namespace DS
         private bool bInput;
         public bool rbInput { get; set; }
         public bool rtInput { get; set; }
+        public bool eInput { get; set; }
         public bool dPadUp { get; set; }
         public bool dPadDown { get; set; }
         public bool dPadLeft { get; set; }
@@ -47,6 +48,7 @@ namespace DS
                 inputActions.PlayerMovement.Camera.performed += input => cameraInput = input.ReadValue<Vector2>();
                 inputActions.PlayerActions.RB.performed += i => rbInput = true;
                 inputActions.PlayerActions.RT.performed += i => rtInput = true;
+                inputActions.PlayerActions.E.performed += i => eInput = true;
                 inputActions.PlayerQuickSlots.DPadRight.performed += i => dPadRight = true;
                 inputActions.PlayerQuickSlots.DPadLeft.performed += i => dPadLeft = true;
                 inputActions.PlayerQuickSlots.DPadUp.performed += i => dPadUp = true;

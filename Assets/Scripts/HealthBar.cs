@@ -22,6 +22,5 @@ namespace DS
         {
             slider.value = currentHealth;
         }
-        
     }
 }

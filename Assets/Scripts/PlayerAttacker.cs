@@ -6,6 +6,7 @@ namespace DS
     {
         private AnimatorHandler animatorHandler;
         private InputHandler inputHandler;
+        private WeaponSlotManager weaponSlotManager;
 
         private string lastAttack;
 
@@ -13,6 +14,7 @@ namespace DS
         {
             animatorHandler = GetComponentInChildren<AnimatorHandler>();
             inputHandler = GetComponent<InputHandler>();
+            weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
         }
 
         public void HandleWeaponCombo(WeaponItem weapon)
@@ -36,12 +38,14 @@ namespace DS
 
         public void HandleLightAttack(WeaponItem weapon)
         {
+            weaponSlotManager.attackingWeapon = weapon;
             animatorHandler.PlayTargetAnimation(weapon.GetLightAttack1(), true);
             lastAttack = weapon.GetLightAttack1();
         }
         
         public void HandleHeavyAttack(WeaponItem weapon)
         {
+            weaponSlotManager.attackingWeapon = weapon;
             animatorHandler.PlayTargetAnimation(weapon.GetHeavyAttack1(), true);
             lastAttack = weapon.GetHeavyAttack1();
         }

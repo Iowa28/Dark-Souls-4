@@ -15,10 +15,14 @@ namespace DS
 
         private QuickSlotsUI quickSlotsUI;
 
+        private PlayerStats playerStats;
+        public WeaponItem attackingWeapon { get; set; }
+
         private void Awake()
         {
             animator = GetComponent<Animator>();
             quickSlotsUI = FindObjectOfType<QuickSlotsUI>();
+            playerStats = GetComponentInParent<PlayerStats>();
             
             WeaponHolderSlot[] weaponHolderSlots = GetComponentsInChildren<WeaponHolderSlot>();
             foreach (WeaponHolderSlot weaponHolderSlot in weaponHolderSlots)
@@ -87,6 +91,19 @@ namespace DS
         }
         
         #endregion
+
+        #region Handle Weapon's Stamina Drainage
+
+        public void DrainStaminaLightAttack()
+        {
+            playerStats.DecreaseStamina(attackingWeapon.GetLightAttackStamina());
+        }
         
+        public void DrainStaminaHeavyAttack()
+        {
+            playerStats.DecreaseStamina(attackingWeapon.GetHeavyAttackStamina());
+        }
+        
+        #endregion
     }
 }

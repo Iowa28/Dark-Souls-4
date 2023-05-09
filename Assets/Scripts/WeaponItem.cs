@@ -26,11 +26,24 @@ namespace DS
         [SerializeField]
         private string leftHandIdle;
 
+        [Header("Stamina Costs")] 
+        [SerializeField]
+        private int baseStamina;
+        [SerializeField]
+        private int lightAttackMultiplier;
+        [SerializeField]
+        private int heavyAttackMultiplier;
+
         #region Getters
         
         public GameObject GetModelPrefab()
         {
             return modelPrefab;
+        }
+
+        public bool IsUnarmed()
+        {
+            return isUnarmed;
         }
 
         public string GetLightAttack1()
@@ -62,7 +75,17 @@ namespace DS
         {
             return leftHandIdle;
         }
-        
+
+        public int GetLightAttackStamina()
+        {
+            return baseStamina * lightAttackMultiplier;
+        }
+
+        public int GetHeavyAttackStamina()
+        {
+            return baseStamina * heavyAttackMultiplier;
+        }
+
         #endregion
     }
 }

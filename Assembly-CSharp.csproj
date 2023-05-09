@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\ResetAnimatorBool.cs" />
      <Compile Include="Assets\Scripts\PlayerLocomotion.cs" />
      <Compile Include="Assets\Scripts\EnemyStats.cs" />
+     <Compile Include="Assets\Scripts\QuickSlotsUI.cs" />
      <Compile Include="Assets\Scripts\PlayerControls.cs" />
      <Compile Include="Assets\Scripts\WeaponItem.cs" />
      <Compile Include="Assets\Scripts\PlayerInventory.cs" />
@@ -70,7 +71,7 @@
      <Compile Include="Assets\Scripts\PlayerStats.cs" />
      <Compile Include="Assets\Scripts\PlayerManager.cs" />
      <Compile Include="Assets\Scripts\InputHandler.cs" />
-     <Compile Include="Assets\Scripts\QuickSlotsUI.cs" />
+     <Compile Include="Assets\Scripts\StaminaBar.cs" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace DS
 {
@@ -23,6 +24,9 @@ namespace DS
             playerLocomotion.rigidbody.velocity = Vector3.zero;
             animatorHandler.PlayTargetAnimation("PickUpItem", true);
             playerInventory.weaponsInventory.Add(weapon);
+            playerManager.GetItemUIGameObject().GetComponentInChildren<Text>().text = weapon.GetItemName();
+            playerManager.GetItemUIGameObject().GetComponentInChildren<RawImage>().texture = weapon.GetItemIcon().texture;
+            playerManager.GetItemUIGameObject().SetActive(true);
             Destroy(gameObject);
         }
     }

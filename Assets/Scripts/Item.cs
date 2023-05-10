@@ -17,6 +17,11 @@ namespace DS
             return itemIcon;
         }
 
+        public string GetItemName()
+        {
+            return itemName;
+        }
+
         #endregion
     }
 }

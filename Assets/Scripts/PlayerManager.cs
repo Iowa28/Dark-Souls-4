@@ -38,12 +38,14 @@ namespace DS
         {
             isInteracting = animatorHandler.GetBool("isInteracting");
             canDoCombo = animatorHandler.GetBool("canDoCombo");
+            animatorHandler.SetBool("isInAir", isInAir);
 
             float delta = Time.deltaTime;
             inputHandler.TickInput(delta);
             playerLocomotion.HandleMovement(delta);
             playerLocomotion.HandleRollingAndSprinting(delta);
             playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
+            playerLocomotion.HandleJumping();
             
             CheckForInteractableObjects();
         }
@@ -70,6 +72,7 @@ namespace DS
             inputHandler.dPadLeft = false;
             inputHandler.dPadUp = false;
             inputHandler.dPadDown = false;
+            inputHandler.jumpInput = false;
 
             if (isInAir)
             {

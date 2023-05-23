@@ -217,6 +217,23 @@ namespace DS
             }
         }
 
+        public void HandleJumping()
+        {
+            if (playerManager.isInteracting)
+                return;
+
+            if (inputHandler.jumpInput && inputHandler.moveAmount > 0)
+            {
+                Vector3 direction = cameraObject.forward * inputHandler.vertical;
+                direction += cameraObject.right * inputHandler.horizontal;
+                direction.y = 0;
+                moveDirection = direction;
+                animatorHandler.PlayTargetAnimation("Jump", true);
+                Quaternion jumpRotation = Quaternion.LookRotation(moveDirection);
+                transform.rotation = jumpRotation;
+            }
+        }
+
         #endregion
         
     }

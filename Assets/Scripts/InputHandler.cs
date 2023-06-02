@@ -15,6 +15,7 @@ namespace DS
         public bool rtInput { get; set; }
         public bool eInput { get; set; }
         public bool jumpInput { get; set; }
+        public bool inventoryInput { get; set; }
         
         public bool dPadUp { get; set; }
         public bool dPadDown { get; set; }
@@ -24,12 +25,14 @@ namespace DS
         public bool rollFlag { get; set; }
         public bool sprintFlag { get; set; }
         public bool comboFlag { get; set; }
+        public bool inventoryFlag { get; set; }
         private float rollInputTimer;
 
         private PlayerControls inputActions;
         private PlayerAttacker playerAttacker;
         private PlayerInventory playerInventory;
         private PlayerManager playerManager;
+        private UIManager uiManager;
 
         private Vector2 movementInput;
         private Vector2 cameraInput;
@@ -39,6 +42,7 @@ namespace DS
             playerAttacker = GetComponent<PlayerAttacker>();
             playerInventory = GetComponent<PlayerInventory>();
             playerManager = GetComponent<PlayerManager>();
+            uiManager = FindObjectOfType<UIManager>();
         }
 
         private void OnEnable()
@@ -52,6 +56,7 @@ namespace DS
                 inputActions.PlayerActions.RT.performed += i => rtInput = true;
                 inputActions.PlayerActions.E.performed += i => eInput = true;
                 inputActions.PlayerActions.Jump.performed += i => jumpInput = true;
+                inputActions.PlayerActions.Inventory.performed += i => inventoryInput = true;
                 inputActions.PlayerQuickSlots.DPadRight.performed += i => dPadRight = true;
                 inputActions.PlayerQuickSlots.DPadLeft.performed += i => dPadLeft = true;
                 inputActions.PlayerQuickSlots.DPadUp.performed += i => dPadUp = true;
@@ -72,6 +77,7 @@ namespace DS
             HandleRollInput(delta);
             HandleAttackInput(delta);
             HandleQuickSlotsInput();
+            HandleInventoryInput();
         }
 
         private void MoveInput(float delta)
@@ -135,6 +141,23 @@ namespace DS
             else if (dPadLeft)
             {
                 playerInventory.ChangeLeftWeapon();
+            }
+        }
+
+        private void HandleInventoryInput()
+        {
+            if (inventoryInput)
+            {
+                inventoryFlag = !inventoryFlag;
+
+                if (inventoryFlag)
+                {
+                    uiManager.OpenSelectWindow();
+                }
+                else
+                {
+                    uiManager.CloseSelectWindow();
+                }
             }
         }
     }

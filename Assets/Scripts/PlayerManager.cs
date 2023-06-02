@@ -73,6 +73,7 @@ namespace DS
             inputHandler.dPadUp = false;
             inputHandler.dPadDown = false;
             inputHandler.jumpInput = false;
+            inputHandler.inventoryInput = false;
 
             if (isInAir)
             {

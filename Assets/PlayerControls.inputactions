@@ -109,6 +109,15 @@
             "id": "c032a2d3-ca41-4483-a06d-98ac2342903f",
             "actions": [
                 {
+                    "name": "Inventory",
+                    "type": "Button",
+                    "id": "f0080b21-ef87-4c36-bbae-d1d35f9dd2e6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Roll",
                     "type": "Button",
                     "id": "efa4e069-2c8c-4cb4-981c-ad521a72de7e",
@@ -229,6 +238,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8df93156-afd2-48f3-8970-abf7ef4b2aa6",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "351d6fb6-1030-4a0f-a69b-118145e8d231",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Inventory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

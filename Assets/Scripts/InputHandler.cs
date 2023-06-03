@@ -152,11 +152,15 @@ namespace DS
 
                 if (inventoryFlag)
                 {
+                    uiManager.CloseHudWindow();
                     uiManager.OpenSelectWindow();
+                    uiManager.UpdateUI();
                 }
                 else
                 {
                     uiManager.CloseSelectWindow();
+                    uiManager.CloseAllInventoryWindows();
+                    uiManager.OpenHudWindow();
                 }
             }
         }

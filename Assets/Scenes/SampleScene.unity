@@ -5175,6 +5175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 433255109}
+  - component: {fileID: 433255110}
   m_Layer: 5
   m_Name: Weapon Inventory Slot
   m_TagString: Untagged
@@ -5202,6 +5203,19 @@ RectTransform:
   m_AnchoredPosition: {x: 90, y: -85}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &433255110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433255108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 896db929a75ed524bb52f78b27225d5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 1741292538}
 --- !u!1 &472870099
 GameObject:
   m_ObjectHideFlags: 0
@@ -11472,7 +11486,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1605700739}
   m_Layer: 5
-  m_Name: Inventory Window
+  m_Name: Weapon Inventory Window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11692,7 +11706,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1741292537
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11750,6 +11764,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1741292536}
   m_CullTransparentMesh: 1
+--- !u!1 &1793301845 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1454728173567836500, guid: 2a0d3b3baf690d849b521bfd78e8f4a1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1454728173201151086}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2014532195
 GameObject:
   m_ObjectHideFlags: 0
@@ -11987,6 +12007,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1454728173567836500, guid: 2a0d3b3baf690d849b521bfd78e8f4a1,
         type: 3}
+      propertyPath: m_Name
+      value: HUD Window
+      objectReference: {fileID: 0}
+    - target: {fileID: 1454728173567836500, guid: 2a0d3b3baf690d849b521bfd78e8f4a1,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -12020,7 +12045,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 409abf63b3417bc4f82bdbe9f6479cf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hudWindow: {fileID: 1793301845}
   selectWindow: {fileID: 734028678}
+  weaponInventoryWindow: {fileID: 1605700738}
+  weaponInventorySlotPrefab: {fileID: 433255108}
+  weaponInventorySlotsParent: {fileID: 782306663}
 --- !u!1001 &1733868115328254498
 PrefabInstance:
   m_ObjectHideFlags: 0

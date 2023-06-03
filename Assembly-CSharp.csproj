@@ -65,6 +65,7 @@
      <Compile Include="Assets\Scripts\WeaponItem.cs" />
      <Compile Include="Assets\Scripts\StaminaBar.cs" />
      <Compile Include="Assets\Scripts\PlayerInventory.cs" />
+     <Compile Include="Assets\Scripts\WeaponInventorySlot.cs" />
      <Compile Include="Assets\Scripts\Item.cs" />
      <Compile Include="Assets\Scripts\AnimatorHandler.cs" />
      <Compile Include="Assets\Scripts\InteractableUI.cs" />
@@ -76,7 +77,8 @@
      <Compile Include="Assets\Scripts\PlayerManager.cs" />
      <Compile Include="Assets\Scripts\InputHandler.cs" />
      <Compile Include="Assets\Scripts\UIManager.cs" />
-     <Compile Include="Assets\Scripts\WeaponInventorySlot.cs" />
+     <Compile Include="Assets\Scripts\EquipmentWeaponUI.cs" />
+     <Compile Include="Assets\Scripts\HandEquipmentSlotUI.cs" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>

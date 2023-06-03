@@ -97,6 +97,16 @@ namespace DS
             return leftWeapon;
         }
 
+        public WeaponItem[] GetWeaponsInRightHandSlots()
+        {
+            return weaponsInRightHandSlots;
+        }
+        
+        public WeaponItem[] GetWeaponsInLeftHandSlots()
+        {
+            return weaponsInLeftHandSlots;
+        }
+
         #endregion
     }
 }

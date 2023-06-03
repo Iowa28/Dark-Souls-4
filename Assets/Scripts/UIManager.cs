@@ -21,15 +21,18 @@ namespace DS
         private WeaponInventorySlot[] weaponInventorySlots;
 
         private PlayerInventory playerInventory;
+        private EquipmentWeaponUI equipmentWeaponUI;
 
         private void Awake()
         {
             playerInventory = FindObjectOfType<PlayerInventory>();
+            equipmentWeaponUI = GetComponentInChildren<EquipmentWeaponUI>();
         }
 
         private void Start()
         {
             weaponInventorySlots = weaponInventorySlotsParent.GetComponentsInChildren<WeaponInventorySlot>();
+            equipmentWeaponUI.LoadWeaponsOnEquipmentScreen(playerInventory);
         }
 
         public void UpdateUI()

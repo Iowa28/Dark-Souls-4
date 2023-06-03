@@ -41,10 +41,9 @@ namespace DS
             animatorHandler.SetBool("isInAir", isInAir);
 
             float delta = Time.deltaTime;
+            
             inputHandler.TickInput(delta);
-            playerLocomotion.HandleMovement(delta);
             playerLocomotion.HandleRollingAndSprinting(delta);
-            playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
             playerLocomotion.HandleJumping();
             
             CheckForInteractableObjects();
@@ -54,17 +53,13 @@ namespace DS
         {
             float delta = Time.fixedDeltaTime;
 
-            if (cameraHandler != null)
-            {
-                cameraHandler.FollowTarget(delta);
-                cameraHandler.HandleCameraRotation(delta, inputHandler.mouseX, inputHandler.mouseY);
-            }
+            playerLocomotion.HandleMovement(delta);
+            playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
         }
 
         private void LateUpdate()
         {
             inputHandler.rollFlag = false;
-            inputHandler.sprintFlag = false;
             inputHandler.rbInput = false;
             inputHandler.rtInput = false;
             inputHandler.eInput = false;
@@ -74,10 +69,18 @@ namespace DS
             inputHandler.dPadDown = false;
             inputHandler.jumpInput = false;
             inputHandler.inventoryInput = false;
+            
+            float delta = Time.deltaTime;
+
+            if (cameraHandler != null)
+            {
+                cameraHandler.FollowTarget(delta);
+                cameraHandler.HandleCameraRotation(delta, inputHandler.mouseX, inputHandler.mouseY);
+            }
 
             if (isInAir)
             {
-                playerLocomotion.inAirTimer += Time.deltaTime;
+                playerLocomotion.inAirTimer += delta;
             }
         }
 

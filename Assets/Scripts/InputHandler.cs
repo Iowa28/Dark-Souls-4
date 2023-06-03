@@ -92,6 +92,7 @@ namespace DS
         private void HandleRollInput(float delta)
         {
             bInput = inputActions.PlayerActions.Roll.IsPressed();
+            sprintFlag = bInput;
 
             if (bInput)
             {

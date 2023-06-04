@@ -1,0 +1,210 @@
+﻿using UnityEngine;
+
+namespace DS
+{
+    public class InputHandler : MonoBehaviour
+    {
+        public float horizontal { get; private set; }
+        public float vertical { get; private set; }
+        public float moveAmount { get; private set; }
+        public float mouseX { get; private set; }
+        public float mouseY { get; private set; }
+
+        private bool bInput;
+        public bool rbInput { get; set; }
+        public bool rtInput { get; set; }
+        public bool eInput { get; set; }
+        public bool jumpInput { get; set; }
+        public bool inventoryInput { get; set; }
+        public bool lockOnInput { get; set; }
+        
+        public bool dPadUp { get; set; }
+        public bool dPadDown { get; set; }
+        public bool dPadLeft { get; set; }
+        public bool dPadRight { get; set; }
+        
+        public bool rollFlag { get; set; }
+        public bool sprintFlag { get; private set; }
+        public bool comboFlag { get; private set; }
+        public bool lockOnFlag { get; set; }
+        private bool inventoryFlag { get; set; }
+        private float rollInputTimer;
+
+        private PlayerControls inputActions;
+        private PlayerAttacker playerAttacker;
+        private PlayerInventory playerInventory;
+        private PlayerManager playerManager;
+        private CameraHandler cameraHandler;
+        private UIManager uiManager;
+
+        private Vector2 movementInput;
+        private Vector2 cameraInput;
+
+        private void Awake()
+        {
+            playerAttacker = GetComponent<PlayerAttacker>();
+            playerInventory = GetComponent<PlayerInventory>();
+            playerManager = GetComponent<PlayerManager>();
+            cameraHandler = FindObjectOfType<CameraHandler>();
+            uiManager = FindObjectOfType<UIManager>();
+        }
+
+        private void OnEnable()
+        {
+            if (inputActions == null)
+            {
+                inputActions = new PlayerControls();
+                inputActions.PlayerMovement.Movement.performed += input => movementInput = input.ReadValue<Vector2>();
+                inputActions.PlayerMovement.Camera.performed += input => cameraInput = input.ReadValue<Vector2>();
+                inputActions.PlayerActions.RB.performed += i => rbInput = true;
+                inputActions.PlayerActions.RT.performed += i => rtInput = true;
+                inputActions.PlayerActions.E.performed += i => eInput = true;
+                inputActions.PlayerActions.Jump.performed += i => jumpInput = true;
+                inputActions.PlayerActions.Inventory.performed += i => inventoryInput = true;
+                inputActions.PlayerActions.LockOn.performed += i => lockOnInput = true;
+                inputActions.PlayerQuickSlots.DPadRight.performed += i => dPadRight = true;
+                inputActions.PlayerQuickSlots.DPadLeft.performed += i => dPadLeft = true;
+                inputActions.PlayerQuickSlots.DPadUp.performed += i => dPadUp = true;
+                inputActions.PlayerQuickSlots.DPadDown.performed += i => dPadDown = true;
+            }
+            
+            inputActions.Enable();
+        }
+
+        private void OnDisable()
+        {
+            inputActions.Disable();
+        }
+
+        public void TickInput(float delta)
+        {
+            MoveInput(delta);
+            HandleRollInput(delta);
+            HandleAttackInput(delta);
+            HandleQuickSlotsInput();
+            HandleInventoryInput();
+            HandleLockOnInput();
+        }
+
+        private void MoveInput(float delta)
+        {
+            horizontal = movementInput.x;
+            vertical = movementInput.y;
+            moveAmount = Mathf.Clamp01(Mathf.Abs(horizontal) + Mathf.Abs(vertical));
+            mouseX = cameraInput.x;
+            mouseY = cameraInput.y;
+        }
+
+        private void HandleRollInput(float delta)
+        {
+            bInput = inputActions.PlayerActions.Roll.IsPressed();
+            sprintFlag = bInput;
+
+            if (bInput)
+            {
+                rollInputTimer += delta;
+                sprintFlag = true;
+            }
+            else
+            {
+                if (rollInputTimer > 0 && rollInputTimer < .5f)
+                {
+                    sprintFlag = false;
+                    rollFlag = true;
+                }
+            
+                rollInputTimer = 0;
+            }
+        }
+
+        private void HandleAttackInput(float delta)
+        {
+            if (rbInput)
+            {
+                if (playerManager.canDoCombo)
+                {
+                    comboFlag = true;
+                    playerAttacker.HandleWeaponCombo(playerInventory.GetRightWeapon());
+                    comboFlag = false;
+                }
+                else if (!playerManager.isInteracting)
+                {
+                    playerAttacker.HandleLightAttack(playerInventory.GetRightWeapon());   
+                }
+            }
+            
+            if (rtInput)
+            {
+                playerAttacker.HandleHeavyAttack(playerInventory.GetRightWeapon());
+            }
+        }
+
+        private void HandleQuickSlotsInput()
+        {
+            if (dPadRight)
+            {
+                playerInventory.ChangeRightWeapon();
+            }
+            else if (dPadLeft)
+            {
+                playerInventory.ChangeLeftWeapon();
+            }
+        }
+
+        private void HandleInventoryInput()
+        {
+            if (inventoryInput)
+            {
+                inventoryFlag = !inventoryFlag;
+
+                if (inventoryFlag)
+                {
+                    uiManager.CloseHudWindow();
+                    uiManager.OpenSelectWindow();
+                    uiManager.UpdateUI();
+                }
+                else
+                {
+                    uiManager.CloseSelectWindow();
+                    uiManager.CloseAllInventoryWindows();
+                    uiManager.OpenHudWindow();
+                }
+            }
+            
+            if (inventoryFlag)
+            {
+                uiManager.CloseHudWindow();
+                uiManager.OpenSelectWindow();
+                uiManager.UpdateUI();
+            }
+            else
+            {
+                uiManager.CloseSelectWindow();
+                uiManager.CloseAllInventoryWindows();
+                uiManager.OpenHudWindow();
+            }
+        }
+
+        private void HandleLockOnInput()
+        {
+            if (lockOnInput)
+            {
+                // lockOnFlag = !lockOnFlag;
+                
+                if (!lockOnFlag)
+                {
+                    cameraHandler.HandleLockOn();
+                    if (cameraHandler.IsLockOnActive())
+                    {
+                        lockOnFlag = true;
+                    }
+                }
+                else
+                {
+                    cameraHandler.ClearLockOnTarget();
+                    lockOnFlag = false;
+                }
+            }
+        }
+    }
+}

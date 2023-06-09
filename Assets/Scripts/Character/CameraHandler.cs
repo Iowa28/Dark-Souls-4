@@ -7,11 +7,7 @@ namespace DS
         private InputHandler inputHandler;
         private PlayerManager playerManager;
         
-        [Header("Target and pivot transforms")]
-        [SerializeField]
         private Transform targetTransform;
-        [SerializeField]
-        private Transform cameraPivotTransform;
         public Transform cameraTransform { get; private set; }
         private Vector3 cameraTransformPosition;
         public LayerMask ignoreLayers { get; private set; }
@@ -21,6 +17,8 @@ namespace DS
         public static CameraHandler singleton { get; private set; }
 
         [Header("Camera rotation settings")]
+        [SerializeField]
+        private Transform cameraPivotTransform;
         [SerializeField]
         private float lookSpeed = .1f;
         [SerializeField]
@@ -37,6 +35,7 @@ namespace DS
         [SerializeField]
         private float maximumPivot = 35;
 
+        [Header("Collision settings")]
         [SerializeField]
         private float cameraSphereRadius = .2f;
         [SerializeField]
@@ -44,14 +43,16 @@ namespace DS
         [SerializeField]
         private float minimumCollisionOffset = .2f;
 
-        private float lockedPivotPosition = 2.25f;
-        private float unlockedPivotPosition = 1.65f;
-
         [Header("Lock on settings")]
         [SerializeField]
         private float maxLockOnDistance = 26f;
         [SerializeField]
         private float maxViewableAngle = 50f;
+        
+        [SerializeField]
+        private float lockedPivotPosition = 2.25f;
+        [SerializeField]
+        private float unlockedPivotPosition = 1.65f;
 
         public Transform currentLockOnTarget { get; private set; }
         private Transform leftLockOnTarget;
@@ -163,31 +164,20 @@ namespace DS
                 CharacterManager character = characterCollider.GetComponent<CharacterManager>();
 
                 if (character == null || character.transform.root == targetTransform.transform.root)
-                {
                     continue;
-                }
 
                 Vector3 characterPosition = character.transform.position;
                 Vector3 lockTargetDirection = characterPosition - targetTransform.position;
                 float viewableAngle = Vector3.Angle(lockTargetDirection, cameraTransform.forward);
 
                 if (viewableAngle < -maxViewableAngle || viewableAngle > maxViewableAngle)
-                {
                     continue;
-                }
 
-                RaycastHit hit;
-                if (!Physics.Linecast(playerManager.GetLockOnTransform().position, character.GetLockOnTransform().position, out hit))
-                {
+                if (!Physics.Linecast(playerManager.GetLockOnTransform().position, character.GetLockOnTransform().position, out var hit))
                     continue;
-                }
-                
-                Debug.DrawLine(playerManager.GetLockOnTransform().position, character.GetLockOnTransform().position);
-                
+
                 if (hit.transform.gameObject.layer == environmentLayer)
-                {
                     continue;
-                }
 
                 float distanceFromTarget = lockTargetDirection.magnitude;
                 
@@ -198,29 +188,21 @@ namespace DS
                 }
 
                 if (!inputHandler.lockOnFlag || character.transform.root == currentLockOnTarget.transform.root)
-                {
                     continue;
-                }
-                
+
                 Vector3 relativeEnemyPosition = currentLockOnTarget.InverseTransformDirection(characterPosition);
                 Vector3 currentLockOnTargetPosition = currentLockOnTarget.transform.position;
                 float distanceFromLeftTarget = currentLockOnTargetPosition.x - characterPosition.x;
                 float distanceFromRightTarget = currentLockOnTargetPosition.x + characterPosition.x;
 
-                // Debug.Log("left: " + distanceFromLeftTarget + ", right: " + distanceFromRightTarget + ", pos: " + character.GetLockOnTransform().position);
-
-                if (relativeEnemyPosition.x > 0.00 && distanceFromLeftTarget < leftTargetShortestDistance)
+                if (relativeEnemyPosition.x > 0 && distanceFromLeftTarget < leftTargetShortestDistance)
                 {
-                    // Debug.Log("left target " + character.GetLockOnTransform().position);
-                    // Debug.Log(character.GetLockOnTransform().position);
                     leftTargetShortestDistance = distanceFromTarget;
                     leftLockOnTarget = character.GetLockOnTransform();
                 }
 
-                if (relativeEnemyPosition.x < 0.00 && distanceFromRightTarget < rightTargetShortestDistance)
+                if (relativeEnemyPosition.x < 0 && distanceFromRightTarget < rightTargetShortestDistance)
                 {
-                    // Debug.Log("right target " + character.GetLockOnTransform().position);
-                    // Debug.Log(character.GetLockOnTransform().position);
                     rightTargetShortestDistance = distanceFromRightTarget;
                     rightLockOnTarget = character.GetLockOnTransform();
                 }

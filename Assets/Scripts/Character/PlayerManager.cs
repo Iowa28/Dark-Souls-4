@@ -45,6 +45,7 @@ namespace DS
             inputHandler.TickInput(delta);
             playerLocomotion.HandleRollingAndSprinting(delta);
             playerLocomotion.HandleJumping();
+            cameraHandler.SetCameraHeight(delta);
             
             CheckForInteractableObjects();
         }
@@ -70,6 +71,8 @@ namespace DS
             inputHandler.jumpInput = false;
             inputHandler.inventoryInput = false;
             inputHandler.lockOnInput = false;
+            // inputHandler.leftLockOnInput = false;
+            // inputHandler.rightLockOnInput = false;
             
             float delta = Time.deltaTime;
 

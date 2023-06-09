@@ -5,7 +5,8 @@ namespace DS
     public class PlayerLocomotion : MonoBehaviour
     {
         private PlayerManager playerManager;
-        private Transform cameraObject;
+        // private Transform cameraObject;
+        private CameraHandler cameraHandler;
         private InputHandler inputHandler;
         public Vector3 moveDirection { get; private set; }
 
@@ -42,10 +43,10 @@ namespace DS
         private void Start()
         {
             playerManager = GetComponent<PlayerManager>();
+            cameraHandler = FindObjectOfType<CameraHandler>();
             rigidbody = GetComponent<Rigidbody>();
             inputHandler = GetComponent<InputHandler>();
             animatorHandler = GetComponentInChildren<AnimatorHandler>();
-            cameraObject = GameObject.FindWithTag("MainCamera").transform;
             animatorHandler.Initialize();
             animatorHandler.CanRotate();
 
@@ -60,8 +61,8 @@ namespace DS
             if (inputHandler.rollFlag || playerManager.isInteracting)
                 return;
 
-            moveDirection = cameraObject.forward * inputHandler.vertical;
-            moveDirection += cameraObject.right * inputHandler.horizontal;
+            moveDirection = cameraHandler.cameraTransform.forward * inputHandler.vertical;
+            moveDirection += cameraHandler.cameraTransform.right * inputHandler.horizontal;
             moveDirection.Normalize();
             moveDirection = new Vector3(moveDirection.x, 0, moveDirection.z);
             
@@ -89,7 +90,14 @@ namespace DS
             Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
             rigidbody.velocity = projectedVelocity;
 
-            animatorHandler.UpdateAnimatorValues(inputHandler.moveAmount, 0, playerManager.isSprinting);
+            if (inputHandler.lockOnFlag && !inputHandler.sprintFlag)
+            {
+                animatorHandler.UpdateAnimatorValues(inputHandler.vertical, inputHandler.horizontal, playerManager.isSprinting);
+            }
+            else
+            {
+                animatorHandler.UpdateAnimatorValues(inputHandler.moveAmount, 0, playerManager.isSprinting);
+            }
 
             if (animatorHandler.canRotate)
             {
@@ -99,19 +107,27 @@ namespace DS
 
         private void HandleRotation(float delta)
         {
-            float moveOverride = inputHandler.moveAmount;
-
-            Vector3 targetDirection = cameraObject.forward * inputHandler.vertical;
-            targetDirection += cameraObject.right * inputHandler.horizontal;
+            Vector3 targetDirection;
             
-            targetDirection.Normalize();
-            targetDirection.y = 0;
-
-            if (targetDirection == Vector3.zero)
+            if (!inputHandler.lockOnFlag || inputHandler.sprintFlag || inputHandler.rollFlag)
             {
-                targetDirection = transform.forward;
-            }
+                targetDirection = cameraHandler.cameraTransform.forward * inputHandler.vertical;
+                targetDirection += cameraHandler.cameraTransform.right * inputHandler.horizontal;
+                targetDirection.Normalize();
+                targetDirection.y = 0;
 
+                if (targetDirection == Vector3.zero)
+                {
+                    targetDirection = transform.forward;
+                }
+            }
+            else
+            {
+                targetDirection = cameraHandler.currentLockOnTarget.position - transform.position;
+                targetDirection.y = 0;
+                targetDirection.Normalize();
+            }
+            
             Quaternion quaternion = Quaternion.LookRotation(targetDirection);
             Quaternion targetRotation = Quaternion.Slerp(transform.rotation, quaternion, rotationSpeed * delta);
 
@@ -125,8 +141,8 @@ namespace DS
 
             if (inputHandler.rollFlag)
             {
-                moveDirection = cameraObject.forward * inputHandler.vertical;
-                moveDirection += cameraObject.right * inputHandler.horizontal;
+                moveDirection = cameraHandler.cameraTransform.forward * inputHandler.vertical;
+                moveDirection += cameraHandler.cameraTransform.right * inputHandler.horizontal;
                 
                 if (inputHandler.moveAmount > 0)
                 {
@@ -224,8 +240,8 @@ namespace DS
 
             if (inputHandler.jumpInput && inputHandler.moveAmount > 0)
             {
-                Vector3 direction = cameraObject.forward * inputHandler.vertical;
-                direction += cameraObject.right * inputHandler.horizontal;
+                Vector3 direction = cameraHandler.cameraTransform.forward * inputHandler.vertical;
+                direction += cameraHandler.cameraTransform.right * inputHandler.horizontal;
                 direction.y = 0;
                 moveDirection = direction;
                 animatorHandler.PlayTargetAnimation("Jump", true);

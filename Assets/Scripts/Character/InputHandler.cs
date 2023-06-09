@@ -17,12 +17,14 @@ namespace DS
         public bool jumpInput { get; set; }
         public bool inventoryInput { get; set; }
         public bool lockOnInput { get; set; }
-        
+        public bool leftLockOnInput { get; set; }
+        public bool rightLockOnInput { get; set; }
+
         public bool dPadUp { get; set; }
         public bool dPadDown { get; set; }
         public bool dPadLeft { get; set; }
         public bool dPadRight { get; set; }
-        
+
         public bool rollFlag { get; set; }
         public bool sprintFlag { get; private set; }
         public bool comboFlag { get; private set; }
@@ -54,20 +56,22 @@ namespace DS
             if (inputActions == null)
             {
                 inputActions = new PlayerControls();
-                inputActions.PlayerMovement.Movement.performed += input => movementInput = input.ReadValue<Vector2>();
-                inputActions.PlayerMovement.Camera.performed += input => cameraInput = input.ReadValue<Vector2>();
-                inputActions.PlayerActions.RB.performed += i => rbInput = true;
-                inputActions.PlayerActions.RT.performed += i => rtInput = true;
-                inputActions.PlayerActions.E.performed += i => eInput = true;
-                inputActions.PlayerActions.Jump.performed += i => jumpInput = true;
-                inputActions.PlayerActions.Inventory.performed += i => inventoryInput = true;
-                inputActions.PlayerActions.LockOn.performed += i => lockOnInput = true;
-                inputActions.PlayerQuickSlots.DPadRight.performed += i => dPadRight = true;
-                inputActions.PlayerQuickSlots.DPadLeft.performed += i => dPadLeft = true;
-                inputActions.PlayerQuickSlots.DPadUp.performed += i => dPadUp = true;
-                inputActions.PlayerQuickSlots.DPadDown.performed += i => dPadDown = true;
+                inputActions.PlayerMovement.Movement.performed += i => movementInput = i.ReadValue<Vector2>();
+                inputActions.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
+                inputActions.PlayerMovement.LockOnTargetLeft.performed += _ => leftLockOnInput = true;
+                inputActions.PlayerMovement.LockOnTargetRight.performed += _ => rightLockOnInput = true;
+                inputActions.PlayerActions.RB.performed += _ => rbInput = true;
+                inputActions.PlayerActions.RT.performed += _ => rtInput = true;
+                inputActions.PlayerActions.E.performed += _ => eInput = true;
+                inputActions.PlayerActions.Jump.performed += _ => jumpInput = true;
+                inputActions.PlayerActions.Inventory.performed += _ => inventoryInput = true;
+                inputActions.PlayerActions.LockOn.performed += _ => lockOnInput = true;
+                inputActions.PlayerQuickSlots.DPadRight.performed += _ => dPadRight = true;
+                inputActions.PlayerQuickSlots.DPadLeft.performed += _ => dPadLeft = true;
+                inputActions.PlayerQuickSlots.DPadUp.performed += _ => dPadUp = true;
+                inputActions.PlayerQuickSlots.DPadDown.performed += _ => dPadDown = true;
             }
-            
+
             inputActions.Enable();
         }
 
@@ -78,7 +82,7 @@ namespace DS
 
         public void TickInput(float delta)
         {
-            MoveInput(delta);
+            HandleMoveInput(delta);
             HandleRollInput(delta);
             HandleAttackInput(delta);
             HandleQuickSlotsInput();
@@ -86,7 +90,7 @@ namespace DS
             HandleLockOnInput();
         }
 
-        private void MoveInput(float delta)
+        private void HandleMoveInput(float delta)
         {
             horizontal = movementInput.x;
             vertical = movementInput.y;
@@ -112,7 +116,7 @@ namespace DS
                     sprintFlag = false;
                     rollFlag = true;
                 }
-            
+
                 rollInputTimer = 0;
             }
         }
@@ -129,10 +133,10 @@ namespace DS
                 }
                 else if (!playerManager.isInteracting)
                 {
-                    playerAttacker.HandleLightAttack(playerInventory.GetRightWeapon());   
+                    playerAttacker.HandleLightAttack(playerInventory.GetRightWeapon());
                 }
             }
-            
+
             if (rtInput)
             {
                 playerAttacker.HandleHeavyAttack(playerInventory.GetRightWeapon());
@@ -170,7 +174,7 @@ namespace DS
                     uiManager.OpenHudWindow();
                 }
             }
-            
+
             if (inventoryFlag)
             {
                 uiManager.CloseHudWindow();
@@ -187,23 +191,31 @@ namespace DS
 
         private void HandleLockOnInput()
         {
-            if (lockOnInput)
+            if (lockOnInput && !lockOnFlag)
             {
-                // lockOnFlag = !lockOnFlag;
-                
-                if (!lockOnFlag)
+                cameraHandler.HandleLockOn();
+                if (cameraHandler.IsLockOnActive())
                 {
-                    cameraHandler.HandleLockOn();
-                    if (cameraHandler.IsLockOnActive())
-                    {
-                        lockOnFlag = true;
-                    }
+                    lockOnFlag = true;
                 }
-                else
-                {
-                    cameraHandler.ClearLockOnTarget();
-                    lockOnFlag = false;
-                }
+            }
+            else if (lockOnInput && lockOnFlag)
+            {
+                cameraHandler.ClearLockOnTarget();
+                lockOnFlag = false;
+            }
+
+            if (lockOnFlag && leftLockOnInput)
+            {
+                leftLockOnInput = false;
+                cameraHandler.HandleLockOn();
+                cameraHandler.SwitchToLeftLockOn();
+            }
+            else if (lockOnFlag && rightLockOnInput)
+            {
+                rightLockOnInput = false;
+                cameraHandler.HandleLockOn();
+                cameraHandler.SwitchToRightLockOn();
             }
         }
     }

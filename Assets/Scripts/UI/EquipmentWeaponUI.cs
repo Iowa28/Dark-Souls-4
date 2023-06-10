@@ -4,20 +4,17 @@ namespace DS
 {
     public class EquipmentWeaponUI : MonoBehaviour
     {
-        private bool rightHandSlot01Selected;
-        private bool rightHandSLot02Selected;
-        private bool leftHandSlot01Selected;
-        private bool leftHandSlot02Selected;
+        public bool rightHandSlot01Selected { get; set; }
+        public bool rightHandSLot02Selected { get; set; }
+        public bool leftHandSlot01Selected { get; set; }
+        public bool leftHandSlot02Selected { get; set; }
 
         private HandEquipmentSlotUI[] handEquipmentSlots;
 
-        private void Start()
-        {
-            handEquipmentSlots = GetComponentsInChildren<HandEquipmentSlotUI>();
-        }
-
         public void LoadWeaponsOnEquipmentScreen(PlayerInventory playerInventory)
         {
+            handEquipmentSlots ??= GetComponentsInChildren<HandEquipmentSlotUI>();
+
             foreach (HandEquipmentSlotUI handEquipmentSlot in handEquipmentSlots)
             {
                 if (handEquipmentSlot.IsRightHandSlot01())
@@ -57,6 +54,14 @@ namespace DS
         public void SelectLeftHandSlot02()
         {
             leftHandSlot02Selected = true;
+        }
+
+        public void ResetAllSelectedSlots()
+        {
+            rightHandSlot01Selected = false;
+            rightHandSLot02Selected = false;
+            leftHandSlot01Selected = false;
+            leftHandSlot02Selected = false;
         }
     }
 }

@@ -35,6 +35,11 @@ namespace DS
             gameObject.SetActive(false);
         }
 
+        public void SelectThisSlot()
+        {
+            
+        }
+
         #region Getters
 
         public bool IsRightHandSlot01()

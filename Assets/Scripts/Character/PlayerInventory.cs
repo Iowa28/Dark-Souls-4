@@ -6,8 +6,10 @@ namespace DS
     public class PlayerInventory : MonoBehaviour
     {
         private WeaponSlotManager weaponSlotManager;
-        
+
+        [SerializeField]
         private WeaponItem rightWeapon;
+        [SerializeField]
         private WeaponItem leftWeapon;
 
         [SerializeField] 
@@ -20,7 +22,7 @@ namespace DS
         private int currentRightWeaponIndex = -1;
         private int currentLeftWeaponIndex = -1;
 
-        public List<WeaponItem> weaponsInventory { get; set; }
+        public List<WeaponItem> weaponsInventory { get; private set; }
 
         private void Awake()
         {
@@ -31,8 +33,15 @@ namespace DS
 
         private void Start()
         {
-            rightWeapon = unarmedWeapon;
-            leftWeapon = unarmedWeapon;
+            rightWeapon = weaponsInRightHandSlots[0];
+            leftWeapon = weaponsInLeftHandSlots[0];
+            LoadWeaponsOnSlot();
+        }
+
+        public void LoadWeaponsOnSlot()
+        {
+            weaponSlotManager.LoadWeaponOnSlot(rightWeapon, false);
+            weaponSlotManager.LoadWeaponOnSlot(leftWeapon, true);
         }
 
         public void ChangeRightWeapon()
@@ -83,6 +92,13 @@ namespace DS
                 leftWeapon = unarmedWeapon;
                 weaponSlotManager.LoadWeaponOnSlot(leftWeapon, true);
             }
+        }
+
+        public void UpdateWeapons()
+        {
+            rightWeapon = currentRightWeaponIndex > -1 ? weaponsInRightHandSlots[currentRightWeaponIndex] : weaponsInRightHandSlots[0];
+            
+            leftWeapon = currentLeftWeaponIndex > -1 ? weaponsInLeftHandSlots[currentLeftWeaponIndex] : weaponsInLeftHandSlots[0];
         }
 
         #region Getters

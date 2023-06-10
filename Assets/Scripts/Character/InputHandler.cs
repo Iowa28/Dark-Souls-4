@@ -28,7 +28,7 @@ namespace DS
         public bool rollFlag { get; set; }
         public bool sprintFlag { get; private set; }
         public bool comboFlag { get; private set; }
-        public bool lockOnFlag { get; set; }
+        public bool lockOnFlag { get; private set; }
         private bool inventoryFlag { get; set; }
         private float rollInputTimer;
 
@@ -123,6 +123,9 @@ namespace DS
 
         private void HandleAttackInput(float delta)
         {
+            if (inventoryFlag)
+                return;
+            
             if (rbInput)
             {
                 if (playerManager.canDoCombo)

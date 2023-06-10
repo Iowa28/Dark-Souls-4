@@ -5,6 +5,17 @@ namespace DS
 {
     public class WeaponInventorySlot : MonoBehaviour
     {
+        private PlayerInventory playerInventory;
+        private WeaponSlotManager weaponSlotManager;
+        private UIManager uiManager;
+
+        private void Awake()
+        {
+            playerInventory = FindObjectOfType<PlayerInventory>();
+            weaponSlotManager = FindObjectOfType<WeaponSlotManager>();
+            uiManager = FindObjectOfType<UIManager>();
+        }
+
         [SerializeField]
         private Image icon;
         private WeaponItem item;
@@ -23,6 +34,11 @@ namespace DS
             icon.sprite = null;
             icon.enabled = false;
             gameObject.SetActive(false);
+        }
+
+        public void EquipThisItem()
+        {
+            uiManager.EquipItem(item);
         }
     }
 }

@@ -123,29 +123,5 @@ namespace DS
             equipmentWeaponUI.LoadWeaponsOnEquipmentScreen(playerInventory);
             equipmentWeaponUI.ResetAllSelectedSlots();
         }
-
-        // #region Getters
-        //
-        // public bool IsRightHandSlot01Selected()
-        // {
-        //     return equipmentWeaponUI.rightHandSlot01Selected;
-        // }
-        //
-        // public bool IsRightHandSlot02Selected()
-        // {
-        //     return equipmentWeaponUI.rightHandSLot02Selected;
-        // }
-        //
-        // public bool IsLeftHandSlot01Selected()
-        // {
-        //     return equipmentWeaponUI.leftHandSlot01Selected;
-        // }
-        //
-        // public bool IsLeftHandSlot02Selected()
-        // {
-        //     return equipmentWeaponUI.leftHandSlot02Selected;
-        // }
-        //
-        // #endregion
     }
 }

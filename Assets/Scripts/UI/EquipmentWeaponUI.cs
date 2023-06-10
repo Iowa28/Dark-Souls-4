@@ -4,10 +4,10 @@ namespace DS
 {
     public class EquipmentWeaponUI : MonoBehaviour
     {
-        public bool rightHandSlot01Selected { get; set; }
-        public bool rightHandSLot02Selected { get; set; }
-        public bool leftHandSlot01Selected { get; set; }
-        public bool leftHandSlot02Selected { get; set; }
+        public bool rightHandSlot01Selected { get; private set; }
+        public bool rightHandSLot02Selected { get; private set; }
+        public bool leftHandSlot01Selected { get; private set; }
+        public bool leftHandSlot02Selected { get; private set; }
 
         private HandEquipmentSlotUI[] handEquipmentSlots;
 

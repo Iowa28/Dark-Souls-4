@@ -10,6 +10,14 @@ namespace DS
         [SerializeField]
         private bool isUnarmed;
 
+        [Header("Idle Animations")]
+        [SerializeField]
+        private string rightHandIdle;
+        [SerializeField]
+        private string leftHandIdle;
+        [SerializeField]
+        private string twoHandIdle;
+
         [Header("Attack Animations")]
         [SerializeField]
         private string lightAttack1;
@@ -19,12 +27,6 @@ namespace DS
         private string lightAttack3;
         [SerializeField]
         private string heavyAttack1;
-
-        [Header("Idle Animations")]
-        [SerializeField]
-        private string rightHandIdle;
-        [SerializeField]
-        private string leftHandIdle;
 
         [Header("Stamina Costs")] 
         [SerializeField]
@@ -46,6 +48,21 @@ namespace DS
             return isUnarmed;
         }
 
+        public string GetRightHandIdle()
+        {
+            return rightHandIdle;
+        }
+
+        public string GetLeftHandIdle()
+        {
+            return leftHandIdle;
+        }
+
+        public string GetTwoHandIdle()
+        {
+            return twoHandIdle;
+        }
+
         public string GetLightAttack1()
         {
             return lightAttack1;
@@ -64,16 +81,6 @@ namespace DS
         public string GetHeavyAttack1()
         {
             return heavyAttack1;
-        }
-
-        public string GetRightHandIdle()
-        {
-            return rightHandIdle;
-        }
-
-        public string GetLeftHandIdle()
-        {
-            return leftHandIdle;
         }
 
         public int GetLightAttackStamina()

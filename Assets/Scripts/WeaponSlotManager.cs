@@ -4,6 +4,8 @@ namespace DS
 {
     public class WeaponSlotManager : MonoBehaviour
     {
+        public WeaponItem attackingWeapon { get; set; }
+        
         private WeaponHolderSlot leftHandSlot;
         private WeaponHolderSlot rightHandSlot;
 
@@ -16,13 +18,14 @@ namespace DS
         private QuickSlotsUI quickSlotsUI;
 
         private PlayerStats playerStats;
-        public WeaponItem attackingWeapon { get; set; }
+        private InputHandler inputHandler;
 
         private void Awake()
         {
             animator = GetComponent<Animator>();
             quickSlotsUI = FindObjectOfType<QuickSlotsUI>();
             playerStats = GetComponentInParent<PlayerStats>();
+            inputHandler = GetComponentInParent<InputHandler>();
             
             WeaponHolderSlot[] weaponHolderSlots = GetComponentsInChildren<WeaponHolderSlot>();
             foreach (WeaponHolderSlot weaponHolderSlot in weaponHolderSlots)
@@ -44,15 +47,22 @@ namespace DS
             {
                 leftHandSlot.LoadWeaponModel(weaponItem);
                 LoadLeftWeaponDamageCollider();
-
-                animator.CrossFade(weaponItem != null ? weaponItem.GetLeftHandIdle() : "Left Arm Empty", fadeDuration);
             }
             else
             {
+                if (inputHandler.twoHandFlag)
+                {
+                    Debug.Log("Play " + weaponItem.GetTwoHandIdle());
+                    animator.CrossFade(weaponItem.GetTwoHandIdle(), fadeDuration);
+                }
+                else
+                {
+                    animator.CrossFade("Both Arms Empty", fadeDuration);
+                    animator.CrossFade(weaponItem != null ? weaponItem.GetRightHandIdle() : "Right Arm Empty", fadeDuration);
+                }
+                
                 rightHandSlot.LoadWeaponModel(weaponItem);
                 LoadRightWeaponDamageCollider();
-                
-                animator.CrossFade(weaponItem != null ? weaponItem.GetRightHandIdle() : "Right Arm Empty", fadeDuration);
             }
             
             quickSlotsUI.UpdateWeaponQuickSlotsUI(weaponItem, isLeft);

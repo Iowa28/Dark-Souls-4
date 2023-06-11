@@ -11,21 +11,23 @@ namespace DS
         public float mouseY { get; private set; }
 
         private bool bInput;
-        public bool rbInput { get; set; }
-        public bool rtInput { get; set; }
-        public bool eInput { get; set; }
-        public bool jumpInput { get; set; }
-        public bool inventoryInput { get; set; }
-        public bool lockOnInput { get; set; }
-        public bool leftLockOnInput { get; set; }
-        public bool rightLockOnInput { get; set; }
+        public bool selectInput { get; private set; }
+        private bool twoHandInput;
+        private bool rbInput;
+        private bool rtInput;
+        public bool jumpInput { get; private set; }
+        private bool inventoryInput;
+        private bool lockOnInput;
+        private bool leftLockOnInput;
+        private bool rightLockOnInput;
 
         public bool dPadUp { get; set; }
         public bool dPadDown { get; set; }
-        public bool dPadLeft { get; set; }
-        public bool dPadRight { get; set; }
+        private bool dPadLeft;
+        private bool dPadRight;
 
-        public bool rollFlag { get; set; }
+        public bool rollFlag { get; private set; }
+        public bool twoHandFlag { get; private set; }
         public bool sprintFlag { get; private set; }
         public bool comboFlag { get; private set; }
         public bool lockOnFlag { get; private set; }
@@ -36,6 +38,7 @@ namespace DS
         private PlayerAttacker playerAttacker;
         private PlayerInventory playerInventory;
         private PlayerManager playerManager;
+        private WeaponSlotManager weaponSlotManager;
         private CameraHandler cameraHandler;
         private UIManager uiManager;
 
@@ -47,6 +50,7 @@ namespace DS
             playerAttacker = GetComponent<PlayerAttacker>();
             playerInventory = GetComponent<PlayerInventory>();
             playerManager = GetComponent<PlayerManager>();
+            weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
             cameraHandler = FindObjectOfType<CameraHandler>();
             uiManager = FindObjectOfType<UIManager>();
         }
@@ -62,7 +66,8 @@ namespace DS
                 inputActions.PlayerMovement.LockOnTargetRight.performed += _ => rightLockOnInput = true;
                 inputActions.PlayerActions.RB.performed += _ => rbInput = true;
                 inputActions.PlayerActions.RT.performed += _ => rtInput = true;
-                inputActions.PlayerActions.E.performed += _ => eInput = true;
+                inputActions.PlayerActions.Select.performed += _ => selectInput = true;
+                inputActions.PlayerActions.TwoHand.performed += _ => twoHandInput = true;
                 inputActions.PlayerActions.Jump.performed += _ => jumpInput = true;
                 inputActions.PlayerActions.Inventory.performed += _ => inventoryInput = true;
                 inputActions.PlayerActions.LockOn.performed += _ => lockOnInput = true;
@@ -80,6 +85,22 @@ namespace DS
             inputActions.Disable();
         }
 
+        public void ResetInputFlags()
+        {
+            rollFlag = false;
+            selectInput = false;
+            twoHandInput = false;
+            rbInput = false;
+            rtInput = false;
+            dPadRight = false;
+            dPadLeft = false;
+            dPadUp = false;
+            dPadDown = false;
+            jumpInput = false;
+            inventoryInput = false;
+            lockOnInput = false;
+        }
+
         public void TickInput(float delta)
         {
             HandleMoveInput(delta);
@@ -88,6 +109,7 @@ namespace DS
             HandleQuickSlotsInput();
             HandleInventoryInput();
             HandleLockOnInput();
+            HandleTwoHandInput();
         }
 
         private void HandleMoveInput(float delta)
@@ -219,6 +241,24 @@ namespace DS
                 rightLockOnInput = false;
                 cameraHandler.HandleLockOn();
                 cameraHandler.SwitchToRightLockOn();
+            }
+        }
+
+        private void HandleTwoHandInput()
+        {
+            if (twoHandInput)
+            {
+                twoHandFlag = !twoHandFlag;
+
+                if (twoHandInput)
+                {
+                    weaponSlotManager.LoadWeaponOnSlot(playerInventory.GetRightWeapon(), false);
+                }
+                else
+                {
+                    weaponSlotManager.LoadWeaponOnSlot(playerInventory.GetLeftWeapon(), true);
+                    weaponSlotManager.LoadWeaponOnSlot(playerInventory.GetRightWeapon(), false);
+                }
             }
         }
     }

@@ -60,19 +60,7 @@ namespace DS
 
         private void LateUpdate()
         {
-            inputHandler.rollFlag = false;
-            inputHandler.rbInput = false;
-            inputHandler.rtInput = false;
-            inputHandler.eInput = false;
-            inputHandler.dPadRight = false;
-            inputHandler.dPadLeft = false;
-            inputHandler.dPadUp = false;
-            inputHandler.dPadDown = false;
-            inputHandler.jumpInput = false;
-            inputHandler.inventoryInput = false;
-            inputHandler.lockOnInput = false;
-            // inputHandler.leftLockOnInput = false;
-            // inputHandler.rightLockOnInput = false;
+            inputHandler.ResetInputFlags();
             
             float delta = Time.deltaTime;
 
@@ -104,7 +92,7 @@ namespace DS
                         interactableUI.SetInteractableText(interactableText);
                         interactionUIGameObject.SetActive(true);
 
-                        if (inputHandler.eInput)
+                        if (inputHandler.selectInput)
                         {
                             interactableObject.Interact(this);
                         }
@@ -118,7 +106,7 @@ namespace DS
                     interactionUIGameObject.SetActive(false);
                 }
                 
-                if (itemUIGameObject != null && inputHandler.eInput)
+                if (itemUIGameObject != null && inputHandler.selectInput)
                 {
                     itemUIGameObject.SetActive(false);
                 }

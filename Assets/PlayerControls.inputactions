@@ -207,7 +207,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "E",
+                    "name": "Select",
                     "type": "Button",
                     "id": "17ecda30-d99d-4e40-8c55-d3aae22c39fe",
                     "expectedControlType": "Button",
@@ -228,6 +228,15 @@
                     "name": "Jump",
                     "type": "Button",
                     "id": "728056c4-ab0b-4382-870d-0a25cd9831ed",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "TwoHand",
+                    "type": "Button",
+                    "id": "4eb29e2b-8632-4a9f-96d7-1d1557761467",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -286,7 +295,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "E",
+                    "action": "Select",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -297,7 +306,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "E",
+                    "action": "Select",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -353,6 +362,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "LockOn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a149d299-cdc1-48a7-9acc-9eda85b0d32a",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TwoHand",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "86c339b5-7d47-4ffe-832d-1657bdd0584f",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TwoHand",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

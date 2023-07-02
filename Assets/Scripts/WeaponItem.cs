@@ -27,7 +27,13 @@ namespace DS
         private string lightAttack3;
         [SerializeField]
         private string heavyAttack1;
-
+        [SerializeField]
+        private string twoHandLightAttack1;
+        [SerializeField]
+        private string twoHandLightAttack2;
+        [SerializeField]
+        private string twoHandHeavyAttack1;
+        
         [Header("Stamina Costs")] 
         [SerializeField]
         private int baseStamina;
@@ -78,9 +84,24 @@ namespace DS
             return lightAttack3;
         }
 
+        public string GetTwoHandLightAttack1()
+        {
+            return twoHandLightAttack1;
+        }
+        
+        public string GetTwoHandLightAttack2()
+        {
+            return twoHandLightAttack2;
+        }
+
         public string GetHeavyAttack1()
         {
             return heavyAttack1;
+        }
+
+        public string GetTwoHandHeavyAttack1()
+        {
+            return twoHandHeavyAttack1;
         }
 
         public int GetLightAttackStamina()

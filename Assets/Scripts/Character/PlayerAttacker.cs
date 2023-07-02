@@ -22,7 +22,6 @@ namespace DS
             if (inputHandler.comboFlag)
             {
                 animatorHandler.SetBool("canDoCombo", false);
-                
                 if (lastAttack == weapon.GetLightAttack1())
                 {
                     animatorHandler.PlayTargetAnimation(weapon.GetLightAttack2(), true);
@@ -33,21 +32,44 @@ namespace DS
                     animatorHandler.PlayTargetAnimation(weapon.GetLightAttack3(), true);
                     lastAttack = weapon.GetLightAttack3();
                 }
+                else if (lastAttack == weapon.GetTwoHandLightAttack1())
+                {
+                    animatorHandler.PlayTargetAnimation(weapon.GetTwoHandLightAttack2(), true);
+                    lastAttack = weapon.GetTwoHandLightAttack2();
+                }
             }
         }
 
         public void HandleLightAttack(WeaponItem weapon)
         {
             weaponSlotManager.attackingWeapon = weapon;
-            animatorHandler.PlayTargetAnimation(weapon.GetLightAttack1(), true);
-            lastAttack = weapon.GetLightAttack1();
+            
+            if (inputHandler.twoHandFlag)
+            {
+                animatorHandler.PlayTargetAnimation(weapon.GetTwoHandLightAttack1(), true);
+                lastAttack = weapon.GetTwoHandLightAttack1();
+            }
+            else
+            {
+                animatorHandler.PlayTargetAnimation(weapon.GetLightAttack1(), true);
+                lastAttack = weapon.GetLightAttack1();
+            }
         }
         
         public void HandleHeavyAttack(WeaponItem weapon)
         {
             weaponSlotManager.attackingWeapon = weapon;
-            animatorHandler.PlayTargetAnimation(weapon.GetHeavyAttack1(), true);
-            lastAttack = weapon.GetHeavyAttack1();
+            
+            if (inputHandler.twoHandFlag)
+            {
+                animatorHandler.PlayTargetAnimation(weapon.GetTwoHandHeavyAttack1(), true);
+                lastAttack = weapon.GetTwoHandHeavyAttack1();
+            }
+            else
+            {
+                animatorHandler.PlayTargetAnimation(weapon.GetHeavyAttack1(), true);
+                lastAttack = weapon.GetHeavyAttack1();
+            }
         }
     }
 }

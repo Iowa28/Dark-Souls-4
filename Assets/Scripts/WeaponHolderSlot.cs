@@ -11,18 +11,11 @@ namespace DS
         private bool isLeftHandSlot;
         [SerializeField] 
         private bool isRightHandSlot;
+        [SerializeField]
+        private bool isBackSLot;
 
         public GameObject currentWeaponModel { get; private set; }
-
-        public bool IsLeftHandSlot()
-        {
-            return isLeftHandSlot;
-        }
-
-        public bool IsRightHandSlot()
-        {
-            return isRightHandSlot;
-        }
+        public WeaponItem currentWeapon { get; set; }
 
         private void UnloadWeapon()
         {
@@ -32,7 +25,7 @@ namespace DS
             }
         }
 
-        private void UnloadWeaponAndDestroy()
+        public void UnloadWeaponAndDestroy()
         {
             if (currentWeaponModel != null)
             {
@@ -61,5 +54,24 @@ namespace DS
 
             currentWeaponModel = model;
         }
+
+        #region Getters
+
+        public bool IsLeftHandSlot()
+        {
+            return isLeftHandSlot;
+        }
+
+        public bool IsRightHandSlot()
+        {
+            return isRightHandSlot;
+        }
+
+        public bool IsBackSLot()
+        {
+            return isBackSLot;
+        }
+
+        #endregion
     }
 }

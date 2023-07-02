@@ -46,7 +46,7 @@ MonoBehaviour:
     y: 0
     width: 1969
     height: 1109
-  m_MinSize: {x: 875, y: 542}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_UseTopView: 1
   m_TopViewHeight: 30
@@ -119,10 +119,10 @@ MonoBehaviour:
     y: 30
     width: 1969
     height: 1059
-  m_MinSize: {x: 738, y: 492}
-  m_MaxSize: {x: 24003, y: 14042}
+  m_MinSize: {x: 677, y: 492}
+  m_MaxSize: {x: 18002, y: 14042}
   vertical: 0
-  controlID: 166
+  controlID: 180
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,10 +144,10 @@ MonoBehaviour:
     y: 0
     width: 1430
     height: 1059
-  m_MinSize: {x: 463, y: 492}
-  m_MaxSize: {x: 20003, y: 14042}
+  m_MinSize: {x: 402, y: 492}
+  m_MaxSize: {x: 14002, y: 14042}
   vertical: 1
-  controlID: 53
+  controlID: 154
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,10 +169,10 @@ MonoBehaviour:
     y: 0
     width: 1430
     height: 644
-  m_MinSize: {x: 403, y: 221}
-  m_MaxSize: {x: 8003, y: 4021}
+  m_MinSize: {x: 402, y: 221}
+  m_MaxSize: {x: 8002, y: 4021}
   vertical: 0
-  controlID: 54
+  controlID: 155
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -192,8 +192,8 @@ MonoBehaviour:
     y: 0
     width: 396
     height: 644
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -218,8 +218,8 @@ MonoBehaviour:
     y: 0
     width: 1034
     height: 644
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -249,10 +249,10 @@ MonoBehaviour:
     y: 644
     width: 1430
     height: 415
-  m_MinSize: {x: 463, y: 271}
-  m_MaxSize: {x: 20003, y: 10021}
+  m_MinSize: {x: 332, y: 271}
+  m_MaxSize: {x: 14002, y: 10021}
   vertical: 0
-  controlID: 116
+  controlID: 67
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -263,7 +263,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ProjectBrowser
+  m_Name: ConsoleWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -272,14 +272,14 @@ MonoBehaviour:
     y: 0
     width: 661
     height: 415
-  m_MinSize: {x: 231, y: 271}
-  m_MaxSize: {x: 10001, y: 10021}
-  m_ActualView: {fileID: 19}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 19}
   - {fileID: 20}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -455,21 +455,21 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 4cfbffff883d0000ae3d0000c43d0000003e00001a3e00006c3e0000883e0000c83e0000e23e0000e63e0000063f00001e3f0000
+      m_ExpandedIDs: 4cfbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: Left Hand Slot 01
-        m_OriginalName: Left Hand Slot 01
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 15836
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 8}
       m_SearchString: 
@@ -656,6 +656,7 @@ MonoBehaviour:
     - {fileID: -7705377501899753749, guid: 41ef8960c8ba3264998631dbd58139f8, type: 2}
     - {fileID: 5584521803467713141, guid: 4ab669c8a58b74e40b41c4755cfd76dd, type: 2}
     - {fileID: -7659217173448295670, guid: 4ab669c8a58b74e40b41c4755cfd76dd, type: 2}
+    - {fileID: 1371184587337475725, guid: 4ab669c8a58b74e40b41c4755cfd76dd, type: 2}
     m_ValueSerializationHelper:
     - e00: 0.7130991
       e01: 0
@@ -753,14 +754,27 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
+    - e00: 0.7248303
+      e01: 0
+      e02: 0
+      e03: 26.284954
+      e10: 0
+      e11: 0.7248303
+      e12: 0
+      e13: 168.80928
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
   m_PreviewAnimator: {fileID: 0}
   m_AnimatorController: {fileID: 9100000, guid: 4ab669c8a58b74e40b41c4755cfd76dd,
     type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: 7254921401277975865, guid: 4ab669c8a58b74e40b41c4755cfd76dd,
-      type: 2}
-    m_ScrollPosition: {x: 0, y: 0}
-  - m_Target: {fileID: -6898632803045163615, guid: 4ab669c8a58b74e40b41c4755cfd76dd,
+  - m_Target: {fileID: 1371184587337475725, guid: 4ab669c8a58b74e40b41c4755cfd76dd,
       type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
@@ -773,7 +787,7 @@ MonoBehaviour:
     m_IsLocked: 0
   m_CurrentEditor: 0
   m_LayerEditor:
-    m_SelectedLayerIndex: 0
+    m_SelectedLayerIndex: 3
 --- !u!114 &19
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -817,18 +831,18 @@ MonoBehaviour:
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
-  m_StartGridSize: 16
+  m_StartGridSize: 72
   m_LastFolders:
   - Assets
-  m_LastFoldersGridSize: 16
+  m_LastFoldersGridSize: 72
   m_LastProjectPath: C:\Projects\Dark-Souls-4
   m_LockTracker:
     m_IsLocked: 1
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 8c450000
-    m_LastClickedID: 17804
-    m_ExpandedIDs: 000000008c4500008e45000090450000924500009445000096450000984500009a4500009c4500009e450000a0450000da450000
+    m_SelectedIDs: 92450000
+    m_LastClickedID: 17810
+    m_ExpandedIDs: 00000000924500009445000096450000984500009a4500009c4500009e450000a0450000a2450000a4450000b2450000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -856,7 +870,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000008c4500008e45000090450000924500009445000096450000984500009a4500009c4500009e450000a0450000
+    m_ExpandedIDs: 00000000924500009445000096450000984500009a4500009c4500009e450000a0450000a2450000a4450000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -881,8 +895,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs: bc450000
+    m_LastClickedInstanceID: 17852
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000e6400000fc400000ec420000ce720000985d000006690000763b00008c460000de3e0000123f00000e3f00005e4e00005c4e0000f06e00003a840000664c0000
     m_RenameOverlay:
@@ -909,7 +923,7 @@ MonoBehaviour:
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
     m_ScrollPosition: {x: 0, y: 0}
-    m_GridSize: 16
+    m_GridSize: 72
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 182
 --- !u!114 &20
@@ -977,22 +991,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Data/Items/Weapons
+    - Assets/Animations/Humanoid/Player/Attack
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 82
   m_LastFolders:
-  - Assets/Data/Items/Weapons
+  - Assets/Animations/Humanoid/Player/Attack
   m_LastFoldersGridSize: 82
   m_LastProjectPath: C:\Projects\Dark-Souls-4
   m_LockTracker:
     m_IsLocked: 1
   m_FolderTreeState:
     scrollPos: {x: 0, y: 30}
-    m_SelectedIDs: d4450000
-    m_LastClickedID: 17876
-    m_ExpandedIDs: 000000008c4500008e45000090450000924500009445000096450000984500009c4500009e450000a0450000
+    m_SelectedIDs: ac450000
+    m_LastClickedID: 17836
+    m_ExpandedIDs: 00000000924500009445000096450000984500009a4500009c4500009e450000a0450000a2450000a4450000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1020,7 +1034,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000008c4500008e45000090450000924500009445000096450000984500009a4500009c4500009e450000a0450000
+    m_ExpandedIDs: 00000000924500009445000096450000984500009a4500009c4500009e450000a0450000a2450000a4450000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

@@ -8,6 +8,7 @@ namespace DS
         
         private WeaponHolderSlot leftHandSlot;
         private WeaponHolderSlot rightHandSlot;
+        private WeaponHolderSlot backSlot;
 
         private DamageCollider leftHandDamageCollider;
         private DamageCollider rightHandDamageCollider;
@@ -38,6 +39,10 @@ namespace DS
                 {
                     rightHandSlot = weaponHolderSlot;
                 }
+                else if (weaponHolderSlot.IsBackSLot())
+                {
+                    backSlot = weaponHolderSlot;
+                }
             }
         }
 
@@ -45,6 +50,7 @@ namespace DS
         {
             if (isLeft)
             {
+                leftHandSlot.currentWeapon = weaponItem;
                 leftHandSlot.LoadWeaponModel(weaponItem);
                 LoadLeftWeaponDamageCollider();
             }
@@ -52,15 +58,23 @@ namespace DS
             {
                 if (inputHandler.twoHandFlag)
                 {
-                    Debug.Log("Play " + weaponItem.GetTwoHandIdle());
+                    backSlot.LoadWeaponModel(leftHandSlot.currentWeapon);
+                    leftHandSlot.UnloadWeaponAndDestroy();
                     animator.CrossFade(weaponItem.GetTwoHandIdle(), fadeDuration);
                 }
                 else
                 {
+                    backSlot.UnloadWeaponAndDestroy();
                     animator.CrossFade("Both Arms Empty", fadeDuration);
                     animator.CrossFade(weaponItem != null ? weaponItem.GetRightHandIdle() : "Right Arm Empty", fadeDuration);
+
+                    if (leftHandSlot.currentWeaponModel == null)
+                    {
+                        leftHandSlot.LoadWeaponModel(leftHandSlot.currentWeapon);
+                    }
                 }
-                
+
+                rightHandSlot.currentWeapon = weaponItem;
                 rightHandSlot.LoadWeaponModel(weaponItem);
                 LoadRightWeaponDamageCollider();
             }

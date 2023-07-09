@@ -52,35 +52,37 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Character\CameraHandler.cs" />
+     <Compile Include="Assets\Scripts\Player\CameraHandler.cs" />
      <Compile Include="Assets\Scripts\WeaponPickUp.cs" />
-     <Compile Include="Assets\Scripts\Character\DamagePlayer.cs" />
+     <Compile Include="Assets\Scripts\Player\DamagePlayer.cs" />
      <Compile Include="Assets\Scripts\UI\HealthBar.cs" />
-     <Compile Include="Assets\Scripts\Character\ResetAnimatorBool.cs" />
-     <Compile Include="Assets\Scripts\Character\PlayerLocomotion.cs" />
-     <Compile Include="Assets\Scripts\Character\EnemyStats.cs" />
+     <Compile Include="Assets\Scripts\Player\ResetAnimatorBool.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerLocomotion.cs" />
+     <Compile Include="Assets\Scripts\AI\EnemyStats.cs" />
      <Compile Include="Assets\Scripts\UI\QuickSlotsUI.cs" />
      <Compile Include="Assets\Scripts\UI\EquipmentWeaponUI.cs" />
-     <Compile Include="Assets\Scripts\Character\EnemyManager.cs" />
-     <Compile Include="Assets\Scripts\Character\CharacterManager.cs" />
+     <Compile Include="Assets\Scripts\AI\EnemyManager.cs" />
+     <Compile Include="Assets\Scripts\Player\CharacterManager.cs" />
      <Compile Include="Assets\Scripts\UI\HandEquipmentSlotUI.cs" />
      <Compile Include="Assets\Scripts\Interactable.cs" />
      <Compile Include="Assets\PlayerControls.cs" />
      <Compile Include="Assets\Scripts\WeaponItem.cs" />
      <Compile Include="Assets\Scripts\UI\StaminaBar.cs" />
-     <Compile Include="Assets\Scripts\Character\PlayerInventory.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerInventory.cs" />
      <Compile Include="Assets\Scripts\WeaponInventorySlot.cs" />
      <Compile Include="Assets\Scripts\Item.cs" />
-     <Compile Include="Assets\Scripts\Character\AnimatorHandler.cs" />
+     <Compile Include="Assets\Scripts\Player\AnimatorHandler.cs" />
      <Compile Include="Assets\Scripts\UI\InteractableUI.cs" />
-     <Compile Include="Assets\Scripts\Character\DamageCollider.cs" />
+     <Compile Include="Assets\Scripts\Player\DamageCollider.cs" />
      <Compile Include="Assets\Scripts\WeaponSlotManager.cs" />
-     <Compile Include="Assets\Scripts\Character\PlayerAttacker.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerAttacker.cs" />
      <Compile Include="Assets\Scripts\WeaponHolderSlot.cs" />
-     <Compile Include="Assets\Scripts\Character\PlayerStats.cs" />
-     <Compile Include="Assets\Scripts\Character\PlayerManager.cs" />
-     <Compile Include="Assets\Scripts\Character\InputHandler.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerStats.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerManager.cs" />
+     <Compile Include="Assets\Scripts\Player\InputHandler.cs" />
      <Compile Include="Assets\Scripts\UI\UIManager.cs" />
+     <Compile Include="Assets\Scripts\AI\EnemyLocomotionManager.cs" />
+     <Compile Include="Assets\Scripts\Player\CharacterStats.cs" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>

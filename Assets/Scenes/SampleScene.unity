@@ -5287,7 +5287,7 @@ PrefabInstance:
     - target: {fileID: 1733868114165043046, guid: b0bdbeb10ea288f4eb0cab5bb59e4568,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3
+      value: 2.98
       objectReference: {fileID: 0}
     - target: {fileID: 1733868114165043046, guid: b0bdbeb10ea288f4eb0cab5bb59e4568,
         type: 3}
@@ -5361,6 +5361,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockOnTransform: {fileID: 1958376103}
+  detectionRadius: 20
+  minDetectionAngle: -50
+  maxDetectionAngle: 50
+--- !u!114 &257512341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 257512335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 791f0560db03634449375a521781eb59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentTarget: {fileID: 0}
+  detectionLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &433255108
 GameObject:
   m_ObjectHideFlags: 0
@@ -6396,7 +6415,7 @@ PrefabInstance:
     - target: {fileID: 1733868114165043041, guid: b0bdbeb10ea288f4eb0cab5bb59e4568,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1733868114165043046, guid: b0bdbeb10ea288f4eb0cab5bb59e4568,
         type: 3}
@@ -6480,6 +6499,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockOnTransform: {fileID: 1698350861}
+  detectionRadius: 0
+  minDetectionAngle: 0
+  maxDetectionAngle: 0
 --- !u!1 &781806434
 GameObject:
   m_ObjectHideFlags: 0
@@ -7437,6 +7459,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockOnTransform: {fileID: 577277998}
+  detectionRadius: 0
+  minDetectionAngle: 0
+  maxDetectionAngle: 0
 --- !u!1 &1148133826
 GameObject:
   m_ObjectHideFlags: 0
@@ -14256,7 +14281,7 @@ PrefabInstance:
     - target: {fileID: 1733868114165043041, guid: b0bdbeb10ea288f4eb0cab5bb59e4568,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1733868114165043046, guid: b0bdbeb10ea288f4eb0cab5bb59e4568,
         type: 3}
@@ -14481,6 +14506,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819174225990741111, guid: 89fa4d98e795ff948b7fc897d030e674,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7819174225990741112, guid: 89fa4d98e795ff948b7fc897d030e674,
         type: 3}

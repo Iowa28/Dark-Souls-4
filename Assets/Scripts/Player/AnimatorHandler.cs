@@ -1,21 +1,14 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace DS
 {
-    public class AnimatorHandler : MonoBehaviour
+    public class AnimatorHandler : AnimatorManager
     {
         private PlayerManager playerManager;
-        private Animator animator;
         private PlayerLocomotion playerLocomotion;
         private int verticalHash;
         private int horizontalHash;
         public bool canRotate { get; private set; }
-
-        [SerializeField]
-        private float dampTime = .1f;
-        [SerializeField]
-        private float fadeDuration = .2f;
 
         public void Initialize()
         {
@@ -26,7 +19,7 @@ namespace DS
             horizontalHash = Animator.StringToHash("Horizontal");
         }
 
-        public void UpdateAnimatorValues(float verticalMovement, float horizontalMovement, bool isSprinting)
+        public void UpdateAnimatorValues(float verticalMovement, float horizontalMovement, bool isSprinting, float delta)
         {
             const float limitDelta = .55f;
 
@@ -82,18 +75,8 @@ namespace DS
                 h = horizontalMovement;
             }
             
-            animator.SetFloat(verticalHash, v, dampTime, Time.deltaTime);
-            animator.SetFloat(horizontalHash, h, dampTime, Time.deltaTime);
-        }
-
-        public void PlayTargetAnimation(string targetAnimation, bool isInteracting)
-        {
-            if (String.IsNullOrEmpty(targetAnimation))
-                return;
-            
-            animator.applyRootMotion = isInteracting;
-            SetBool("isInteracting", isInteracting);
-            animator.CrossFade(targetAnimation, fadeDuration);
+            SetFloat(verticalHash, v, delta);
+            SetFloat(horizontalHash, h, delta);
         }
 
         public void CanRotate()
@@ -117,16 +100,6 @@ namespace DS
             deltaPosition.y = 0;
             Vector3 velocity = deltaPosition / delta;
             playerLocomotion.rigidbody.velocity = velocity;
-        }
-
-        public bool GetBool(string parameterName)
-        {
-            return animator.GetBool(parameterName);
-        }
-
-        public void SetBool(string parameterName, bool value)
-        {
-            animator.SetBool(parameterName, value);
         }
 
         public void EnableCombo()

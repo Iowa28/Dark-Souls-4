@@ -92,11 +92,11 @@ namespace DS
 
             if (inputHandler.lockOnFlag && !inputHandler.sprintFlag)
             {
-                animatorHandler.UpdateAnimatorValues(inputHandler.vertical, inputHandler.horizontal, playerManager.isSprinting);
+                animatorHandler.UpdateAnimatorValues(inputHandler.vertical, inputHandler.horizontal, playerManager.isSprinting, delta);
             }
             else
             {
-                animatorHandler.UpdateAnimatorValues(inputHandler.moveAmount, 0, playerManager.isSprinting);
+                animatorHandler.UpdateAnimatorValues(inputHandler.moveAmount, 0, playerManager.isSprinting, delta);
             }
 
             if (animatorHandler.canRotate)

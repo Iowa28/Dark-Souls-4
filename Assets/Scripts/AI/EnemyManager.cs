@@ -14,7 +14,7 @@ namespace DS
         [SerializeField]
         private float maxDetectionAngle = 50f;
 
-        private bool isPerformingAction;
+        public bool isPerformingAction { get; set; }
 
         private EnemyLocomotionManager enemyLocomotionManager;
 
@@ -25,6 +25,11 @@ namespace DS
 
         private void Update()
         {
+            
+        }
+
+        private void FixedUpdate()
+        {
             HandleCurrentAction();   
         }
 
@@ -33,6 +38,10 @@ namespace DS
             if (enemyLocomotionManager.GetCurrentTarget() == null)
             {
                 enemyLocomotionManager.HandleDetection();
+            }
+            else
+            {
+                enemyLocomotionManager.HandleMoveToTarget();
             }
         }
 

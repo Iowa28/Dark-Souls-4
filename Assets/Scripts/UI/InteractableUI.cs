@@ -15,10 +15,7 @@ namespace DS
 
         #region Setters
 
-        public void SetInteractableText(string text)
-        {
-            interactableText.text = text;
-        }
+        public void SetInteractableText(string text) => interactableText.text = text;
 
         #endregion
     }

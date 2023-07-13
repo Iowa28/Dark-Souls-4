@@ -42,25 +42,13 @@ namespace DS
 
         #region Getters
 
-        public bool IsRightHandSlot01()
-        {
-            return rightHandSlot01;
-        }
-        
-        public bool IsRightHandSlot02()
-        {
-            return rightHandSlot02;
-        }
-        
-        public bool IsLeftHandSlot01()
-        {
-            return leftHandSlot01;
-        }
-        
-        public bool IsLeftHandSlot02()
-        {
-            return leftHandSlot02;
-        }
+        public bool IsRightHandSlot01() => rightHandSlot01;
+
+        public bool IsRightHandSlot02() => rightHandSlot02;
+
+        public bool IsLeftHandSlot01() => leftHandSlot01;
+
+        public bool IsLeftHandSlot02() => leftHandSlot02;
 
         #endregion
     }

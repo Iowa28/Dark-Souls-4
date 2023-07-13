@@ -115,10 +115,7 @@ namespace DS
 
         #region Getters
 
-        public GameObject GetItemUIGameObject()
-        {
-            return itemUIGameObject;
-        }
+        public GameObject GetItemUIGameObject() => itemUIGameObject;
 
         #endregion
     }

@@ -6,18 +6,18 @@ namespace DS
     public class EnemyLocomotionManager : MonoBehaviour
     {
         private EnemyManager enemyManager;
-        private EnemyAnimatorManager enemyAnimatorManager;
+        private EnemyAnimationManager enemyAnimationManager;
         private NavMeshAgent navMeshAgent;
         public Rigidbody enemyRigidbody { get; private set; }
         
-        private CharacterStats currentTarget;
+        public CharacterStats currentTarget { get; set; }
         
         [SerializeField]
         private LayerMask detectionLayer;
 
         [SerializeField]
         private float stoppingDistance = .5f;
-        private float distanceFromTarget;
+        public float distanceFromTarget { get; set; }
 
         [SerializeField]
         private float rotationSpeed = 15f;
@@ -25,7 +25,7 @@ namespace DS
         private void Awake()
         {
             enemyManager = GetComponent<EnemyManager>();
-            enemyAnimatorManager = GetComponentInChildren<EnemyAnimatorManager>();
+            enemyAnimationManager = GetComponentInChildren<EnemyAnimationManager>();
             navMeshAgent = GetComponentInChildren<NavMeshAgent>();
             enemyRigidbody = GetComponent<Rigidbody>();
         }
@@ -34,6 +34,14 @@ namespace DS
         {
             navMeshAgent.enabled = false;
             enemyRigidbody.isKinematic = false;
+        }
+
+        public void CalculateDistanceFromTarget()
+        {
+            if (currentTarget)
+            {
+                distanceFromTarget = Vector3.Distance(currentTarget.transform.position, transform.position);
+            }
         }
 
         public void HandleDetection()
@@ -60,23 +68,25 @@ namespace DS
 
         public void HandleMoveToTarget()
         {
-            Vector3 targetDirection = currentTarget.transform.position - transform.position;
-            float viewableAngle = Vector3.Angle(targetDirection, transform.forward);
-            distanceFromTarget = Vector3.Distance(currentTarget.transform.position, transform.position);
+            if (enemyManager.isPerformingAction)
+                return;
             
+            // Vector3 targetDirection = currentTarget.transform.position - transform.position;
+            // distanceFromTarget = targetDirection.magnitude;
+            // float viewableAngle = Vector3.Angle(targetDirection, transform.forward);
 
             if (enemyManager.isPerformingAction)
             {
-                enemyAnimatorManager.SetFloat("Vertical", 0, Time.deltaTime);
+                enemyAnimationManager.SetFloat("Vertical", 0, Time.deltaTime);
                 navMeshAgent.enabled = false;
             }
             else if (distanceFromTarget > stoppingDistance)
             {
-                enemyAnimatorManager.SetFloat("Vertical", 1, Time.deltaTime);
+                enemyAnimationManager.SetFloat("Vertical", 1, Time.deltaTime);
             }
             else if (distanceFromTarget <= stoppingDistance)
             {
-                enemyAnimatorManager.SetFloat("Vertical", 0, Time.deltaTime);
+                enemyAnimationManager.SetFloat("Vertical", 0, Time.deltaTime);
             }
             
             HandleRotateTowardsTarget();
@@ -114,13 +124,6 @@ namespace DS
             }
         }
 
-        #region Getters
-
-        public CharacterStats GetCurrentTarget()
-        {
-            return currentTarget;
-        }
-
-        #endregion
+        public bool IsCloseToTarget() => distanceFromTarget <= stoppingDistance;
     }
 }

@@ -22,10 +22,7 @@ namespace DS
 
         #region Getters
 
-        public string GetInteractableText()
-        {
-            return interactableText;
-        }
+        public string GetInteractableText() => interactableText;
 
         #endregion
     }

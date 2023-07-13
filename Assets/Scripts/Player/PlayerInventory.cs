@@ -103,25 +103,13 @@ namespace DS
 
         #region Getters
 
-        public WeaponItem GetRightWeapon()
-        {
-            return rightWeapon;
-        }
+        public WeaponItem GetRightWeapon() => rightWeapon;
 
-        public WeaponItem GetLeftWeapon()
-        {
-            return leftWeapon;
-        }
+        public WeaponItem GetLeftWeapon() => leftWeapon;
 
-        public WeaponItem[] GetWeaponsInRightHandSlots()
-        {
-            return weaponsInRightHandSlots;
-        }
-        
-        public WeaponItem[] GetWeaponsInLeftHandSlots()
-        {
-            return weaponsInLeftHandSlots;
-        }
+        public WeaponItem[] GetWeaponsInRightHandSlots() => weaponsInRightHandSlots;
+
+        public WeaponItem[] GetWeaponsInLeftHandSlots() => weaponsInLeftHandSlots;
 
         #endregion
     }

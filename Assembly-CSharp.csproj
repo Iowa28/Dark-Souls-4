@@ -70,9 +70,11 @@
      <Compile Include="Assets\PlayerControls.cs" />
      <Compile Include="Assets\Scripts\WeaponItem.cs" />
      <Compile Include="Assets\Scripts\UI\StaminaBar.cs" />
+     <Compile Include="Assets\Scripts\Managers\AnimatorManager.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerInventory.cs" />
      <Compile Include="Assets\Scripts\WeaponInventorySlot.cs" />
      <Compile Include="Assets\Scripts\Item.cs" />
+     <Compile Include="Assets\Scripts\AI\EnemyAnimationManager.cs" />
      <Compile Include="Assets\Scripts\Player\AnimatorHandler.cs" />
      <Compile Include="Assets\Scripts\UI\InteractableUI.cs" />
      <Compile Include="Assets\Scripts\Player\DamageCollider.cs" />
@@ -83,8 +85,8 @@
      <Compile Include="Assets\Scripts\Player\PlayerManager.cs" />
      <Compile Include="Assets\Scripts\Player\InputHandler.cs" />
      <Compile Include="Assets\Scripts\UI\UIManager.cs" />
-     <Compile Include="Assets\Scripts\AI\EnemyAnimatorManager.cs" />
-     <Compile Include="Assets\Scripts\Managers\AnimatorManager.cs" />
+     <Compile Include="Assets\Scripts\AI\EnemyAction.cs" />
+     <Compile Include="Assets\Scripts\AI\EnemyAttackAction.cs" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>

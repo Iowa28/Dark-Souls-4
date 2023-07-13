@@ -57,20 +57,11 @@ namespace DS
 
         #region Getters
 
-        public bool IsLeftHandSlot()
-        {
-            return isLeftHandSlot;
-        }
+        public bool IsLeftHandSlot() => isLeftHandSlot;
 
-        public bool IsRightHandSlot()
-        {
-            return isRightHandSlot;
-        }
+        public bool IsRightHandSlot() => isRightHandSlot;
 
-        public bool IsBackSLot()
-        {
-            return isBackSLot;
-        }
+        public bool IsBackSLot() => isBackSLot;
 
         #endregion
     }

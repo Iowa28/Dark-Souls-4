@@ -9,10 +9,7 @@ namespace DS
 
         #region Getters
 
-        public Transform GetLockOnTransform()
-        {
-            return lockOnTransform;
-        }
+        public Transform GetLockOnTransform() => lockOnTransform;
 
         #endregion
     }

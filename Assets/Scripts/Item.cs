@@ -12,15 +12,9 @@ namespace DS
 
         #region Getters
 
-        public Sprite GetItemIcon()
-        {
-            return itemIcon;
-        }
+        public Sprite GetItemIcon() => itemIcon;
 
-        public string GetItemName()
-        {
-            return itemName;
-        }
+        public string GetItemName() => itemName;
 
         #endregion
     }

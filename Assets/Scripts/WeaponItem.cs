@@ -44,75 +44,33 @@ namespace DS
 
         #region Getters
         
-        public GameObject GetModelPrefab()
-        {
-            return modelPrefab;
-        }
+        public GameObject GetModelPrefab() => modelPrefab;
 
-        public bool IsUnarmed()
-        {
-            return isUnarmed;
-        }
+        public bool IsUnarmed() => isUnarmed;
 
-        public string GetRightHandIdle()
-        {
-            return rightHandIdle;
-        }
+        public string GetRightHandIdle() => rightHandIdle;
 
-        public string GetLeftHandIdle()
-        {
-            return leftHandIdle;
-        }
+        public string GetLeftHandIdle() => leftHandIdle;
 
-        public string GetTwoHandIdle()
-        {
-            return twoHandIdle;
-        }
+        public string GetTwoHandIdle() => twoHandIdle;
 
-        public string GetLightAttack1()
-        {
-            return lightAttack1;
-        }
-        
-        public string GetLightAttack2()
-        {
-            return lightAttack2;
-        }
-        
-        public string GetLightAttack3()
-        {
-            return lightAttack3;
-        }
+        public string GetLightAttack1() => lightAttack1;
 
-        public string GetTwoHandLightAttack1()
-        {
-            return twoHandLightAttack1;
-        }
-        
-        public string GetTwoHandLightAttack2()
-        {
-            return twoHandLightAttack2;
-        }
+        public string GetLightAttack2() => lightAttack2;
 
-        public string GetHeavyAttack1()
-        {
-            return heavyAttack1;
-        }
+        public string GetLightAttack3() => lightAttack3;
 
-        public string GetTwoHandHeavyAttack1()
-        {
-            return twoHandHeavyAttack1;
-        }
+        public string GetTwoHandLightAttack1() => twoHandLightAttack1;
 
-        public int GetLightAttackStamina()
-        {
-            return baseStamina * lightAttackMultiplier;
-        }
+        public string GetTwoHandLightAttack2() => twoHandLightAttack2;
 
-        public int GetHeavyAttackStamina()
-        {
-            return baseStamina * heavyAttackMultiplier;
-        }
+        public string GetHeavyAttack1() => heavyAttack1;
+
+        public string GetTwoHandHeavyAttack1() => twoHandHeavyAttack1;
+
+        public int GetLightAttackStamina() => baseStamina * lightAttackMultiplier;
+
+        public int GetHeavyAttackStamina() => baseStamina * heavyAttackMultiplier;
 
         #endregion
     }

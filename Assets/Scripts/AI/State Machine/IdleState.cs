@@ -7,12 +7,8 @@ namespace DS
         [SerializeField]
         private LayerMask detectionLayer;
 
+        [SerializeField]
         private PursueTargetState pursueTargetState;
-
-        private void Awake()
-        {
-            pursueTargetState = FindObjectOfType<PursueTargetState>();
-        }
 
         public override State Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimationManager animationManager)
         {
@@ -40,7 +36,12 @@ namespace DS
             
             #endregion
 
-            return enemyManager.currentTarget != null ? (State) pursueTargetState : this;
+            if (enemyManager.currentTarget != null)
+            {
+                return pursueTargetState;
+            }
+
+            return this;
         }
     }
 }

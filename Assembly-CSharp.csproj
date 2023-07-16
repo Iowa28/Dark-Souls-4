@@ -65,8 +65,10 @@
      <Compile Include="Assets\Scripts\UI\QuickSlotsUI.cs" />
      <Compile Include="Assets\Scripts\UI\EquipmentWeaponUI.cs" />
      <Compile Include="Assets\Scripts\AI\EnemyManager.cs" />
+     <Compile Include="Assets\Scripts\AI\State Machine\State.cs" />
      <Compile Include="Assets\Scripts\Player\CharacterManager.cs" />
      <Compile Include="Assets\Scripts\UI\HandEquipmentSlotUI.cs" />
+     <Compile Include="Assets\Scripts\AI\State Machine\AttackState.cs" />
      <Compile Include="Assets\Scripts\Interactable.cs" />
      <Compile Include="Assets\PlayerControls.cs" />
      <Compile Include="Assets\Scripts\WeaponItem.cs" />
@@ -82,16 +84,14 @@
      <Compile Include="Assets\Scripts\Player\DamageCollider.cs" />
      <Compile Include="Assets\Scripts\WeaponSlotManager.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerAttacker.cs" />
+     <Compile Include="Assets\Scripts\AI\State Machine\IdleState.cs" />
      <Compile Include="Assets\Scripts\WeaponHolderSlot.cs" />
+     <Compile Include="Assets\Scripts\AI\State Machine\CombatStanceState.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerStats.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerManager.cs" />
      <Compile Include="Assets\Scripts\Player\InputHandler.cs" />
      <Compile Include="Assets\Scripts\UI\UIManager.cs" />
-     <Compile Include="Assets\Scripts\AI\State Machine\State.cs" />
-     <Compile Include="Assets\Scripts\AI\State Machine\IdleState.cs" />
      <Compile Include="Assets\Scripts\AI\State Machine\PursueTargetState.cs" />
-     <Compile Include="Assets\Scripts\AI\State Machine\CombatStanceState.cs" />
-     <Compile Include="Assets\Scripts\AI\State Machine\AttackState.cs" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>

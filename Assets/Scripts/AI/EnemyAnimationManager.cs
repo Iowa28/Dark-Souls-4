@@ -4,23 +4,23 @@ namespace DS
 {
     public class EnemyAnimationManager : AnimatorManager
     {
-        private EnemyLocomotionManager enemyLocomotionManager;
+        private EnemyManager enemyManager;
         
         private void Awake()
         {
             animator = GetComponent<Animator>();
-            enemyLocomotionManager = GetComponentInParent<EnemyLocomotionManager>();
+            enemyManager = GetComponentInParent<EnemyManager>();
         }
 
         private void OnAnimatorMove()
         {
             float delta = Time.deltaTime;
 
-            enemyLocomotionManager.enemyRigidbody.drag = 0;
+            enemyManager.enemyRigidbody.drag = 0;
             Vector3 deltaPosition = animator.deltaPosition;
             deltaPosition.y = 0;
             Vector3 velocity = deltaPosition / delta;
-            enemyLocomotionManager.enemyRigidbody.velocity = velocity;
+            enemyManager.enemyRigidbody.velocity = velocity;
         }
     }
 }

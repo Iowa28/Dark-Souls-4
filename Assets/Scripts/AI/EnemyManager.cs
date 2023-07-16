@@ -1,14 +1,16 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace DS
 {
     public class EnemyManager : CharacterManager
     {
-        private EnemyLocomotionManager enemyLocomotionManager;
         private EnemyAnimationManager enemyAnimationManager;
         private EnemyStats enemyStats;
+        public NavMeshAgent navMeshAgent { get; private set; }
+        public Rigidbody enemyRigidbody { get; private set; }
         
-        public bool isPerformingAction { get; private set; }
+        public bool isPerformingAction { get; set; }
         
         [Header("AI Settings")]
         [SerializeField]
@@ -20,13 +22,10 @@ namespace DS
         [SerializeField]
         private float maxDetectionAngle = 50f;
 
-        // [SerializeField]
-        // private EnemyAttackAction[] enemyAttackActions;
-        //
-        // private EnemyAttackAction currentAttack;
+        public float currentRecoveryTime { get; set; }
 
         [SerializeField]
-        private float currentRecoveryTime;
+        private float maxAttackRange = 1.5f;
 
         private State currentState;
         
@@ -34,10 +33,17 @@ namespace DS
 
         private void Awake()
         {
-            enemyLocomotionManager = GetComponent<EnemyLocomotionManager>();
             enemyAnimationManager = GetComponentInChildren<EnemyAnimationManager>();
             enemyStats = GetComponent<EnemyStats>();
-            currentState = FindObjectOfType<IdleState>();
+            navMeshAgent = GetComponentInChildren<NavMeshAgent>();
+            enemyRigidbody = GetComponent<Rigidbody>();
+            currentState = GetComponentInChildren<IdleState>();
+        }
+
+        private void Start()
+        {
+            navMeshAgent.enabled = false;
+            enemyRigidbody.isKinematic = false;
         }
 
         private void Update()
@@ -74,21 +80,6 @@ namespace DS
                     SwitchToNextState(nextState);
                 }
             }
-            
-            // enemyLocomotionManager.CalculateDistanceFromTarget();
-            //
-            // if (enemyLocomotionManager.currentTarget == null)
-            // {
-            //     enemyLocomotionManager.HandleDetection();
-            // }
-            // else if (enemyLocomotionManager.IsCloseToTarget())
-            // {
-            //     AttackTarget();
-            // }
-            // else
-            // {
-            //     enemyLocomotionManager.HandleMoveToTarget();
-            // }
         }
 
         private void SwitchToNextState(State state)
@@ -96,61 +87,11 @@ namespace DS
             currentState = state;
         }
 
-        #region Attacks
+        public float DistanceFromTarget() => Vector3.Distance(currentTarget.transform.position, transform.position);
 
-        // private void AttackTarget()
-        // {
-        //     if (isPerformingAction)
-        //         return;
-        //
-        //     if (currentAttack == null)
-        //     {
-        //         GetNewAttack();
-        //     }
-        //     else
-        //     {
-        //         isPerformingAction = true;
-        //         currentRecoveryTime = currentAttack.GetRecoveryTime();
-        //         enemyAnimationManager.PlayTargetAnimation(currentAttack.GetActionAnimation(), true);
-        //         currentAttack = null;
-        //     }
-        // }
-        //
-        // private void GetNewAttack()
-        // {
-        //     Vector3 targetDirection = enemyLocomotionManager.currentTarget.transform.position - transform.position;
-        //     float viewableAngle = Vector3.Angle(targetDirection, transform.forward);
-        //
-        //     int maxScore = enemyAttackActions.Where(enemyAttackAction => 
-        //             enemyLocomotionManager.distanceFromTarget <= enemyAttackAction.GetMaxDistanceNeededToAttack() 
-        //             && enemyLocomotionManager.distanceFromTarget >= enemyAttackAction.GetMinDistanceNeededToAttack() 
-        //             && viewableAngle <= enemyAttackAction.GetMaxAttackAngle() 
-        //             && viewableAngle >= enemyAttackAction.GetMinAttackAngle()
-        //         )
-        //         .Sum(enemyAttackAction => enemyAttackAction.GetAttackScore());
-        //
-        //     int randomValue = Random.Range(0, maxScore);
-        //     int temporaryScore = 0;
-        //     
-        //     foreach (EnemyAttackAction enemyAttackAction in enemyAttackActions)
-        //     {
-        //         if (enemyLocomotionManager.distanceFromTarget <= enemyAttackAction.GetMaxDistanceNeededToAttack()
-        //             && enemyLocomotionManager.distanceFromTarget >= enemyAttackAction.GetMinDistanceNeededToAttack()
-        //             && viewableAngle <= enemyAttackAction.GetMaxAttackAngle()
-        //             && viewableAngle >= enemyAttackAction.GetMinAttackAngle())
-        //         {
-        //             temporaryScore += enemyAttackAction.GetAttackScore();
-        //
-        //             if (temporaryScore > randomValue)
-        //             {
-        //                 currentAttack = enemyAttackAction;
-        //                 break;
-        //             }
-        //         }
-        //     }
-        // }
+        public Vector3 TargetDirection() => currentTarget.transform.position - transform.position;
 
-        #endregion
+        public float ViewableAngle() => Vector3.Angle(TargetDirection(), transform.forward);
 
         #region Getters
 
@@ -159,6 +100,10 @@ namespace DS
         public float GetMinDetectionAngle() => minDetectionAngle;
 
         public float GetMaxDetectionAngle() => maxDetectionAngle;
+
+        public float GetCurrentRecoveryTIme() => currentRecoveryTime;
+
+        public float GetMaxAttackRange() => maxAttackRange;
 
         #endregion
     }

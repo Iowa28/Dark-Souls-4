@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\Player\DamagePlayer.cs" />
      <Compile Include="Assets\Scripts\UI\HealthBar.cs" />
      <Compile Include="Assets\Scripts\Managers\CharacterStats.cs" />
+     <Compile Include="Assets\Scripts\AI\EnemyAction.cs" />
      <Compile Include="Assets\Scripts\Player\ResetAnimatorBool.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerLocomotion.cs" />
      <Compile Include="Assets\Scripts\AI\EnemyStats.cs" />
@@ -75,6 +76,7 @@
      <Compile Include="Assets\Scripts\WeaponInventorySlot.cs" />
      <Compile Include="Assets\Scripts\Item.cs" />
      <Compile Include="Assets\Scripts\AI\EnemyAnimationManager.cs" />
+     <Compile Include="Assets\Scripts\AI\EnemyAttackAction.cs" />
      <Compile Include="Assets\Scripts\Player\AnimatorHandler.cs" />
      <Compile Include="Assets\Scripts\UI\InteractableUI.cs" />
      <Compile Include="Assets\Scripts\Player\DamageCollider.cs" />
@@ -85,8 +87,11 @@
      <Compile Include="Assets\Scripts\Player\PlayerManager.cs" />
      <Compile Include="Assets\Scripts\Player\InputHandler.cs" />
      <Compile Include="Assets\Scripts\UI\UIManager.cs" />
-     <Compile Include="Assets\Scripts\AI\EnemyAction.cs" />
-     <Compile Include="Assets\Scripts\AI\EnemyAttackAction.cs" />
+     <Compile Include="Assets\Scripts\AI\State Machine\State.cs" />
+     <Compile Include="Assets\Scripts\AI\State Machine\IdleState.cs" />
+     <Compile Include="Assets\Scripts\AI\State Machine\PursueTargetState.cs" />
+     <Compile Include="Assets\Scripts\AI\State Machine\CombatStanceState.cs" />
+     <Compile Include="Assets\Scripts\AI\State Machine\AttackState.cs" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>

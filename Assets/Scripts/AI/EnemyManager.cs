@@ -11,6 +11,7 @@ namespace DS
         public Rigidbody enemyRigidbody { get; private set; }
         
         public bool isPerformingAction { get; set; }
+        public bool isInteracting { get; set; }
         
         [Header("AI Settings")]
         [SerializeField]
@@ -27,6 +28,7 @@ namespace DS
         [SerializeField]
         private float maxAttackRange = 1.5f;
 
+        [SerializeField]
         private State currentState;
         
         public CharacterStats currentTarget { get; set; }
@@ -37,7 +39,6 @@ namespace DS
             enemyStats = GetComponent<EnemyStats>();
             navMeshAgent = GetComponentInChildren<NavMeshAgent>();
             enemyRigidbody = GetComponent<Rigidbody>();
-            currentState = GetComponentInChildren<IdleState>();
         }
 
         private void Start()
@@ -49,6 +50,8 @@ namespace DS
         private void Update()
         {
             HandleRecoveryTime();
+
+            isInteracting = enemyAnimationManager.GetBool("isInteracting");
         }
 
         private void FixedUpdate()

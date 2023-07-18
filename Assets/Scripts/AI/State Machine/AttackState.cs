@@ -52,8 +52,7 @@ namespace DS
 
         private void GetNewAttack(EnemyManager enemyManager)
         {
-            Vector3 targetDirection = enemyManager.currentTarget.transform.position - enemyManager.transform.position;
-            float viewableAngle = Vector3.Angle(targetDirection, enemyManager.transform.forward);
+            float viewableAngle = enemyManager.ViewableAngle();
             float distanceFromTarget = enemyManager.DistanceFromTarget();
         
             int maxScore = enemyAttackActions.Where(enemyAttackAction => 

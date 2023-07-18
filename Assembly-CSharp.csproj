@@ -68,6 +68,7 @@
      <Compile Include="Assets\Scripts\AI\State Machine\State.cs" />
      <Compile Include="Assets\Scripts\Player\CharacterManager.cs" />
      <Compile Include="Assets\Scripts\UI\HandEquipmentSlotUI.cs" />
+     <Compile Include="Assets\Scripts\AI\State Machine\AmbushState.cs" />
      <Compile Include="Assets\Scripts\AI\State Machine\AttackState.cs" />
      <Compile Include="Assets\Scripts\Interactable.cs" />
      <Compile Include="Assets\PlayerControls.cs" />
@@ -92,7 +93,6 @@
      <Compile Include="Assets\Scripts\Player\InputHandler.cs" />
      <Compile Include="Assets\Scripts\UI\UIManager.cs" />
      <Compile Include="Assets\Scripts\AI\State Machine\PursueTargetState.cs" />
-     <Compile Include="Assets\Scripts\AI\State Machine\AmbushState.cs" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>

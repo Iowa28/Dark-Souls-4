@@ -12,8 +12,13 @@ namespace DS
         public override State Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimationManager animationManager)
         {
             float distanceFromTarget = enemyManager.DistanceFromTarget();
+
+            if (enemyManager.isPerformingAction)
+            {
+                animationManager.SetFloat("Vertical", 0, Time.deltaTime);
+            }
             
-            if (enemyManager.GetCurrentRecoveryTIme() <= 0 && distanceFromTarget <= enemyManager.GetMaxAttackRange())
+            if (enemyManager.GetCurrentRecoveryTime() <= 0 && distanceFromTarget <= enemyManager.GetMaxAttackRange())
             {
                 return attackState;
             }

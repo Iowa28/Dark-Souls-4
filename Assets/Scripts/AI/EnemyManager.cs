@@ -104,7 +104,7 @@ namespace DS
 
         public float GetMaxDetectionAngle() => maxDetectionAngle;
 
-        public float GetCurrentRecoveryTIme() => currentRecoveryTime;
+        public float GetCurrentRecoveryTime() => currentRecoveryTime;
 
         public float GetMaxAttackRange() => maxAttackRange;
 

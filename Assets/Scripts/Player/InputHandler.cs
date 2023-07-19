@@ -41,6 +41,7 @@ namespace DS
         private WeaponSlotManager weaponSlotManager;
         private CameraHandler cameraHandler;
         private UIManager uiManager;
+        private AnimatorHandler animatorHandler;
 
         private Vector2 movementInput;
         private Vector2 cameraInput;
@@ -53,6 +54,7 @@ namespace DS
             weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
             cameraHandler = FindObjectOfType<CameraHandler>();
             uiManager = FindObjectOfType<UIManager>();
+            animatorHandler = GetComponentInChildren<AnimatorHandler>();
         }
 
         private void OnEnable()
@@ -156,8 +158,14 @@ namespace DS
                     playerAttacker.HandleWeaponCombo(playerInventory.GetRightWeapon());
                     comboFlag = false;
                 }
-                else if (!playerManager.isInteracting)
+                else
                 {
+                    if (playerManager.isInteracting)
+                        return;
+                    if (playerManager.canDoCombo)
+                        return;
+                    
+                    animatorHandler.SetBool("isUsingRightHand", true);
                     playerAttacker.HandleLightAttack(playerInventory.GetRightWeapon());
                 }
             }

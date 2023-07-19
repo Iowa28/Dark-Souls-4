@@ -13,5 +13,7 @@ namespace DS
         protected int staminaLevel = 10;
         protected int maxStamina;
         protected int currentStamina;
+        
+        protected bool isDead;
     }
 }

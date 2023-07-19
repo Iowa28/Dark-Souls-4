@@ -20,6 +20,8 @@ namespace DS
         public bool isInAir { get; set; }
         public bool isGrounded { get; set; }
         public bool canDoCombo { get; private set; }
+        public bool isUsingRightHand { get; private set; }
+        public bool isUsingLeftHand { get; private set; }
         
         private void Awake()
         {
@@ -38,6 +40,8 @@ namespace DS
         {
             isInteracting = animatorHandler.GetBool("isInteracting");
             canDoCombo = animatorHandler.GetBool("canDoCombo");
+            isUsingRightHand = animatorHandler.GetBool("isUsingRightHand");
+            isUsingLeftHand = animatorHandler.GetBool("isUsingLeftHand");
             animatorHandler.SetBool("isInAir", isInAir);
 
             float delta = Time.deltaTime;

@@ -39,11 +39,15 @@ namespace DS
 
         public void TakeDamage(int damage)
         {
+            if (isDead)
+                return;
+            
             currentHealth -= damage;
 
             if (currentHealth <= 0)
             {
                 currentHealth = 0;
+                isDead = true;
                 animatorHandler.PlayTargetAnimation("Death", true);
             }
             else

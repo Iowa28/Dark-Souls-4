@@ -27,6 +27,9 @@ namespace DS
 
         [SerializeField]
         private float maxAttackRange = 1.5f;
+        
+        [SerializeField]
+        private float rotationSpeed = 15f;
 
         [SerializeField]
         private State currentState;
@@ -107,6 +110,8 @@ namespace DS
         public float GetCurrentRecoveryTime() => currentRecoveryTime;
 
         public float GetMaxAttackRange() => maxAttackRange;
+
+        public float GetRotationSpeed() => rotationSpeed;
 
         #endregion
     }

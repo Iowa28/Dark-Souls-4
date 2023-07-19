@@ -22,5 +22,15 @@ namespace DS
             Vector3 velocity = deltaPosition / delta;
             enemyManager.enemyRigidbody.velocity = velocity;
         }
+        
+        public void EnableCombo()
+        {
+            // SetBool("canDoCombo", true);
+        }
+
+        public void DisableCombo()
+        {
+            // SetBool("canDoCombo", false);
+        }
     }
 }

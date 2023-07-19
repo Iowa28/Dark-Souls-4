@@ -18,6 +18,8 @@ namespace DS
             if (enemyManager.isPerformingAction)
                 return combatStanceState;
             
+            HandleRotateTowardsTarget(enemyManager);
+            
             float distanceFromTarget = enemyManager.DistanceFromTarget();
             float viewableAngle = enemyManager.ViewableAngle();
 
@@ -81,6 +83,32 @@ namespace DS
                         break;
                     }
                 }
+            }
+        }
+        
+        private void HandleRotateTowardsTarget(EnemyManager enemyManager)
+        {
+            if (enemyManager.isPerformingAction)
+            {
+                Vector3 direction = enemyManager.TargetDirection();
+                direction.y = 0;
+                direction.Normalize();
+
+                if (direction == Vector3.zero)
+                {
+                    direction = transform.forward;
+                }
+
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                enemyManager.transform.rotation = Quaternion.Slerp(enemyManager.transform.rotation, targetRotation,
+                    enemyManager.GetRotationSpeed() / Time.deltaTime);
+            }
+            else
+            {
+                enemyManager.navMeshAgent.enabled = true;
+                enemyManager.navMeshAgent.SetDestination(enemyManager.currentTarget.transform.position);
+                enemyManager.transform.rotation = Quaternion.Slerp(enemyManager.transform.rotation,
+                    enemyManager.navMeshAgent.transform.rotation, enemyManager.GetRotationSpeed() / Time.deltaTime);
             }
         }
     }

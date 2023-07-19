@@ -39,6 +39,11 @@ namespace DS
         private float rotationSpeed = 10;
         [SerializeField]
         private float fallSpeed = 45;
+        
+        [SerializeField]
+        private CapsuleCollider characterCollider;
+        [SerializeField]
+        private CapsuleCollider characterCollisionBlockerCollider;
 
         private void Start()
         {
@@ -52,6 +57,8 @@ namespace DS
 
             playerManager.isGrounded = true;
             ignoreGroundCheck = ~(1 << 8 | 1 << 11);
+            
+            Physics.IgnoreCollision(characterCollider, characterCollisionBlockerCollider, true);
         }
 
         #region Movement

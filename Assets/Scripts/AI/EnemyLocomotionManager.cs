@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace DS 
 {
@@ -8,37 +7,20 @@ namespace DS
         private EnemyManager enemyManager;
         private EnemyAnimationManager enemyAnimationManager;
 
+        [SerializeField]
+        private CapsuleCollider characterCollider;
+        [SerializeField]
+        private CapsuleCollider characterCollisionBlockerCollider;
 
         private void Awake()
         {
             enemyManager = GetComponent<EnemyManager>();
             enemyAnimationManager = GetComponentInChildren<EnemyAnimationManager>();
-
-            
         }
 
         private void Start()
         {
-            
+            Physics.IgnoreCollision(characterCollider, characterCollisionBlockerCollider, true);
         }
-
-        // public void CalculateDistanceFromTarget()
-        // {
-        //     if (enemyManager.currentTarget != null)
-        //     {
-        //         distanceFromTarget = Vector3.Distance(enemyManager.currentTarget.transform.position, transform.position);
-        //     }
-        // }
-
-
-
-        public void HandleMoveToTarget()
-        {
-            
-        }
-
-
-        //
-        // public bool IsCloseToTarget() => distanceFromTarget <= stoppingDistance;
     }
 }

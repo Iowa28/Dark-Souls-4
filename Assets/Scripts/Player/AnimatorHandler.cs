@@ -6,6 +6,7 @@ namespace DS
     {
         private PlayerManager playerManager;
         private PlayerLocomotion playerLocomotion;
+        private PlayerStats playerStats;
         private int verticalHash;
         private int horizontalHash;
         public bool canRotate { get; private set; }
@@ -15,6 +16,7 @@ namespace DS
             playerManager = GetComponentInParent<PlayerManager>();
             animator = GetComponent<Animator>();
             playerLocomotion = GetComponentInParent<PlayerLocomotion>();
+            playerStats = GetComponentInParent<PlayerStats>();
             verticalHash = Animator.StringToHash("Vertical");
             horizontalHash = Animator.StringToHash("Horizontal");
         }
@@ -110,6 +112,21 @@ namespace DS
         public void DisableCombo()
         {
             SetBool("canDoCombo", false);
+        }
+
+        public void DrainStamina(float value)
+        {
+            playerStats.DecreaseStamina(value);
+        }
+
+        public void EnableIsInvulnerable()
+        {
+            SetBool("isInvulnerable", true);
+        }
+        
+        public void DisableIsInvulnerable()
+        {
+            SetBool("isInvulnerable", false);
         }
     }
 }

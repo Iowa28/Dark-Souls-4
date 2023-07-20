@@ -8,12 +8,18 @@ namespace DS
         private StaminaBar staminaBar;
 
         private AnimatorHandler animatorHandler;
+        private PlayerManager playerManager;
+        
+        [SerializeField]
+        private float staminaRegenerationAmount = 1;
+        private float staminaRegenerationTimer = 0;
 
         private void Awake()
         {
             healthBar = FindObjectOfType<HealthBar>();
             staminaBar = FindObjectOfType<StaminaBar>();
             animatorHandler = GetComponentInChildren<AnimatorHandler>();
+            playerManager = GetComponent<PlayerManager>();
         }
 
         private void Start()
@@ -39,6 +45,9 @@ namespace DS
 
         public void TakeDamage(int damage)
         {
+            if (playerManager.isInvulnerable)
+                return;
+            
             if (isDead)
                 return;
             
@@ -58,7 +67,7 @@ namespace DS
             healthBar.SetCurrentHealth(currentHealth);
         }
 
-        public void DecreaseStamina(int value)
+        public void DecreaseStamina(float value)
         {
             currentStamina -= value;
 
@@ -68,6 +77,23 @@ namespace DS
             }
             
             staminaBar.SetCurrentStamina(currentStamina);
+        }
+
+        public void RegenerateStamina()
+        {
+            if (playerManager.isInteracting)
+            {
+                staminaRegenerationTimer = 0;
+                return;
+            }
+
+            staminaRegenerationTimer += Time.deltaTime;
+
+            if (currentStamina < maxStamina && staminaRegenerationTimer > 1f)
+            {
+                currentStamina += staminaRegenerationAmount * Time.deltaTime;
+                staminaBar.SetCurrentStamina(currentStamina);
+            }
         }
     }
 }

@@ -20,7 +20,7 @@ namespace DS
             {
                 CharacterStats characterStats = c.transform.GetComponent<CharacterStats>();
 
-                if (characterStats != null)
+                if (characterStats != null && !characterStats.isDead)
                 {
                     Vector3 targetDirection = characterStats.transform.position - transform.position;
                     float viewableAngle = Vector3.Angle(targetDirection, transform.forward);

@@ -5279,6 +5279,7 @@ MonoBehaviour:
   minDetectionAngle: -50
   maxDetectionAngle: 50
   maxAttackRange: 1.5
+  rotationSpeed: 15
   currentState: {fileID: 414041130}
 --- !u!114 &257512341
 MonoBehaviour:
@@ -13825,7 +13826,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd872335667d4f943bff5475c260eb4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 30
   combatStanceState: {fileID: 521542685}
 --- !u!1 &1741292536
 GameObject:
@@ -16812,7 +16812,7 @@ PrefabInstance:
     - target: {fileID: 7819174225990741112, guid: 89fa4d98e795ff948b7fc897d030e674,
         type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7819174225990741113, guid: 89fa4d98e795ff948b7fc897d030e674,
         type: 3}
@@ -16849,6 +16849,16 @@ PrefabInstance:
       propertyPath: staminaBar
       value: 
       objectReference: {fileID: 8444684927798877822}
+    - target: {fileID: 7819174225990741116, guid: 89fa4d98e795ff948b7fc897d030e674,
+        type: 3}
+      propertyPath: healthLevel
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819174225990741116, guid: 89fa4d98e795ff948b7fc897d030e674,
+        type: 3}
+      propertyPath: staminaRegenerationAmount
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 7830149482950356795, guid: 89fa4d98e795ff948b7fc897d030e674,
         type: 3}
       propertyPath: m_Layer

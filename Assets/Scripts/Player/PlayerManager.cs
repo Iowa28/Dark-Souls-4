@@ -8,6 +8,7 @@ namespace DS
         private InputHandler inputHandler;
         private PlayerLocomotion playerLocomotion;
         private AnimatorHandler animatorHandler;
+        private PlayerStats playerStats;
         
         private InteractableUI interactableUI;
         [SerializeField]
@@ -22,6 +23,7 @@ namespace DS
         public bool canDoCombo { get; private set; }
         public bool isUsingRightHand { get; private set; }
         public bool isUsingLeftHand { get; private set; }
+        public bool isInvulnerable { get; private set; }
         
         private void Awake()
         {
@@ -33,6 +35,7 @@ namespace DS
             inputHandler = GetComponent<InputHandler>();
             playerLocomotion = GetComponent<PlayerLocomotion>();
             animatorHandler = GetComponentInChildren<AnimatorHandler>();
+            playerStats = GetComponent<PlayerStats>();
             interactableUI = FindObjectOfType<InteractableUI>();
         }
 
@@ -42,6 +45,7 @@ namespace DS
             canDoCombo = animatorHandler.GetBool("canDoCombo");
             isUsingRightHand = animatorHandler.GetBool("isUsingRightHand");
             isUsingLeftHand = animatorHandler.GetBool("isUsingLeftHand");
+            isInvulnerable = animatorHandler.GetBool("isInvulnerable");
             animatorHandler.SetBool("isInAir", isInAir);
 
             float delta = Time.deltaTime;
@@ -49,8 +53,8 @@ namespace DS
             inputHandler.TickInput(delta);
             playerLocomotion.HandleRollingAndSprinting(delta);
             playerLocomotion.HandleJumping();
-            cameraHandler.SetCameraHeight(delta);
-            
+            playerStats.RegenerateStamina();
+
             CheckForInteractableObjects();
         }
         
@@ -70,6 +74,7 @@ namespace DS
 
             if (cameraHandler != null)
             {
+                cameraHandler.SetCameraHeight(delta);
                 cameraHandler.FollowTarget(delta);
                 cameraHandler.HandleCameraRotation(delta, inputHandler.mouseX, inputHandler.mouseY);
             }

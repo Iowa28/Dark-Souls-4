@@ -77,14 +77,21 @@ namespace DS
 
         private void HandleStateMachine()
         {
-            if (currentState != null)
+            if (currentState == null)
+                return;
+            
+            if (currentTarget != null && currentTarget.isDead)
             {
-                State nextState = currentState.Tick(this, enemyStats, enemyAnimationManager);
+                currentTarget = null;
+                currentState = null;
+                return;
+            }
+                
+            State nextState = currentState.Tick(this, enemyStats, enemyAnimationManager);
 
-                if (nextState != null)
-                {
-                    SwitchToNextState(nextState);
-                }
+            if (nextState != null)
+            {
+                SwitchToNextState(nextState);
             }
         }
 

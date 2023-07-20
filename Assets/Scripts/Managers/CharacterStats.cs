@@ -11,9 +11,9 @@ namespace DS
 
         [SerializeField]
         protected int staminaLevel = 10;
-        protected int maxStamina;
-        protected int currentStamina;
+        protected float maxStamina;
+        protected float currentStamina;
         
-        protected bool isDead;
+        public bool isDead { get; protected set; }
     }
 }

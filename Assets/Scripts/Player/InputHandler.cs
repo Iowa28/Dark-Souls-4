@@ -29,7 +29,7 @@ namespace DS
         public bool rollFlag { get; private set; }
         public bool twoHandFlag { get; private set; }
         public bool sprintFlag { get; private set; }
-        public bool comboFlag { get; private set; }
+        public bool comboFlag { get; set; }
         public bool lockOnFlag { get; private set; }
         private bool inventoryFlag { get; set; }
         private float rollInputTimer;
@@ -48,7 +48,7 @@ namespace DS
 
         private void Awake()
         {
-            playerAttacker = GetComponent<PlayerAttacker>();
+            playerAttacker = GetComponentInChildren<PlayerAttacker>();
             playerInventory = GetComponent<PlayerInventory>();
             playerManager = GetComponent<PlayerManager>();
             weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
@@ -152,22 +152,7 @@ namespace DS
             
             if (rbInput)
             {
-                if (playerManager.canDoCombo)
-                {
-                    comboFlag = true;
-                    playerAttacker.HandleWeaponCombo(playerInventory.GetRightWeapon());
-                    comboFlag = false;
-                }
-                else
-                {
-                    if (playerManager.isInteracting)
-                        return;
-                    if (playerManager.canDoCombo)
-                        return;
-                    
-                    animatorHandler.SetBool("isUsingRightHand", true);
-                    playerAttacker.HandleLightAttack(playerInventory.GetRightWeapon());
-                }
+                playerAttacker.HandleRBAction();
             }
 
             if (rtInput)

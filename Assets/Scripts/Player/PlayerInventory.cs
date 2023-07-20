@@ -8,6 +8,8 @@ namespace DS
         private WeaponSlotManager weaponSlotManager;
 
         [SerializeField]
+        private SpellItem spellItem;
+        [SerializeField]
         private WeaponItem rightWeapon;
         [SerializeField]
         private WeaponItem leftWeapon;
@@ -102,6 +104,8 @@ namespace DS
         }
 
         #region Getters
+
+        public SpellItem GetSpellItem() => spellItem;
 
         public WeaponItem GetRightWeapon() => rightWeapon;
 

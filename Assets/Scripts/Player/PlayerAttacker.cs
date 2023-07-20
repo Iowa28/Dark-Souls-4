@@ -7,17 +7,65 @@ namespace DS
         private AnimatorHandler animatorHandler;
         private InputHandler inputHandler;
         private WeaponSlotManager weaponSlotManager;
+        private PlayerManager playerManager;
+        private PlayerInventory playerInventory;
 
         private string lastAttack;
 
         private void Awake()
         {
-            animatorHandler = GetComponentInChildren<AnimatorHandler>();
-            inputHandler = GetComponent<InputHandler>();
-            weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
+            animatorHandler = GetComponent<AnimatorHandler>();
+            inputHandler = GetComponentInParent<InputHandler>();
+            weaponSlotManager = GetComponent<WeaponSlotManager>();
+            playerManager = GetComponentInParent<PlayerManager>();
+            playerInventory = GetComponentInParent<PlayerInventory>();
         }
 
-        public void HandleWeaponCombo(WeaponItem weapon)
+        public void HandleRBAction()
+        {
+            switch (playerInventory.GetRightWeapon().GetWeaponType())
+            {
+                case WeaponType.MeleeCaster:
+                    PerformRBMeleeAction();
+                    break;
+                case WeaponType.PyromaniacCaster:
+                case WeaponType.FaithCaster:
+                case WeaponType.SpellCaster:
+                    PerformRBMagicAction(playerInventory.GetRightWeapon());
+                    break;
+            }
+        }
+
+        #region Attack Actions
+
+        private void PerformRBMeleeAction()
+        {
+            if (playerManager.canDoCombo)
+            {
+                inputHandler.comboFlag = true;
+                HandleWeaponCombo(playerInventory.GetRightWeapon());
+                inputHandler.comboFlag = false;
+            }
+            else
+            {
+                if (playerManager.isInteracting)
+                    return;
+                if (playerManager.canDoCombo)
+                    return;
+                    
+                animatorHandler.SetBool("isUsingRightHand", true);
+                HandleLightAttack(playerInventory.GetRightWeapon());
+            }
+        }
+        
+        private void PerformRBMagicAction(WeaponItem weaponItem)
+        {
+            
+        }
+
+        #endregion
+
+        private void HandleWeaponCombo(WeaponItem weapon)
         {
             if (inputHandler.comboFlag)
             {
@@ -40,7 +88,7 @@ namespace DS
             }
         }
 
-        public void HandleLightAttack(WeaponItem weapon)
+        private void HandleLightAttack(WeaponItem weapon)
         {
             weaponSlotManager.attackingWeapon = weapon;
             

@@ -2,30 +2,37 @@ using UnityEngine;
 
 namespace DS
 {
-    public class SpellItem : MonoBehaviour
+    public class SpellItem : Item
     {
         [SerializeField]
-        private GameObject spellWarmUpFx;
+        protected GameObject spellWarmUpFx;
         [SerializeField]
-        private GameObject spellCastFx;
+        protected GameObject spellCastFx;
         [SerializeField]
-        private string spellAnimation;
+        protected string spellAnimation;
 
         [SerializeField]
-        private SpellType SpellType;
+        protected SpellType spellType;
 
         [SerializeField]
         [TextArea]
-        private string spellDescription;
+        protected string spellDescription;
 
-        public virtual void AttemptToCastSpell()
+        public virtual void AttemptToCastSpell(AnimatorHandler animatorHandler, PlayerStats playerStats)
         {
             Debug.Log("You attempt to cast a spell!");
         }
 
-        public virtual void SuccessfullyCastSpell()
+        public virtual void SuccessfullyCastSpell(AnimatorHandler animatorHandler, PlayerStats playerStats)
         {
             Debug.Log("You successfully cast a spell!");
         }
+
+        public bool IsFaithSpell() => spellType.Equals(SpellType.FaithSpell);
+        
+        public bool IsMagicSpell() => spellType.Equals(SpellType.MagicSpell);
+        
+        public bool IsPyromaniacSpell() => spellType.Equals(SpellType.PyromaniacSpell);
+        
     }
 }

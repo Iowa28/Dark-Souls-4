@@ -11,7 +11,7 @@ namespace DS
         public Rigidbody enemyRigidbody { get; private set; }
         
         public bool isPerformingAction { get; set; }
-        public bool isInteracting { get; set; }
+        public bool isInteracting { get; private set; }
         
         [Header("AI Settings")]
         [SerializeField]
@@ -77,7 +77,7 @@ namespace DS
 
         private void HandleStateMachine()
         {
-            if (currentState == null)
+            if (currentState == null || enemyStats.isDead)
                 return;
             
             if (currentTarget != null && currentTarget.isDead)

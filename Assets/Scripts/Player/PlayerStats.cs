@@ -95,5 +95,12 @@ namespace DS
                 staminaBar.SetCurrentStamina(currentStamina);
             }
         }
+
+        public void HealPlayer(int amount)
+        {
+            currentHealth = Mathf.Min(maxHealth, currentHealth + amount);
+            
+            healthBar.SetCurrentHealth(currentHealth);
+        }
     }
 }

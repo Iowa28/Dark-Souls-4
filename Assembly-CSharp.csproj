@@ -54,6 +54,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\AI\EnemyLocomotionManager.cs" />
      <Compile Include="Assets\Scripts\Player\CameraHandler.cs" />
+     <Compile Include="Assets\Scripts\Items\Spells\SpellItem.cs" />
      <Compile Include="Assets\Scripts\WeaponPickUp.cs" />
      <Compile Include="Assets\Scripts\Player\DamagePlayer.cs" />
      <Compile Include="Assets\Scripts\UI\HealthBar.cs" />
@@ -67,6 +68,7 @@
      <Compile Include="Assets\Scripts\AI\EnemyManager.cs" />
      <Compile Include="Assets\Scripts\AI\State Machine\State.cs" />
      <Compile Include="Assets\Scripts\Player\CharacterManager.cs" />
+     <Compile Include="Assets\Scripts\Items\Spells\HealingSpell.cs" />
      <Compile Include="Assets\Scripts\UI\HandEquipmentSlotUI.cs" />
      <Compile Include="Assets\Scripts\AI\State Machine\AmbushState.cs" />
      <Compile Include="Assets\Scripts\AI\State Machine\AttackState.cs" />
@@ -75,11 +77,13 @@
      <Compile Include="Assets\Scripts\Items\WeaponItem.cs" />
      <Compile Include="Assets\Scripts\UI\StaminaBar.cs" />
      <Compile Include="Assets\Scripts\Managers\AnimatorManager.cs" />
+     <Compile Include="Assets\Scripts\Items\Spells\SpellType.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerInventory.cs" />
      <Compile Include="Assets\Scripts\WeaponInventorySlot.cs" />
      <Compile Include="Assets\Scripts\AI\EnemyWeaponSlotManager.cs" />
      <Compile Include="Assets\Scripts\Items\Item.cs" />
      <Compile Include="Assets\Scripts\AI\EnemyAnimationManager.cs" />
+     <Compile Include="Assets\Scripts\Items\WeaponType.cs" />
      <Compile Include="Assets\Scripts\AI\EnemyAttackAction.cs" />
      <Compile Include="Assets\Scripts\Player\AnimatorHandler.cs" />
      <Compile Include="Assets\Scripts\UI\InteractableUI.cs" />
@@ -94,9 +98,6 @@
      <Compile Include="Assets\Scripts\Player\InputHandler.cs" />
      <Compile Include="Assets\Scripts\UI\UIManager.cs" />
      <Compile Include="Assets\Scripts\AI\State Machine\PursueTargetState.cs" />
-     <Compile Include="Assets\Scripts\Items\Spells\SpellItem.cs" />
-     <Compile Include="Assets\Scripts\Items\Spells\SpellType.cs" />
-     <Compile Include="Assets\Scripts\Items\WeaponType.cs" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>

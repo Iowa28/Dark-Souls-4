@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace DS
 {
@@ -8,7 +9,7 @@ namespace DS
         private WeaponSlotManager weaponSlotManager;
 
         [SerializeField]
-        private SpellItem spellItem;
+        private SpellItem currentSpell;
         [SerializeField]
         private WeaponItem rightWeapon;
         [SerializeField]
@@ -105,7 +106,7 @@ namespace DS
 
         #region Getters
 
-        public SpellItem GetSpellItem() => spellItem;
+        public SpellItem GetCurrentSpell() => currentSpell;
 
         public WeaponItem GetRightWeapon() => rightWeapon;
 

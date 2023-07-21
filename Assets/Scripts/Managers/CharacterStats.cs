@@ -7,7 +7,7 @@ namespace DS
         [SerializeField]
         protected int healthLevel = 10;
         protected int maxHealth;
-        protected int currentHealth;
+        public int currentHealth { get; set; }
 
         [SerializeField]
         protected int staminaLevel = 10;

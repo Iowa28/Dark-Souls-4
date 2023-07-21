@@ -9,6 +9,7 @@ namespace DS
         private WeaponSlotManager weaponSlotManager;
         private PlayerManager playerManager;
         private PlayerInventory playerInventory;
+        private PlayerStats playerStats;
 
         private string lastAttack;
 
@@ -19,6 +20,7 @@ namespace DS
             weaponSlotManager = GetComponent<WeaponSlotManager>();
             playerManager = GetComponentInParent<PlayerManager>();
             playerInventory = GetComponentInParent<PlayerInventory>();
+            playerStats = GetComponentInParent<PlayerStats>();
         }
 
         public void HandleRBAction()
@@ -28,10 +30,14 @@ namespace DS
                 case WeaponType.MeleeCaster:
                     PerformRBMeleeAction();
                     break;
-                case WeaponType.PyromaniacCaster:
                 case WeaponType.FaithCaster:
+                    PerformRBFaithAction(playerInventory.GetRightWeapon());
+                    break;
                 case WeaponType.SpellCaster:
                     PerformRBMagicAction(playerInventory.GetRightWeapon());
+                    break;
+                case WeaponType.PyromaniacCaster:
+                    PerformRBPyromaniacAction(playerInventory.GetRightWeapon());
                     break;
             }
         }
@@ -58,9 +64,34 @@ namespace DS
             }
         }
         
+        private void PerformRBFaithAction(WeaponItem weaponItem)
+        {
+            SpellItem currentSpell = playerInventory.GetCurrentSpell();
+            
+            if (currentSpell != null && currentSpell.IsFaithSpell())
+            {
+                currentSpell.AttemptToCastSpell(animatorHandler, playerStats);
+            }
+        }
+        
         private void PerformRBMagicAction(WeaponItem weaponItem)
         {
-            
+
+        }
+        
+        private void PerformRBPyromaniacAction(WeaponItem weaponItem)
+        {
+
+        }
+
+        public void SuccessfullyCastSpell()
+        {
+            SpellItem currentSpell = playerInventory.GetCurrentSpell();
+
+            if (currentSpell != null)
+            {
+                currentSpell.SuccessfullyCastSpell(animatorHandler, playerStats);
+            }
         }
 
         #endregion
@@ -74,11 +105,6 @@ namespace DS
                 {
                     animatorHandler.PlayTargetAnimation(weapon.GetLightAttack2(), true);
                     lastAttack = weapon.GetLightAttack2();
-                }
-                else if (lastAttack == weapon.GetLightAttack2())
-                {
-                    animatorHandler.PlayTargetAnimation(weapon.GetLightAttack3(), true);
-                    lastAttack = weapon.GetLightAttack3();
                 }
                 else if (lastAttack == weapon.GetTwoHandLightAttack1())
                 {

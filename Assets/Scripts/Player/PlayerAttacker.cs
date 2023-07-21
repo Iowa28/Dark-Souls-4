@@ -66,11 +66,19 @@ namespace DS
         
         private void PerformRBFaithAction(WeaponItem weaponItem)
         {
-            SpellItem currentSpell = playerInventory.GetCurrentSpell();
+            if (playerManager.isInteracting)
+                return;
             
-            if (currentSpell != null && currentSpell.IsFaithSpell())
+            SpellItem currentSpell = playerInventory.GetCurrentSpell();
+
+            if (currentSpell != null && currentSpell.IsFaithSpell() &&
+                playerStats.currentFocusPoints >= currentSpell.GetFocusPointCost())
             {
-                currentSpell.AttemptToCastSpell(animatorHandler, playerStats);
+                currentSpell.AttemptToCastSpell(animatorHandler, weaponSlotManager);
+            }
+            else
+            {
+                animatorHandler.PlayTargetAnimation("Shrug",true);
             }
         }
         

@@ -8,20 +8,21 @@ namespace DS
         [SerializeField]
         private int healAmount;
 
-        public override void AttemptToCastSpell(AnimatorHandler animatorHandler, PlayerStats playerStats)
+        public override void AttemptToCastSpell(AnimatorHandler animatorHandler, WeaponSlotManager weaponSlotManager)
         {
-            // GameObject instantiatedWarmUpSpellFX = Instantiate(spellWarmUpFx, animatorHandler.transform);
-            // Destroy(instantiatedWarmUpSpellFX, 2f);
+            base.AttemptToCastSpell(animatorHandler, weaponSlotManager);
+            GameObject rightHandWeapon = weaponSlotManager.rightHandSlot.currentWeaponModel;
+            GameObject instantiatedWarmUpSpellFX = Instantiate(spellWarmUpFx, rightHandWeapon.transform.GetChild(0));
+            Destroy(instantiatedWarmUpSpellFX, 4f);
             animatorHandler.PlayTargetAnimation(spellAnimation, true);
-            Debug.Log("Attempting to cast spell...");
         }
 
         public override void SuccessfullyCastSpell(AnimatorHandler animatorHandler, PlayerStats playerStats)
         {
+            base.SuccessfullyCastSpell(animatorHandler, playerStats);
             GameObject instantiatedSpellFX = Instantiate(spellCastFx, animatorHandler.transform);
             Destroy(instantiatedSpellFX, 2f);
             playerStats.HealPlayer(healAmount);
-            Debug.Log("Spell cast successful");
         }
     }
 }

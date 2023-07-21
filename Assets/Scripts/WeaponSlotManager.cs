@@ -7,7 +7,7 @@ namespace DS
         public WeaponItem attackingWeapon { get; set; }
         
         private WeaponHolderSlot leftHandSlot;
-        private WeaponHolderSlot rightHandSlot;
+        public WeaponHolderSlot rightHandSlot { get; private set;  }
         private WeaponHolderSlot backSlot;
 
         private DamageCollider leftHandDamageCollider;

@@ -5,6 +5,9 @@ namespace DS
     public class IdleState : State
     {
         [SerializeField]
+        private float detectionRadius = 20f;
+        
+        [SerializeField]
         private LayerMask detectionLayer;
 
         [SerializeField]
@@ -14,7 +17,7 @@ namespace DS
         {
             #region Handle Enemy Target Detection
 
-            Collider[] colliders = Physics.OverlapSphere(transform.position, enemyManager.GetDetectionRadius(), detectionLayer);
+            Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRadius, detectionLayer);
 
             foreach (Collider c in colliders)
             {

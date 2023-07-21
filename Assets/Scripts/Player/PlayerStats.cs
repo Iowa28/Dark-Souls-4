@@ -6,6 +6,7 @@ namespace DS
     {
         private HealthBar healthBar;
         private StaminaBar staminaBar;
+        private FocusPointBar focusPointBar;
 
         private AnimatorHandler animatorHandler;
         private PlayerManager playerManager;
@@ -18,6 +19,7 @@ namespace DS
         {
             healthBar = FindObjectOfType<HealthBar>();
             staminaBar = FindObjectOfType<StaminaBar>();
+            focusPointBar = FindObjectOfType<FocusPointBar>();
             animatorHandler = GetComponentInChildren<AnimatorHandler>();
             playerManager = GetComponent<PlayerManager>();
         }
@@ -25,22 +27,29 @@ namespace DS
         private void Start()
         {
             SetMaxHealth();
-            currentHealth = maxHealth;
-            healthBar.SetMaxHealth(maxHealth);
-            
             SetMaxStamina();
-            currentStamina = maxStamina;
-            staminaBar.SetMaxStamina(maxStamina);
+            SetMaxFocusPoints();
         }
 
         private void SetMaxHealth()
         {
             maxHealth = healthLevel * 10;
+            currentHealth = maxHealth;
+            healthBar.SetMaxHealth(maxHealth);
         }
         
         private void SetMaxStamina()
         {
             maxStamina = staminaLevel * 10;
+            currentStamina = maxStamina;
+            staminaBar.SetMaxStamina(maxStamina);
+        }
+
+        private void SetMaxFocusPoints()
+        {
+            maxFocusPoints = focusPointsLevel * 10;
+            currentFocusPoints = maxFocusPoints;
+            focusPointBar.SetMaxFocusPoints(maxFocusPoints);
         }
 
         public void TakeDamage(int damage)
@@ -101,6 +110,13 @@ namespace DS
             currentHealth = Mathf.Min(maxHealth, currentHealth + amount);
             
             healthBar.SetCurrentHealth(currentHealth);
+        }
+
+        public void DeductFocusPoints(int focusPoints)
+        {
+            currentFocusPoints = Mathf.Max(0, currentFocusPoints - focusPoints);
+            
+            focusPointBar.SetCurrentFocusPoints(currentFocusPoints);
         }
     }
 }

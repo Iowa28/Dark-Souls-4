@@ -116,6 +116,8 @@ namespace DS
 
         public WeaponItem[] GetWeaponsInLeftHandSlots() => weaponsInLeftHandSlots;
 
+        public WeaponSlotManager GetWeaponSlotManager() => weaponSlotManager;
+
         #endregion
     }
 }

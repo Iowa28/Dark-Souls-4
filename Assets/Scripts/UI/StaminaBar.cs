@@ -1,17 +1,7 @@
-using UnityEngine;
-using UnityEngine.UI;
-
 namespace DS
 {
-    public class StaminaBar : MonoBehaviour
+    public class StaminaBar : StatBar
     {
-        private Slider slider;
-
-        private void Awake()
-        {
-            slider = GetComponent<Slider>();
-        }
-
         public void SetMaxStamina(float maxStamina)
         {
             slider.maxValue = maxStamina;

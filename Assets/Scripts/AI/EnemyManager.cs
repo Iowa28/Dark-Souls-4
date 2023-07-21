@@ -15,9 +15,6 @@ namespace DS
         
         [Header("AI Settings")]
         [SerializeField]
-        private float detectionRadius = 20f;
-
-        [SerializeField]
         private float minDetectionAngle = -50f;
 
         [SerializeField]
@@ -107,8 +104,6 @@ namespace DS
         public float ViewableAngle() => Vector3.Angle(TargetDirection(), transform.forward);
 
         #region Getters
-
-        public float GetDetectionRadius() => detectionRadius;
 
         public float GetMinDetectionAngle() => minDetectionAngle;
 

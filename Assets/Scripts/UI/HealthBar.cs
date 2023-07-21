@@ -1,17 +1,7 @@
-using UnityEngine;
-using UnityEngine.UI;
-
 namespace DS
 {
-    public class HealthBar : MonoBehaviour
+    public class HealthBar : StatBar
     {
-        private Slider slider;
-
-        private void Awake()
-        {
-            slider = GetComponent<Slider>();
-        }
-
         public void SetMaxHealth(int maxHealth)
         {
             slider.maxValue = maxHealth;

@@ -40,7 +40,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.inputsystem": {
-      "version": "file:C:/Users/naminov/Documents/Unity-Packages/InputSystem/Packages/com.unity.inputsystem",
+      "version": "file:C:/Users/naminov/Documents/Unity Assets/InputSystem/Packages/com.unity.inputsystem",
       "depth": 0,
       "source": "local",
       "dependencies": {

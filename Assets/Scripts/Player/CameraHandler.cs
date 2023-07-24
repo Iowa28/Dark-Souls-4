@@ -10,7 +10,9 @@ namespace DS
         private Transform targetTransform;
         public Transform cameraTransform { get; private set; }
         private Vector3 cameraTransformPosition;
-        public LayerMask ignoreLayers { get; private set; }
+        [SerializeField] 
+        private LayerMask ignoreLayers;
+        [SerializeField]
         private LayerMask environmentLayer;
         private Vector3 cameraFollowVelocity = Vector3.zero;
 
@@ -68,12 +70,6 @@ namespace DS
             targetTransform = playerManager.transform;
         }
 
-        private void Start()
-        {
-            ignoreLayers = ~(1 << 8 | 1 << 9 | 1 << 10);
-            environmentLayer = LayerMask.NameToLayer("Environment");
-        }
-
         public void FollowTarget(float delta)
         {
             Vector3 target = Vector3.SmoothDamp(transform.position, targetTransform.position,
@@ -116,7 +112,6 @@ namespace DS
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             transform.rotation = targetRotation;
 
-            // ReSharper disable once Unity.InefficientPropertyAccess
             direction = currentLockOnTarget.position - cameraPivotTransform.position;
             direction.Normalize();
 
@@ -249,5 +244,11 @@ namespace DS
             cameraPivotTransform.transform.localPosition = Vector3.SmoothDamp(cameraPivotTransform.transform.localPosition,
                 newPosition, ref velocity, delta);
         }
+
+        #region Getters
+
+        public LayerMask GetIgnoreLayers() => ignoreLayers;
+
+        #endregion
     }
 }

@@ -15,6 +15,7 @@ namespace DS
         private bool twoHandInput;
         private bool rbInput;
         private bool rtInput;
+        private bool criticalAttackInput;
         public bool jumpInput { get; private set; }
         private bool inventoryInput;
         private bool lockOnInput;
@@ -45,6 +46,9 @@ namespace DS
 
         private Vector2 movementInput;
         private Vector2 cameraInput;
+        
+        [SerializeField]
+        private Transform criticalAttackRaycastStartPoint;
 
         private void Awake()
         {
@@ -68,6 +72,7 @@ namespace DS
                 inputActions.PlayerMovement.LockOnTargetRight.performed += _ => rightLockOnInput = true;
                 inputActions.PlayerActions.RB.performed += _ => rbInput = true;
                 inputActions.PlayerActions.RT.performed += _ => rtInput = true;
+                inputActions.PlayerActions.CriticalAttack.performed += _ => criticalAttackInput = true;
                 inputActions.PlayerActions.Select.performed += _ => selectInput = true;
                 inputActions.PlayerActions.TwoHand.performed += _ => twoHandInput = true;
                 inputActions.PlayerActions.Jump.performed += _ => jumpInput = true;
@@ -105,16 +110,17 @@ namespace DS
 
         public void TickInput(float delta)
         {
-            HandleMoveInput(delta);
+            HandleMoveInput();
             HandleRollInput(delta);
-            HandleAttackInput(delta);
+            HandleAttackInput();
             HandleQuickSlotsInput();
             HandleInventoryInput();
             HandleLockOnInput();
             HandleTwoHandInput();
+            HandleCriticalAttackInput();
         }
 
-        private void HandleMoveInput(float delta)
+        private void HandleMoveInput()
         {
             horizontal = movementInput.x;
             vertical = movementInput.y;
@@ -145,7 +151,7 @@ namespace DS
             }
         }
 
-        private void HandleAttackInput(float delta)
+        private void HandleAttackInput()
         {
             if (inventoryFlag)
                 return;
@@ -254,5 +260,20 @@ namespace DS
                 }
             }
         }
+
+        private void HandleCriticalAttackInput()
+        {
+            if (criticalAttackInput)
+            {
+                criticalAttackInput = false;
+                playerAttacker.AttemptBackStabOrRiposte();
+            }
+        }
+
+        #region Getters
+
+        public Transform GetCriticalAttackRaycastStartPoint() => criticalAttackRaycastStartPoint;
+
+        #endregion
     }
 }

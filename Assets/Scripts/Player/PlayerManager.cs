@@ -11,6 +11,7 @@ namespace DS
         private PlayerStats playerStats;
         
         private InteractableUI interactableUI;
+        [Header("UI Settings")]
         [SerializeField]
         private GameObject interactionUIGameObject;
         [SerializeField]
@@ -28,6 +29,7 @@ namespace DS
         private void Awake()
         {
             cameraHandler = FindObjectOfType<CameraHandler>();
+            backStabCollider = GetComponentInChildren<BackStabCollider>();
         }
 
         private void Start()
@@ -89,7 +91,7 @@ namespace DS
         {
             RaycastHit hit;
 
-            if (Physics.SphereCast(transform.position, .5f, transform.forward, out hit, 1f, cameraHandler.ignoreLayers))
+            if (Physics.SphereCast(transform.position, .5f, transform.forward, out hit, 1f, cameraHandler.GetIgnoreLayers()))
             {
                 if (hit.collider.CompareTag("Interactable"))
                 {

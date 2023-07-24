@@ -12,6 +12,8 @@ namespace DS
         private PlayerStats playerStats;
 
         private string lastAttack;
+        
+        private LayerMask backStabLayer;
 
         private void Awake()
         {
@@ -21,6 +23,11 @@ namespace DS
             playerManager = GetComponentInParent<PlayerManager>();
             playerInventory = GetComponentInParent<PlayerInventory>();
             playerStats = GetComponentInParent<PlayerStats>();
+        }
+
+        private void Start()
+        {
+            backStabLayer = 1 << 12;
         }
 
         public void HandleRBAction()
@@ -92,17 +99,6 @@ namespace DS
 
         }
 
-        public void SuccessfullyCastSpell()
-        {
-            SpellItem currentSpell = playerInventory.GetCurrentSpell();
-
-            if (currentSpell != null)
-            {
-                currentSpell.SuccessfullyCastSpell(animatorHandler, playerStats);
-            }
-        }
-
-        #endregion
 
         private void HandleWeaponCombo(WeaponItem weapon)
         {
@@ -138,6 +134,12 @@ namespace DS
             }
         }
         
+
+
+        #endregion
+
+        #region Input Actions
+
         public void HandleHeavyAttack(WeaponItem weapon)
         {
             weaponSlotManager.attackingWeapon = weapon;
@@ -153,5 +155,45 @@ namespace DS
                 lastAttack = weapon.GetHeavyAttack1();
             }
         }
+        
+        public void SuccessfullyCastSpell()
+        {
+            SpellItem currentSpell = playerInventory.GetCurrentSpell();
+
+            if (currentSpell != null)
+            {
+                currentSpell.SuccessfullyCastSpell(animatorHandler, playerStats);
+            }
+        }
+        
+        public void AttemptBackStabOrRiposte()
+        {
+            if (Physics.Raycast(inputHandler.GetCriticalAttackRaycastStartPoint().position,
+                    transform.TransformDirection(Vector3.forward), out RaycastHit hit, .5f, backStabLayer))
+            {
+                CharacterManager enemyCharacterManager =
+                    hit.transform.gameObject.GetComponentInParent<CharacterManager>();
+
+                if (enemyCharacterManager != null)
+                {
+                    playerManager.transform.position = enemyCharacterManager.GetBackStabCollider()
+                        .GetBackStabberStandPoint().position;
+
+                    Vector3 rotationDirection = hit.transform.position - playerManager.transform.position;
+                    rotationDirection.y = 0;
+                    rotationDirection.Normalize();
+                    Quaternion targetRotation = Quaternion.LookRotation(rotationDirection);
+                    targetRotation = Quaternion.Slerp(playerManager.transform.rotation, targetRotation,
+                        500 * Time.deltaTime);
+                    playerManager.transform.rotation = targetRotation;
+                    
+                    animatorHandler.PlayTargetAnimation("Back Stab", true);
+                    enemyCharacterManager.GetComponentInChildren<AnimatorManager>().PlayTargetAnimation("Back Stabbed", true);
+                    
+                }
+            }
+        }
+
+        #endregion
     }
 }

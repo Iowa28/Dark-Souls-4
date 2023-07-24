@@ -39,6 +39,7 @@ namespace DS
             enemyStats = GetComponent<EnemyStats>();
             navMeshAgent = GetComponentInChildren<NavMeshAgent>();
             enemyRigidbody = GetComponent<Rigidbody>();
+            backStabCollider = GetComponentInChildren<BackStabCollider>();
         }
 
         private void Start()

@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\AI\EnemyLocomotionManager.cs" />
      <Compile Include="Assets\Scripts\Player\CameraHandler.cs" />
      <Compile Include="Assets\Scripts\Items\Spells\SpellItem.cs" />
+     <Compile Include="Assets\Scripts\UI\FocusPointBar.cs" />
      <Compile Include="Assets\Scripts\WeaponPickUp.cs" />
      <Compile Include="Assets\Scripts\Player\DamagePlayer.cs" />
      <Compile Include="Assets\Scripts\UI\HealthBar.cs" />
@@ -90,16 +91,17 @@
      <Compile Include="Assets\Scripts\Player\DamageCollider.cs" />
      <Compile Include="Assets\Scripts\WeaponSlotManager.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerAttacker.cs" />
+     <Compile Include="Assets\Scripts\Player\BackStabCollider.cs" />
      <Compile Include="Assets\Scripts\AI\State Machine\IdleState.cs" />
      <Compile Include="Assets\Scripts\WeaponHolderSlot.cs" />
      <Compile Include="Assets\Scripts\AI\State Machine\CombatStanceState.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerStats.cs" />
+     <Compile Include="Assets\Scripts\UI\StatBar.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerManager.cs" />
      <Compile Include="Assets\Scripts\Player\InputHandler.cs" />
      <Compile Include="Assets\Scripts\UI\UIManager.cs" />
      <Compile Include="Assets\Scripts\AI\State Machine\PursueTargetState.cs" />
-     <Compile Include="Assets\Scripts\UI\StatBar.cs" />
-     <Compile Include="Assets\Scripts\UI\FocusPointBar.cs" />
+     <None Include="Assets\Data\Import\Animations\Souls-like Essentials\Read Me.txt" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>

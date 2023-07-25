@@ -181,36 +181,36 @@ namespace DS
 
         private void HandleInventoryInput()
         {
-            if (inventoryInput)
-            {
-                inventoryFlag = !inventoryFlag;
-
-                if (inventoryFlag)
-                {
-                    uiManager.CloseHudWindow();
-                    uiManager.OpenSelectWindow();
-                    uiManager.UpdateUI();
-                }
-                else
-                {
-                    uiManager.CloseSelectWindow();
-                    uiManager.CloseAllInventoryWindows();
-                    uiManager.OpenHudWindow();
-                }
-            }
-
-            if (inventoryFlag)
-            {
-                uiManager.CloseHudWindow();
-                uiManager.OpenSelectWindow();
-                uiManager.UpdateUI();
-            }
-            else
-            {
-                uiManager.CloseSelectWindow();
-                uiManager.CloseAllInventoryWindows();
-                uiManager.OpenHudWindow();
-            }
+            // if (inventoryInput)
+            // {
+            //     inventoryFlag = !inventoryFlag;
+            //
+            //     if (inventoryFlag)
+            //     {
+            //         uiManager.CloseHudWindow();
+            //         uiManager.OpenSelectWindow();
+            //         uiManager.UpdateUI();
+            //     }
+            //     else
+            //     {
+            //         uiManager.CloseSelectWindow();
+            //         uiManager.CloseAllInventoryWindows();
+            //         uiManager.OpenHudWindow();
+            //     }
+            // }
+            //
+            // if (inventoryFlag)
+            // {
+            //     uiManager.CloseHudWindow();
+            //     uiManager.OpenSelectWindow();
+            //     uiManager.UpdateUI();
+            // }
+            // else
+            // {
+            //     uiManager.CloseSelectWindow();
+            //     uiManager.CloseAllInventoryWindows();
+            //     uiManager.OpenHudWindow();
+            // }
         }
 
         private void HandleLockOnInput()

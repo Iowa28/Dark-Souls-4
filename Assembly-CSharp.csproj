@@ -52,56 +52,55 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\AI\EnemyLocomotionManager.cs" />
-     <Compile Include="Assets\Scripts\Player\CameraHandler.cs" />
-     <Compile Include="Assets\Scripts\Items\Spells\SpellItem.cs" />
-     <Compile Include="Assets\Scripts\UI\FocusPointBar.cs" />
-     <Compile Include="Assets\Scripts\WeaponPickUp.cs" />
-     <Compile Include="Assets\Scripts\Player\DamagePlayer.cs" />
-     <Compile Include="Assets\Scripts\UI\HealthBar.cs" />
-     <Compile Include="Assets\Scripts\Managers\CharacterStats.cs" />
      <Compile Include="Assets\Scripts\AI\EnemyAction.cs" />
-     <Compile Include="Assets\Scripts\Player\ResetAnimatorBool.cs" />
+     <Compile Include="Assets\Scripts\WeaponPickUp.cs" />
+     <Compile Include="Assets\Scripts\UI\HealthBar.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerLocomotion.cs" />
-     <Compile Include="Assets\Scripts\AI\EnemyStats.cs" />
-     <Compile Include="Assets\Scripts\UI\QuickSlotsUI.cs" />
-     <Compile Include="Assets\Scripts\UI\EquipmentWeaponUI.cs" />
-     <Compile Include="Assets\Scripts\AI\EnemyManager.cs" />
      <Compile Include="Assets\Scripts\AI\State Machine\State.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerStats.cs" />
+     <Compile Include="Assets\Scripts\AI\EnemyWeaponSlotManager.cs" />
+     <Compile Include="Assets\Scripts\Items\Spells\SpellItem.cs" />
+     <Compile Include="Assets\Scripts\Items\WeaponItem.cs" />
+     <Compile Include="Assets\Scripts\UI\FocusPointBar.cs" />
+     <Compile Include="Assets\Scripts\Player\ResetAnimatorBool.cs" />
+     <Compile Include="Assets\Scripts\UI\QuickSlotsUI.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerInventory.cs" />
+     <Compile Include="Assets\Scripts\UI\EquipmentWeaponUI.cs" />
+     <Compile Include="Assets\Scripts\Managers\AnimatorManager.cs" />
+     <Compile Include="Assets\Scripts\Managers\CharacterStats.cs" />
+     <Compile Include="Assets\Scripts\AI\State Machine\IdleState.cs" />
      <Compile Include="Assets\Scripts\Player\CharacterManager.cs" />
-     <Compile Include="Assets\Scripts\Items\Spells\HealingSpell.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerManager.cs" />
      <Compile Include="Assets\Scripts\UI\HandEquipmentSlotUI.cs" />
-     <Compile Include="Assets\Scripts\AI\State Machine\AmbushState.cs" />
+     <Compile Include="Assets\Scripts\Items\Spells\HealingSpell.cs" />
+     <Compile Include="Assets\Scripts\Player\BackStabCollider.cs" />
+     <Compile Include="Assets\PlayerControls.cs" />
      <Compile Include="Assets\Scripts\AI\State Machine\AttackState.cs" />
      <Compile Include="Assets\Scripts\Interactable.cs" />
-     <Compile Include="Assets\PlayerControls.cs" />
-     <Compile Include="Assets\Scripts\Items\WeaponItem.cs" />
-     <Compile Include="Assets\Scripts\UI\StaminaBar.cs" />
-     <Compile Include="Assets\Scripts\Managers\AnimatorManager.cs" />
-     <Compile Include="Assets\Scripts\Items\Spells\SpellType.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerInventory.cs" />
-     <Compile Include="Assets\Scripts\WeaponInventorySlot.cs" />
-     <Compile Include="Assets\Scripts\AI\EnemyWeaponSlotManager.cs" />
-     <Compile Include="Assets\Scripts\Items\Item.cs" />
      <Compile Include="Assets\Scripts\AI\EnemyAnimationManager.cs" />
-     <Compile Include="Assets\Scripts\Items\WeaponType.cs" />
+     <Compile Include="Assets\Scripts\UI\StaminaBar.cs" />
+     <Compile Include="Assets\Scripts\Player\DamageCollider.cs" />
+     <Compile Include="Assets\Scripts\UI\StatBar.cs" />
+     <Compile Include="Assets\Scripts\Items\Spells\SpellType.cs" />
+     <Compile Include="Assets\Scripts\Player\CameraHandler.cs" />
+     <Compile Include="Assets\Scripts\WeaponInventorySlot.cs" />
      <Compile Include="Assets\Scripts\AI\EnemyAttackAction.cs" />
      <Compile Include="Assets\Scripts\Player\AnimatorHandler.cs" />
+     <Compile Include="Assets\Scripts\Items\WeaponType.cs" />
+     <Compile Include="Assets\Scripts\AI\State Machine\AmbushState.cs" />
      <Compile Include="Assets\Scripts\UI\InteractableUI.cs" />
-     <Compile Include="Assets\Scripts\Player\DamageCollider.cs" />
-     <Compile Include="Assets\Scripts\WeaponSlotManager.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerAttacker.cs" />
-     <Compile Include="Assets\Scripts\Player\BackStabCollider.cs" />
-     <Compile Include="Assets\Scripts\AI\State Machine\IdleState.cs" />
-     <Compile Include="Assets\Scripts\WeaponHolderSlot.cs" />
-     <Compile Include="Assets\Scripts\AI\State Machine\CombatStanceState.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerStats.cs" />
-     <Compile Include="Assets\Scripts\UI\StatBar.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerManager.cs" />
      <Compile Include="Assets\Scripts\Player\InputHandler.cs" />
+     <Compile Include="Assets\Scripts\WeaponSlotManager.cs" />
+     <Compile Include="Assets\Scripts\AI\State Machine\CombatStanceState.cs" />
+     <Compile Include="Assets\Scripts\WeaponHolderSlot.cs" />
+     <Compile Include="Assets\Scripts\AI\EnemyStats.cs" />
+     <Compile Include="Assets\Scripts\AI\EnemyLocomotionManager.cs" />
+     <Compile Include="Assets\Scripts\Player\DamagePlayer.cs" />
+     <Compile Include="Assets\Scripts\Items\Item.cs" />
      <Compile Include="Assets\Scripts\UI\UIManager.cs" />
+     <Compile Include="Assets\Scripts\AI\EnemyManager.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerAttacker.cs" />
      <Compile Include="Assets\Scripts\AI\State Machine\PursueTargetState.cs" />
-     <None Include="Assets\Data\Import\Animations\Souls-like Essentials\Read Me.txt" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>
@@ -670,31 +669,31 @@
  <HintPath>C:/Program Files/Unity/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VSCode.Editor">
- <HintPath>C:/Projects/Dark-Souls-4/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+ <HintPath>C:/Users/naminov/Documents/Unity Projects/Dark-Souls-4/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>C:/Projects/Dark-Souls-4/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>C:/Users/naminov/Documents/Unity Projects/Dark-Souls-4/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VisualStudio.Editor">
- <HintPath>C:/Projects/Dark-Souls-4/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
+ <HintPath>C:/Users/naminov/Documents/Unity Projects/Dark-Souls-4/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline.Editor">
- <HintPath>C:/Projects/Dark-Souls-4/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ <HintPath>C:/Users/naminov/Documents/Unity Projects/Dark-Souls-4/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline">
- <HintPath>C:/Projects/Dark-Souls-4/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+ <HintPath>C:/Users/naminov/Documents/Unity Projects/Dark-Souls-4/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>C:/Projects/Dark-Souls-4/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>C:/Users/naminov/Documents/Unity Projects/Dark-Souls-4/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>C:/Projects/Dark-Souls-4/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>C:/Users/naminov/Documents/Unity Projects/Dark-Souls-4/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Rider.Editor">
- <HintPath>C:/Projects/Dark-Souls-4/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+ <HintPath>C:/Users/naminov/Documents/Unity Projects/Dark-Souls-4/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Projects/Dark-Souls-4/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Users/naminov/Documents/Unity Projects/Dark-Souls-4/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

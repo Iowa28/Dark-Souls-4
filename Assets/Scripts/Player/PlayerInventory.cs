@@ -34,12 +34,12 @@ namespace DS
             weaponsInventory = new List<WeaponItem>();
         }
 
-        private void Start()
-        {
-            rightWeapon = weaponsInRightHandSlots[0];
-            leftWeapon = weaponsInLeftHandSlots[0];
-            LoadWeaponsOnSlot();
-        }
+        // private void Start()
+        // {
+        //     rightWeapon = weaponsInRightHandSlots[0];
+        //     leftWeapon = weaponsInLeftHandSlots[0];
+        //     LoadWeaponsOnSlot();
+        // }
 
         public void LoadWeaponsOnSlot()
         {

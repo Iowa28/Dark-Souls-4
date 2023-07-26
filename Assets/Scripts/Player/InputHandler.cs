@@ -153,18 +153,18 @@ namespace DS
 
         private void HandleAttackInput()
         {
-            if (inventoryFlag)
-                return;
-            
-            if (rbInput)
-            {
-                playerAttacker.HandleRBAction();
-            }
-
-            if (rtInput)
-            {
-                playerAttacker.HandleHeavyAttack(playerInventory.GetRightWeapon());
-            }
+            // if (inventoryFlag)
+            //     return;
+            //
+            // if (rbInput)
+            // {
+            //     playerAttacker.HandleRBAction();
+            // }
+            //
+            // if (rtInput)
+            // {
+            //     playerAttacker.HandleHeavyAttack(playerInventory.GetRightWeapon());
+            // }
         }
 
         private void HandleQuickSlotsInput()
@@ -263,11 +263,11 @@ namespace DS
 
         private void HandleCriticalAttackInput()
         {
-            if (criticalAttackInput)
-            {
-                criticalAttackInput = false;
-                playerAttacker.AttemptBackStabOrRiposte();
-            }
+            // if (criticalAttackInput)
+            // {
+            //     criticalAttackInput = false;
+            //     playerAttacker.AttemptBackStabOrRiposte();
+            // }
         }
 
         #region Getters

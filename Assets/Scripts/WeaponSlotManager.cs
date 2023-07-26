@@ -66,22 +66,22 @@ namespace DS
                 }
                 else
                 {
-                    backSlot.UnloadWeaponAndDestroy();
-                    animator.CrossFade("Both Arms Empty", fadeDuration);
-                    animator.CrossFade(weaponItem != null ? weaponItem.GetRightHandIdle() : "Right Arm Empty", fadeDuration);
-
+                    // backSlot.UnloadWeaponAndDestroy();
+                    // animator.CrossFade("Both Arms Empty", fadeDuration);
+                    // animator.CrossFade(weaponItem != null ? weaponItem.GetRightHandIdle() : "Right Arm Empty", fadeDuration);
+            
                     if (leftHandSlot.currentWeaponModel == null)
                     {
                         leftHandSlot.LoadWeaponModel(leftHandSlot.currentWeapon);
                     }
                 }
-
+            
                 rightHandSlot.currentWeapon = weaponItem;
                 rightHandSlot.LoadWeaponModel(weaponItem);
                 LoadRightWeaponDamageCollider();
             }
             
-            quickSlotsUI.UpdateWeaponQuickSlotsUI(weaponItem, isLeft);
+            // quickSlotsUI.UpdateWeaponQuickSlotsUI(weaponItem, isLeft);
         }
 
         #region Handle Weapon's Damage Collider

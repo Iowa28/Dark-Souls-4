@@ -22,11 +22,11 @@ namespace DS
         [SerializeField]
         private Transform cameraPivotTransform;
         [SerializeField]
-        private float lookSpeed = .1f;
+        private float lookSpeed = 200f;
+        [SerializeField]
+        private float pivotSpeed = 100f;
         [SerializeField]
         private float followSpeed = .1f;
-        [SerializeField]
-        private float pivotSpeed = .03f;
 
         private float targetPosition;
         private float defaultPosition;
@@ -63,7 +63,7 @@ namespace DS
         private void Awake()
         {
             singleton = this;
-            cameraTransform = FindObjectOfType<Camera>().transform;
+            cameraTransform = GetComponentInChildren<Camera>().transform;
             defaultPosition = cameraTransform.localPosition.z;
             inputHandler = FindObjectOfType<InputHandler>();
             playerManager = FindObjectOfType<PlayerManager>();
@@ -98,7 +98,7 @@ namespace DS
             
             rotation = Vector3.zero;
             rotation.x = pivotAngle;
-            
+
             targetRotation = Quaternion.Euler(rotation);
             cameraPivotTransform.localRotation = targetRotation;
         }

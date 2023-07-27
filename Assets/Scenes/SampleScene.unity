@@ -262,7 +262,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -406,7 +406,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6f308f33763145a47a784456a9b830e6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5acba7adc97b98d4e942f1b5b8eff9b3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -443,7 +443,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &85199456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6192,9 +6192,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 472870099}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 266b517397fc3d743ae90d5da229c43e, type: 3}
+  m_Script: {fileID: 11500000, guid: c5bc96c37ad369640829874714b3e88c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 25
 --- !u!224 &487085808
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7846,7 +7847,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 375ae659a11b4b0489fcbac7e71ca874, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 453a39ce786e74047959abadc45d036a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8090,7 +8091,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -8246,7 +8247,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: dbbf79121de077c44ad0003aab9bf262, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f93294799f838f7499dc560e1146d9a2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -15267,7 +15268,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1526361446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46a8a00ee5d806740b85961600c56180, type: 3}
+  m_Script: {fileID: 11500000, guid: 462454750c6cb15419080b3dd3ac6a62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1526361449
@@ -15948,7 +15949,9 @@ MonoBehaviour:
   leftWeapon: {fileID: 0}
   weaponsInRightHandSlots:
   - {fileID: 11400000, guid: b7f6ef599a71f0644b25c183ba36c72e, type: 2}
+  - {fileID: 11400000, guid: b7f6ef599a71f0644b25c183ba36c72e, type: 2}
   weaponsInLeftHandSlots:
+  - {fileID: 11400000, guid: ba6eff96d9a016a4da9ee9d4cf42ffe6, type: 2}
   - {fileID: 11400000, guid: ba6eff96d9a016a4da9ee9d4cf42ffe6, type: 2}
   unarmedWeapon: {fileID: 0}
 --- !u!114 &1658441448
@@ -16011,6 +16014,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lockOnTransform: {fileID: 439594746}
   backStabBoxCollider: {fileID: 1874088489}
+  interactionUIGameObject: {fileID: 972007875}
+  itemUIGameObject: {fileID: 1386517046}
 --- !u!114 &1658441452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16030,7 +16035,7 @@ MonoBehaviour:
   walkingSpeed: 1
   sprintSpeed: 7
   rotationSpeed: 10
-  fallSpeed: 300
+  fallSpeed: 400
   characterCollider: {fileID: 1658441450}
   characterCollisionBlockerCollider: {fileID: 552289900}
 --- !u!114 &1658441453
@@ -17734,6 +17739,7 @@ GameObject:
   - component: {fileID: 5866666021079902817}
   - component: {fileID: 2035761696}
   - component: {fileID: 2035761697}
+  - component: {fileID: 919132148913400482}
   m_Layer: 0
   m_Name: Player Model
   m_TagString: Untagged
@@ -17741,6 +17747,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &919132148913400482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148913400481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c46972315b47b024cafe45a55b2ce1a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1072663757854910172
 GameObject:
   m_ObjectHideFlags: 0
@@ -18117,7 +18135,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 85199455}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 409abf63b3417bc4f82bdbe9f6479cf5, type: 3}
   m_Name: 
@@ -20200,7 +20218,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

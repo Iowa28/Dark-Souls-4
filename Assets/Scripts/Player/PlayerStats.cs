@@ -4,9 +4,9 @@ namespace DS
 {
     public class PlayerStats : CharacterStats
     {
-        // private HealthBar healthBar;
-        // private StaminaBar staminaBar;
-        // private FocusPointBar focusPointBar;
+        private HealthBar healthBar;
+        private StaminaBar staminaBar;
+        private FocusPointBar focusPointBar;
 
         private AnimatorHandler animatorHandler;
         private PlayerManager playerManager;
@@ -17,40 +17,40 @@ namespace DS
 
         private void Awake()
         {
-            // healthBar = FindObjectOfType<HealthBar>();
-            // staminaBar = FindObjectOfType<StaminaBar>();
-            // focusPointBar = FindObjectOfType<FocusPointBar>();
+            healthBar = FindObjectOfType<HealthBar>();
+            staminaBar = FindObjectOfType<StaminaBar>();
+            focusPointBar = FindObjectOfType<FocusPointBar>();
             animatorHandler = GetComponentInChildren<AnimatorHandler>();
             playerManager = GetComponent<PlayerManager>();
         }
-        //
-        // private void Start()
-        // {
-        //     SetMaxHealth();
-        //     SetMaxStamina();
-        //     SetMaxFocusPoints();
-        // }
-        //
-        // private void SetMaxHealth()
-        // {
-        //     maxHealth = healthLevel * 10;
-        //     currentHealth = maxHealth;
-        //     healthBar.SetMaxHealth(maxHealth);
-        // }
-        //
-        // private void SetMaxStamina()
-        // {
-        //     maxStamina = staminaLevel * 10;
-        //     currentStamina = maxStamina;
-        //     staminaBar.SetMaxStamina(maxStamina);
-        // }
-        //
-        // private void SetMaxFocusPoints()
-        // {
-        //     maxFocusPoints = focusPointsLevel * 10;
-        //     currentFocusPoints = maxFocusPoints;
-        //     focusPointBar.SetMaxFocusPoints(maxFocusPoints);
-        // }
+        
+        private void Start()
+        {
+            SetMaxHealth();
+            SetMaxStamina();
+            SetMaxFocusPoints();
+        }
+        
+        private void SetMaxHealth()
+        {
+            maxHealth = healthLevel * 10;
+            currentHealth = maxHealth;
+            healthBar.SetMaxHealth(maxHealth);
+        }
+        
+        private void SetMaxStamina()
+        {
+            maxStamina = staminaLevel * 10;
+            currentStamina = maxStamina;
+            staminaBar.SetMaxStamina(maxStamina);
+        }
+        
+        private void SetMaxFocusPoints()
+        {
+            maxFocusPoints = focusPointsLevel * 10;
+            currentFocusPoints = maxFocusPoints;
+            focusPointBar.SetMaxFocusPoints(maxFocusPoints);
+        }
 
         public void TakeDamage(int damage)
         {
@@ -73,7 +73,7 @@ namespace DS
                 animatorHandler.PlayTargetAnimation("Damage", true);
             }
             
-            // healthBar.SetCurrentHealth(currentHealth);
+            healthBar.SetCurrentHealth(currentHealth);
         }
 
         public void DecreaseStamina(float value)
@@ -85,7 +85,7 @@ namespace DS
                 currentStamina = 0;
             }
             
-            // staminaBar.SetCurrentStamina(currentStamina);
+            staminaBar.SetCurrentStamina(currentStamina);
         }
 
         public void RegenerateStamina()
@@ -101,7 +101,7 @@ namespace DS
             if (currentStamina < maxStamina && staminaRegenerationTimer > 1f)
             {
                 currentStamina += staminaRegenerationAmount * Time.deltaTime;
-                // staminaBar.SetCurrentStamina(currentStamina);
+                staminaBar.SetCurrentStamina(currentStamina);
             }
         }
 
@@ -109,14 +109,14 @@ namespace DS
         {
             currentHealth = Mathf.Min(maxHealth, currentHealth + amount);
             
-            // healthBar.SetCurrentHealth(currentHealth);
+            healthBar.SetCurrentHealth(currentHealth);
         }
 
         public void DeductFocusPoints(int focusPoints)
         {
             currentFocusPoints = Mathf.Max(0, currentFocusPoints - focusPoints);
             
-            // focusPointBar.SetCurrentFocusPoints(currentFocusPoints);
+            focusPointBar.SetCurrentFocusPoints(currentFocusPoints);
         }
     }
 }

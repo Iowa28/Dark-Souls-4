@@ -95,7 +95,7 @@
      <Compile Include="Assets\Scripts\WeaponHolderSlot.cs" />
      <Compile Include="Assets\Scripts\AI\EnemyStats.cs" />
      <Compile Include="Assets\Scripts\AI\EnemyLocomotionManager.cs" />
-     <Compile Include="Assets\Scripts\Player\DamagePlayer.cs" />
+     <Compile Include="Assets\Scripts\DamagePlayer.cs" />
      <Compile Include="Assets\Scripts\Items\Item.cs" />
      <Compile Include="Assets\Scripts\UI\UIManager.cs" />
      <Compile Include="Assets\Scripts\AI\EnemyManager.cs" />

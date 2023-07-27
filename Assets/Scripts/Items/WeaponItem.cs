@@ -24,7 +24,7 @@ namespace DS
         [SerializeField]
         private string lightAttack2;
         [SerializeField]
-        private string heavyAttack1;
+        private string heavyAttack;
         [SerializeField]
         private string twoHandLightAttack1;
         [SerializeField]
@@ -63,7 +63,7 @@ namespace DS
 
         public string GetTwoHandLightAttack2() => twoHandLightAttack2;
 
-        public string GetHeavyAttack1() => heavyAttack1;
+        public string GetHeavyAttack() => heavyAttack;
 
         public string GetTwoHandHeavyAttack1() => twoHandHeavyAttack1;
 

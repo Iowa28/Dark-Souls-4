@@ -146,13 +146,13 @@ namespace DS
             
             if (inputHandler.twoHandFlag)
             {
-                animatorHandler.PlayTargetAnimation(weapon.GetTwoHandHeavyAttack1(), true);
-                lastAttack = weapon.GetTwoHandHeavyAttack1();
+                // animatorHandler.PlayTargetAnimation(weapon.GetTwoHandHeavyAttack1(), true);
+                // lastAttack = weapon.GetTwoHandHeavyAttack1();
             }
             else
             {
-                animatorHandler.PlayTargetAnimation(weapon.GetHeavyAttack1(), true);
-                lastAttack = weapon.GetHeavyAttack1();
+                animatorHandler.PlayTargetAnimation(weapon.GetHeavyAttack(), true);
+                lastAttack = weapon.GetHeavyAttack();
             }
         }
         

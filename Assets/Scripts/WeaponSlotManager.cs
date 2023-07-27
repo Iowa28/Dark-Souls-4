@@ -60,9 +60,9 @@ namespace DS
             {
                 if (inputHandler.twoHandFlag)
                 {
-                    backSlot.LoadWeaponModel(leftHandSlot.currentWeapon);
-                    leftHandSlot.UnloadWeaponAndDestroy();
-                    animator.CrossFade(weaponItem.GetTwoHandIdle(), fadeDuration);
+                    // backSlot.LoadWeaponModel(leftHandSlot.currentWeapon);
+                    // leftHandSlot.UnloadWeaponAndDestroy();
+                    // animator.CrossFade(weaponItem.GetTwoHandIdle(), fadeDuration);
                 }
                 else
                 {
@@ -81,7 +81,7 @@ namespace DS
                 LoadRightWeaponDamageCollider();
             }
             
-            // quickSlotsUI.UpdateWeaponQuickSlotsUI(weaponItem, isLeft);
+            quickSlotsUI.UpdateWeaponQuickSlotsUI(weaponItem, isLeft);
         }
 
         #region Handle Weapon's Damage Collider

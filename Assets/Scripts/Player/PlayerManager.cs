@@ -11,11 +11,11 @@ namespace DS
         private PlayerStats playerStats;
         
         private InteractableUI interactableUI;
-        // [Header("UI Settings")]
-        // [SerializeField]
-        // private GameObject interactionUIGameObject;
-        // [SerializeField]
-        // private GameObject itemUIGameObject;
+        [Header("UI Settings")]
+        [SerializeField]
+        private GameObject interactionUIGameObject;
+        [SerializeField]
+        private GameObject itemUIGameObject;
 
         public bool isInteracting { get; private set; }
         public bool isSprinting { get; set; }
@@ -89,45 +89,45 @@ namespace DS
 
         private void CheckForInteractableObjects()
         {
-            // RaycastHit hit;
-            //
-            // if (Physics.SphereCast(transform.position, .5f, transform.forward, out hit, 1f, cameraHandler.GetIgnoreLayers()))
-            // {
-            //     if (hit.collider.CompareTag("Interactable"))
-            //     {
-            //         Interactable interactableObject = hit.collider.GetComponent<Interactable>();
-            //
-            //         if (interactableObject != null)
-            //         {
-            //             string interactableText = interactableObject.GetInteractableText();
-            //             interactableUI.SetInteractableText(interactableText);
-            //             interactionUIGameObject.SetActive(true);
-            //
-            //             if (inputHandler.selectInput)
-            //             {
-            //                 interactableObject.Interact(this);
-            //             }
-            //         }
-            //     }
-            // }
-            // else
-            // {
-            //     if (interactionUIGameObject != null)
-            //     {
-            //         interactionUIGameObject.SetActive(false);
-            //     }
-            //     
-            //     if (itemUIGameObject != null && inputHandler.selectInput)
-            //     {
-            //         itemUIGameObject.SetActive(false);
-            //     }
-            // }
+            RaycastHit hit;
+            
+            if (Physics.SphereCast(transform.position, .5f, transform.forward, out hit, 1f, cameraHandler.GetIgnoreLayers()))
+            {
+                if (hit.collider.CompareTag("Interactable"))
+                {
+                    Interactable interactableObject = hit.collider.GetComponent<Interactable>();
+            
+                    if (interactableObject != null)
+                    {
+                        string interactableText = interactableObject.GetInteractableText();
+                        interactableUI.SetInteractableText(interactableText);
+                        interactionUIGameObject.SetActive(true);
+            
+                        if (inputHandler.selectInput)
+                        {
+                            interactableObject.Interact(this);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (interactionUIGameObject != null)
+                {
+                    interactionUIGameObject.SetActive(false);
+                }
+                
+                if (itemUIGameObject != null && inputHandler.selectInput)
+                {
+                    itemUIGameObject.SetActive(false);
+                }
+            }
         }
 
-        // #region Getters
-        //
-        // public GameObject GetItemUIGameObject() => itemUIGameObject;
-        //
-        // #endregion
+        #region Getters
+        
+        public GameObject GetItemUIGameObject() => itemUIGameObject;
+        
+        #endregion
     }
 }

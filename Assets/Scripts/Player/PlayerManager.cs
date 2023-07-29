@@ -38,7 +38,7 @@ namespace DS
             playerLocomotion = GetComponent<PlayerLocomotion>();
             animatorHandler = GetComponentInChildren<AnimatorHandler>();
             playerStats = GetComponent<PlayerStats>();
-            // interactableUI = FindObjectOfType<InteractableUI>();
+            interactableUI = FindObjectOfType<InteractableUI>();
         }
 
         private void Update()

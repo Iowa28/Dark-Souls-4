@@ -90,11 +90,10 @@
      <Compile Include="Assets\Scripts\AI\State Machine\AmbushState.cs" />
      <Compile Include="Assets\Scripts\UI\InteractableUI.cs" />
      <Compile Include="Assets\Scripts\Player\InputHandler.cs" />
-     <Compile Include="Assets\Scripts\WeaponSlotManager.cs" />
+     <Compile Include="Assets\Scripts\Managers\WeaponSlotManager.cs" />
      <Compile Include="Assets\Scripts\AI\State Machine\CombatStanceState.cs" />
      <Compile Include="Assets\Scripts\WeaponHolderSlot.cs" />
      <Compile Include="Assets\Scripts\AI\EnemyStats.cs" />
-     <Compile Include="Assets\Scripts\AI\EnemyLocomotionManager.cs" />
      <Compile Include="Assets\Scripts\DamagePlayer.cs" />
      <Compile Include="Assets\Scripts\Items\Item.cs" />
      <Compile Include="Assets\Scripts\UI\UIManager.cs" />

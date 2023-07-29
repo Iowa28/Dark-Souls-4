@@ -12,7 +12,7 @@ namespace DS
         [SerializeField] 
         private bool isRightHandSlot;
         [SerializeField]
-        private bool isBackSLot;
+        private bool isBackSlot;
 
         public GameObject currentWeaponModel { get; private set; }
         public WeaponItem currentWeapon { get; set; }
@@ -61,7 +61,7 @@ namespace DS
 
         public bool IsRightHandSlot() => isRightHandSlot;
 
-        public bool IsBackSLot() => isBackSLot;
+        public bool IsBackSlot() => isBackSlot;
 
         #endregion
     }

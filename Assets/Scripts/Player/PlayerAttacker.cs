@@ -124,6 +124,7 @@ namespace DS
             
             if (inputHandler.twoHandFlag)
             {
+                Debug.Log(weapon.GetTwoHandLightAttack1());
                 animatorHandler.PlayTargetAnimation(weapon.GetTwoHandLightAttack1(), true);
                 lastAttack = weapon.GetTwoHandLightAttack1();
             }
@@ -133,8 +134,6 @@ namespace DS
                 lastAttack = weapon.GetLightAttack1();
             }
         }
-        
-
 
         #endregion
 
@@ -146,8 +145,8 @@ namespace DS
             
             if (inputHandler.twoHandFlag)
             {
-                // animatorHandler.PlayTargetAnimation(weapon.GetTwoHandHeavyAttack1(), true);
-                // lastAttack = weapon.GetTwoHandHeavyAttack1();
+                animatorHandler.PlayTargetAnimation(weapon.GetTwoHandHeavyAttack1(), true);
+                lastAttack = weapon.GetTwoHandHeavyAttack1();
             }
             else
             {

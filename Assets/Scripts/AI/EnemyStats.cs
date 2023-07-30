@@ -17,7 +17,7 @@ namespace DS
             currentHealth = maxHealth;
         }
 
-        public void TakeDamage(int damage)
+        public override void TakeDamage(int damage)
         {
             if (isDead)
                 return;

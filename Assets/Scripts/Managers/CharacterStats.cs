@@ -20,5 +20,10 @@ namespace DS
         public float currentFocusPoints { get; protected set; }
         
         public bool isDead { get; protected set; }
+
+        public virtual void TakeDamage(int damage)
+        {
+            
+        }
     }
 }

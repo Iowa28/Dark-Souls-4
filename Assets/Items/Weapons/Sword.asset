@@ -26,7 +26,7 @@ MonoBehaviour:
   twoHandLightAttack1: ThLightAttack1
   twoHandLightAttack2: ThLightAttack2
   twoHandHeavyAttack1: ThHeavyAttack
-  baseStamina: 0
-  lightAttackMultiplier: 0
-  heavyAttackMultiplier: 0
+  baseStamina: 20
+  lightAttackMultiplier: 1
+  heavyAttackMultiplier: 2
   weaponType: 0

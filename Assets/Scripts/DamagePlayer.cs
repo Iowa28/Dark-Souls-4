@@ -9,7 +9,7 @@ namespace DS
         
         private void OnTriggerEnter(Collider other)
         {
-            PlayerStats playerStats = other.GetComponent<PlayerStats>();
+            CharacterStats playerStats = other.GetComponent<CharacterStats>();
 
             if (playerStats != null)
             {

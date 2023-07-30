@@ -9,17 +9,19 @@ namespace DS
 
         [SerializeField]
         private SpellItem currentSpell;
+        
         [SerializeField]
         private WeaponItem rightWeapon;
         [SerializeField]
         private WeaponItem leftWeapon;
+        [SerializeField]
+        private WeaponItem unarmedWeapon;
 
         [SerializeField] 
         private WeaponItem[] weaponsInRightHandSlots;
+
         [SerializeField] 
         private WeaponItem[] weaponsInLeftHandSlots;
-        [SerializeField]
-        private WeaponItem unarmedWeapon;
 
         private int currentRightWeaponIndex = -1;
         private int currentLeftWeaponIndex = -1;
@@ -52,6 +54,7 @@ namespace DS
 
             if (currentRightWeaponIndex < weaponsInRightHandSlots.Length)
             {
+                Debug.Log("load weapon");
                 if (weaponsInRightHandSlots[currentRightWeaponIndex] != null)
                 {
                     rightWeapon = weaponsInRightHandSlots[currentRightWeaponIndex];
@@ -62,9 +65,9 @@ namespace DS
                     currentRightWeaponIndex++;
                 }
             }
-            
-            if (currentRightWeaponIndex > weaponsInRightHandSlots.Length - 1)
+            else
             {
+                Debug.Log("load unarmed");
                 currentRightWeaponIndex = -1;
                 rightWeapon = unarmedWeapon;
                 weaponSlotManager.LoadWeaponOnSlot(rightWeapon, false);

@@ -100,6 +100,7 @@
      <Compile Include="Assets\Scripts\AI\EnemyManager.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerAttacker.cs" />
      <Compile Include="Assets\Scripts\AI\State Machine\PursueTargetState.cs" />
+     <None Include="Assets\Import\Souls-like Essentials\Read Me.txt" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>

@@ -99,14 +99,6 @@ namespace DS
 
         public void OpenDamageCollider()
         {
-            // if (playerManager.isUsingRightHand)
-            // {
-            //     rightHandDamageCollider.EnableDamageCollider();
-            // }
-            // else
-            // {
-            //     leftHandDamageCollider.EnableDamageCollider();
-            // }
             if (playerManager.isUsingLeftHand)
             {
                 leftHandDamageCollider.EnableDamageCollider();

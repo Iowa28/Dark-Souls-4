@@ -54,7 +54,6 @@ namespace DS
 
             if (currentRightWeaponIndex < weaponsInRightHandSlots.Length)
             {
-                Debug.Log("load weapon");
                 if (weaponsInRightHandSlots[currentRightWeaponIndex] != null)
                 {
                     rightWeapon = weaponsInRightHandSlots[currentRightWeaponIndex];
@@ -67,7 +66,6 @@ namespace DS
             }
             else
             {
-                Debug.Log("load unarmed");
                 currentRightWeaponIndex = -1;
                 rightWeapon = unarmedWeapon;
                 weaponSlotManager.LoadWeaponOnSlot(rightWeapon, false);

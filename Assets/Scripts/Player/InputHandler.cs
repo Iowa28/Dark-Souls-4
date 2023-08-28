@@ -263,11 +263,11 @@ namespace DS
 
         private void HandleCriticalAttackInput()
         {
-            // if (criticalAttackInput)
-            // {
-            //     criticalAttackInput = false;
-            //     playerAttacker.AttemptBackStabOrRiposte();
-            // }
+            if (criticalAttackInput)
+            {
+                criticalAttackInput = false;
+                playerAttacker.AttemptBackStabOrRiposte();
+            }
         }
 
         #region Getters

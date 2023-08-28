@@ -28,6 +28,9 @@ namespace DS
         
         private void Awake()
         {
+            // Cursor.lockState = CursorLockMode.None;
+            // Cursor.visible = false;
+            
             cameraHandler = FindObjectOfType<CameraHandler>();
             backStabCollider = GetComponentInChildren<BackStabCollider>();
         }
@@ -43,6 +46,9 @@ namespace DS
 
         private void Update()
         {
+            if (playerStats.isDead)
+                return;
+            
             isInteracting = animatorHandler.GetBool("isInteracting");
             canDoCombo = animatorHandler.GetBool("canDoCombo");
             isUsingRightHand = animatorHandler.GetBool("isUsingRightHand");

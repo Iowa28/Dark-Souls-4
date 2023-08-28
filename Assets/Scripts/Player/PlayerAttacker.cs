@@ -124,7 +124,6 @@ namespace DS
             
             if (inputHandler.twoHandFlag)
             {
-                Debug.Log(weapon.GetTwoHandLightAttack1());
                 animatorHandler.PlayTargetAnimation(weapon.GetTwoHandLightAttack1(), true);
                 lastAttack = weapon.GetTwoHandLightAttack1();
             }

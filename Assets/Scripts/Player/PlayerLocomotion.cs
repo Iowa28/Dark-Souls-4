@@ -188,7 +188,7 @@ namespace DS
 
             targetPosition = transform.position;
             
-            Debug.DrawRay(origin, Vector3.down * beginFallMinimumDistance, Color.red, .1f, false);
+            // Debug.DrawRay(origin, Vector3.down * beginFallMinimumDistance, Color.red, .1f, false);
             if (Physics.Raycast(origin, Vector3.down, out hit, beginFallMinimumDistance))
             {
                 normalVector = hit.normal;

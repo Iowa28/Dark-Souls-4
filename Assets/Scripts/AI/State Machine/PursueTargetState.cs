@@ -7,7 +7,7 @@ namespace DS
         [SerializeField]
         private CombatStanceState combatStanceState;
         
-        public override State Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimationManager animationManager)
+        public override State Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorManager animationManager)
         {
             if (enemyManager.isPerformingAction)
             {

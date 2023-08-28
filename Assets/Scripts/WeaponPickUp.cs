@@ -19,10 +19,10 @@ namespace DS
         {
             PlayerInventory playerInventory = playerManager.GetComponent<PlayerInventory>();
             PlayerLocomotion playerLocomotion = playerManager.GetComponent<PlayerLocomotion>();
-            AnimatorHandler animatorHandler = playerManager.GetComponentInChildren<AnimatorHandler>();
+            PlayerAnimatorManager playerAnimatorManager = playerManager.GetComponentInChildren<PlayerAnimatorManager>();
             
             playerLocomotion.rigidbody.velocity = Vector3.zero;
-            animatorHandler.PlayTargetAnimation("PickUpItem", true);
+            playerAnimatorManager.PlayTargetAnimation("PickUpItem", true);
             playerInventory.weaponsInventory.Add(weapon);
             playerManager.GetItemUIGameObject().GetComponentInChildren<Text>().text = weapon.GetItemName();
             playerManager.GetItemUIGameObject().GetComponentInChildren<RawImage>().texture = weapon.GetItemIcon().texture;

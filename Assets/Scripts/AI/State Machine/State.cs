@@ -4,6 +4,6 @@ namespace DS
 {
     public abstract class State : MonoBehaviour
     {
-        public abstract State Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimationManager animationManager);
+        public abstract State Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorManager animationManager);
     }
 }

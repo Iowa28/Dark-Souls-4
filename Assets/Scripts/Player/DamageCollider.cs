@@ -6,8 +6,7 @@ namespace DS
     {
         private Collider damageCollider;
 
-        [SerializeField]
-        private int currentWeaponDamage = 25;
+        public int currentWeaponDamage  { get; set; }
 
         private void Awake()
         {

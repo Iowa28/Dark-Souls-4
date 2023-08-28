@@ -42,7 +42,7 @@ namespace DS
         private WeaponSlotManager weaponSlotManager;
         private CameraHandler cameraHandler;
         private UIManager uiManager;
-        private AnimatorHandler animatorHandler;
+        private PlayerAnimatorManager playerAnimatorManager;
 
         private Vector2 movementInput;
         private Vector2 cameraInput;
@@ -58,7 +58,7 @@ namespace DS
             weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
             cameraHandler = FindObjectOfType<CameraHandler>();
             uiManager = FindObjectOfType<UIManager>();
-            animatorHandler = GetComponentInChildren<AnimatorHandler>();
+            playerAnimatorManager = GetComponentInChildren<PlayerAnimatorManager>();
         }
 
         private void OnEnable()

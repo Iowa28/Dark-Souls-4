@@ -8,7 +8,7 @@ namespace DS
         private StaminaBar staminaBar;
         private FocusPointBar focusPointBar;
 
-        private AnimatorHandler animatorHandler;
+        private PlayerAnimatorManager playerAnimatorManager;
         private PlayerManager playerManager;
         
         [SerializeField]
@@ -20,7 +20,7 @@ namespace DS
             healthBar = FindObjectOfType<HealthBar>();
             staminaBar = FindObjectOfType<StaminaBar>();
             focusPointBar = FindObjectOfType<FocusPointBar>();
-            animatorHandler = GetComponentInChildren<AnimatorHandler>();
+            playerAnimatorManager = GetComponentInChildren<PlayerAnimatorManager>();
             playerManager = GetComponent<PlayerManager>();
         }
         
@@ -66,14 +66,25 @@ namespace DS
             {
                 currentHealth = 0;
                 isDead = true;
-                animatorHandler.PlayTargetAnimation("Death", true);
+                playerAnimatorManager.PlayTargetAnimation("Death", true);
             }
             else
             {
-                animatorHandler.PlayTargetAnimation("Damage", true);
+                playerAnimatorManager.PlayTargetAnimation("Damage", true);
             }
             
             healthBar.SetCurrentHealth(currentHealth);
+        }
+        
+        public void TakeDamageWithoutAnimation(int damage)
+        {
+            currentHealth -= damage;
+            
+            if (currentHealth <= 0)
+            {
+                currentHealth = 0;
+                isDead = true;
+            }
         }
 
         public void DecreaseStamina(float value)

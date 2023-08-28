@@ -10,6 +10,12 @@ namespace DS
         [SerializeField]
         private bool isUnarmed;
 
+        [Header("Damage")]
+        [SerializeField]
+        private int baseDamage = 25;
+        [SerializeField]
+        private int criticalDamageMultiplier = 4;
+
         [Header("Idle Animations")]
         [SerializeField]
         private string rightHandIdle;
@@ -48,6 +54,10 @@ namespace DS
         public GameObject GetModelPrefab() => modelPrefab;
 
         public bool IsUnarmed() => isUnarmed;
+
+        public int GetBaseDamage() => baseDamage;
+
+        public int GetCriticalDamageMultiplier() => criticalDamageMultiplier;
 
         public string GetRightHandIdle() => rightHandIdle;
 

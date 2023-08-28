@@ -7,7 +7,7 @@ namespace DS
         private CameraHandler cameraHandler;
         private InputHandler inputHandler;
         private PlayerLocomotion playerLocomotion;
-        private AnimatorHandler animatorHandler;
+        private PlayerAnimatorManager playerAnimatorManager;
         private PlayerStats playerStats;
         
         private InteractableUI interactableUI;
@@ -28,9 +28,6 @@ namespace DS
         
         private void Awake()
         {
-            // Cursor.lockState = CursorLockMode.None;
-            // Cursor.visible = false;
-            
             cameraHandler = FindObjectOfType<CameraHandler>();
             backStabCollider = GetComponentInChildren<BackStabCollider>();
         }
@@ -39,7 +36,7 @@ namespace DS
         {
             inputHandler = GetComponent<InputHandler>();
             playerLocomotion = GetComponent<PlayerLocomotion>();
-            animatorHandler = GetComponentInChildren<AnimatorHandler>();
+            playerAnimatorManager = GetComponentInChildren<PlayerAnimatorManager>();
             playerStats = GetComponent<PlayerStats>();
             interactableUI = FindObjectOfType<InteractableUI>();
         }
@@ -49,12 +46,13 @@ namespace DS
             if (playerStats.isDead)
                 return;
             
-            isInteracting = animatorHandler.GetBool("isInteracting");
-            canDoCombo = animatorHandler.GetBool("canDoCombo");
-            isUsingRightHand = animatorHandler.GetBool("isUsingRightHand");
-            isUsingLeftHand = animatorHandler.GetBool("isUsingLeftHand");
-            isInvulnerable = animatorHandler.GetBool("isInvulnerable");
-            animatorHandler.SetBool("isInAir", isInAir);
+            isInteracting = playerAnimatorManager.GetBool("isInteracting");
+            canDoCombo = playerAnimatorManager.GetBool("canDoCombo");
+            isUsingRightHand = playerAnimatorManager.GetBool("isUsingRightHand");
+            isUsingLeftHand = playerAnimatorManager.GetBool("isUsingLeftHand");
+            isInvulnerable = playerAnimatorManager.GetBool("isInvulnerable");
+            playerAnimatorManager.SetBool("isInAir", isInAir);
+            playerAnimatorManager.SetBool("isDead", playerStats.isDead);
 
             float delta = Time.deltaTime;
             

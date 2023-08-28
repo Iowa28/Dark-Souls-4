@@ -21,7 +21,7 @@ namespace DS
         
         private bool isSleeping = true;
         
-        public override State Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimationManager animationManager)
+        public override State Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorManager animationManager)
         {
             if (isSleeping && !enemyManager.isInteracting)
             {

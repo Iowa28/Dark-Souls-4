@@ -10,8 +10,8 @@ namespace DS
         public WeaponHolderSlot rightHandSlot { get; private set;  }
         private WeaponHolderSlot backSlot;
 
-        private DamageCollider leftHandDamageCollider;
-        private DamageCollider rightHandDamageCollider;
+        public DamageCollider leftHandDamageCollider { get; private set;  }
+        public DamageCollider rightHandDamageCollider { get; private set;  }
 
         private Animator animator;
         private const float fadeDuration = .2f;
@@ -21,6 +21,7 @@ namespace DS
         private PlayerStats playerStats;
         private InputHandler inputHandler;
         private PlayerManager playerManager;
+        private PlayerInventory playerInventory;
 
         private void Awake()
         {
@@ -29,6 +30,7 @@ namespace DS
             playerStats = GetComponentInParent<PlayerStats>();
             inputHandler = GetComponentInParent<InputHandler>();
             playerManager = GetComponentInParent<PlayerManager>();
+            playerInventory = GetComponentInParent<PlayerInventory>();
             
             WeaponHolderSlot[] weaponHolderSlots = GetComponentsInChildren<WeaponHolderSlot>();
             foreach (WeaponHolderSlot weaponHolderSlot in weaponHolderSlots)
@@ -90,11 +92,17 @@ namespace DS
         private void LoadLeftWeaponDamageCollider()
         {
             leftHandDamageCollider = leftHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
+
+            if (leftHandDamageCollider)
+            {
+                leftHandDamageCollider.currentWeaponDamage = playerInventory.GetLeftWeapon().GetBaseDamage();
+            }
         }
         
         private void LoadRightWeaponDamageCollider()
         {
             rightHandDamageCollider = rightHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
+            rightHandDamageCollider.currentWeaponDamage = playerInventory.GetRightWeapon().GetBaseDamage();
         }
 
         public void OpenDamageCollider()
@@ -133,5 +141,13 @@ namespace DS
         }
         
         #endregion
+
+        // #region Getters
+        //
+        // public DamageCollider GetLeftHandDamageCollider() => leftHandDamageCollider;
+        //
+        // public DamageCollider GetRightHandDamageCollider() => rightHandDamageCollider;
+        //
+        // #endregion
     }
 }

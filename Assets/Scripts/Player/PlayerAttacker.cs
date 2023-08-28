@@ -4,7 +4,7 @@ namespace DS
 {
     public class PlayerAttacker : MonoBehaviour
     {
-        private AnimatorHandler animatorHandler;
+        private PlayerAnimatorManager playerAnimatorManager;
         private InputHandler inputHandler;
         private WeaponSlotManager weaponSlotManager;
         private PlayerManager playerManager;
@@ -17,7 +17,7 @@ namespace DS
 
         private void Awake()
         {
-            animatorHandler = GetComponent<AnimatorHandler>();
+            playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
             inputHandler = GetComponentInParent<InputHandler>();
             weaponSlotManager = GetComponent<WeaponSlotManager>();
             playerManager = GetComponentInParent<PlayerManager>();
@@ -66,7 +66,7 @@ namespace DS
                 if (playerManager.canDoCombo)
                     return;
                     
-                animatorHandler.SetBool("isUsingRightHand", true);
+                playerAnimatorManager.SetBool("isUsingRightHand", true);
                 HandleLightAttack(playerInventory.GetRightWeapon());
             }
         }
@@ -81,11 +81,11 @@ namespace DS
             if (currentSpell != null && currentSpell.IsFaithSpell() &&
                 playerStats.currentFocusPoints >= currentSpell.GetFocusPointCost())
             {
-                currentSpell.AttemptToCastSpell(animatorHandler, weaponSlotManager);
+                currentSpell.AttemptToCastSpell(playerAnimatorManager, weaponSlotManager);
             }
             else
             {
-                animatorHandler.PlayTargetAnimation("Shrug",true);
+                playerAnimatorManager.PlayTargetAnimation("Shrug",true);
             }
         }
         
@@ -104,15 +104,15 @@ namespace DS
         {
             if (inputHandler.comboFlag)
             {
-                animatorHandler.SetBool("canDoCombo", false);
+                playerAnimatorManager.SetBool("canDoCombo", false);
                 if (lastAttack == weapon.GetLightAttack1())
                 {
-                    animatorHandler.PlayTargetAnimation(weapon.GetLightAttack2(), true);
+                    playerAnimatorManager.PlayTargetAnimation(weapon.GetLightAttack2(), true);
                     lastAttack = weapon.GetLightAttack2();
                 }
                 else if (lastAttack == weapon.GetTwoHandLightAttack1())
                 {
-                    animatorHandler.PlayTargetAnimation(weapon.GetTwoHandLightAttack2(), true);
+                    playerAnimatorManager.PlayTargetAnimation(weapon.GetTwoHandLightAttack2(), true);
                     lastAttack = weapon.GetTwoHandLightAttack2();
                 }
             }
@@ -124,12 +124,12 @@ namespace DS
             
             if (inputHandler.twoHandFlag)
             {
-                animatorHandler.PlayTargetAnimation(weapon.GetTwoHandLightAttack1(), true);
+                playerAnimatorManager.PlayTargetAnimation(weapon.GetTwoHandLightAttack1(), true);
                 lastAttack = weapon.GetTwoHandLightAttack1();
             }
             else
             {
-                animatorHandler.PlayTargetAnimation(weapon.GetLightAttack1(), true);
+                playerAnimatorManager.PlayTargetAnimation(weapon.GetLightAttack1(), true);
                 lastAttack = weapon.GetLightAttack1();
             }
         }
@@ -144,12 +144,12 @@ namespace DS
             
             if (inputHandler.twoHandFlag)
             {
-                animatorHandler.PlayTargetAnimation(weapon.GetTwoHandHeavyAttack1(), true);
+                playerAnimatorManager.PlayTargetAnimation(weapon.GetTwoHandHeavyAttack1(), true);
                 lastAttack = weapon.GetTwoHandHeavyAttack1();
             }
             else
             {
-                animatorHandler.PlayTargetAnimation(weapon.GetHeavyAttack(), true);
+                playerAnimatorManager.PlayTargetAnimation(weapon.GetHeavyAttack(), true);
                 lastAttack = weapon.GetHeavyAttack();
             }
         }
@@ -160,7 +160,7 @@ namespace DS
 
             if (currentSpell != null)
             {
-                currentSpell.SuccessfullyCastSpell(animatorHandler, playerStats);
+                currentSpell.SuccessfullyCastSpell(playerAnimatorManager, playerStats);
             }
         }
         
@@ -171,6 +171,7 @@ namespace DS
             {
                 CharacterManager enemyCharacterManager =
                     hit.transform.gameObject.GetComponentInParent<CharacterManager>();
+                DamageCollider rightWeapon = weaponSlotManager.rightHandDamageCollider;
 
                 if (enemyCharacterManager != null)
                 {
@@ -184,8 +185,12 @@ namespace DS
                     targetRotation = Quaternion.Slerp(playerManager.transform.rotation, targetRotation,
                         500 * Time.deltaTime);
                     playerManager.transform.rotation = targetRotation;
+
+                    int criticalDamage = playerInventory.GetRightWeapon().GetCriticalDamageMultiplier() *
+                                         rightWeapon.currentWeaponDamage;
+                    enemyCharacterManager.pendingCriticalDamage = criticalDamage;
                     
-                    animatorHandler.PlayTargetAnimation("Back Stab", true);
+                    playerAnimatorManager.PlayTargetAnimation("Back Stab", true);
                     enemyCharacterManager.GetComponentInChildren<AnimatorManager>().PlayTargetAnimation("Back Stabbed", true);
                     
                 }

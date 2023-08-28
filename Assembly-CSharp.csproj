@@ -77,7 +77,7 @@
      <Compile Include="Assets\PlayerControls.cs" />
      <Compile Include="Assets\Scripts\AI\State Machine\AttackState.cs" />
      <Compile Include="Assets\Scripts\Interactable.cs" />
-     <Compile Include="Assets\Scripts\AI\EnemyAnimationManager.cs" />
+     <Compile Include="Assets\Scripts\AI\EnemyAnimatorManager.cs" />
      <Compile Include="Assets\Scripts\UI\StaminaBar.cs" />
      <Compile Include="Assets\Scripts\Player\DamageCollider.cs" />
      <Compile Include="Assets\Scripts\UI\StatBar.cs" />
@@ -85,7 +85,7 @@
      <Compile Include="Assets\Scripts\Player\CameraHandler.cs" />
      <Compile Include="Assets\Scripts\WeaponInventorySlot.cs" />
      <Compile Include="Assets\Scripts\AI\EnemyAttackAction.cs" />
-     <Compile Include="Assets\Scripts\Player\AnimatorHandler.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerAnimatorManager.cs" />
      <Compile Include="Assets\Scripts\Items\WeaponType.cs" />
      <Compile Include="Assets\Scripts\AI\State Machine\AmbushState.cs" />
      <Compile Include="Assets\Scripts\UI\InteractableUI.cs" />

@@ -13,7 +13,7 @@ namespace DS
         
         private EnemyAttackAction currentAttack;
         
-        public override State Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimationManager animationManager)
+        public override State Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorManager animationManager)
         {
             if (enemyManager.isPerformingAction)
                 return combatStanceState;

@@ -5,7 +5,7 @@ namespace DS
 {
     public class EnemyManager : CharacterManager
     {
-        private EnemyAnimationManager enemyAnimationManager;
+        private EnemyAnimatorManager enemyAnimationManager;
         private EnemyStats enemyStats;
         public NavMeshAgent navMeshAgent { get; private set; }
         public Rigidbody enemyRigidbody { get; private set; }
@@ -35,7 +35,7 @@ namespace DS
 
         private void Awake()
         {
-            enemyAnimationManager = GetComponentInChildren<EnemyAnimationManager>();
+            enemyAnimationManager = GetComponentInChildren<EnemyAnimatorManager>();
             enemyStats = GetComponent<EnemyStats>();
             navMeshAgent = GetComponentInChildren<NavMeshAgent>();
             enemyRigidbody = GetComponent<Rigidbody>();
@@ -53,6 +53,7 @@ namespace DS
             HandleRecoveryTime();
 
             isInteracting = enemyAnimationManager.GetBool("isInteracting");
+            enemyAnimationManager.SetBool("isDead", enemyStats.isDead);
         }
 
         private void FixedUpdate()

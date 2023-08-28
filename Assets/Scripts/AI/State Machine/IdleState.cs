@@ -13,7 +13,7 @@ namespace DS
         [SerializeField]
         private PursueTargetState pursueTargetState;
 
-        public override State Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimationManager animationManager)
+        public override State Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorManager animationManager)
         {
             #region Handle Enemy Target Detection
 

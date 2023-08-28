@@ -2,14 +2,22 @@ using UnityEngine;
 
 namespace DS
 {
-    public class EnemyAnimationManager : AnimatorManager
+    public class EnemyAnimatorManager : AnimatorManager
     {
         private EnemyManager enemyManager;
+        private EnemyStats enemyStats;
         
         private void Awake()
         {
             animator = GetComponent<Animator>();
             enemyManager = GetComponentInParent<EnemyManager>();
+            enemyStats = GetComponentInParent<EnemyStats>();
+        }
+
+        public override void TakeCriticalDamage()
+        {
+            enemyStats.TakeDamageWithoutAnimation(enemyManager.pendingCriticalDamage);
+            enemyManager.pendingCriticalDamage = 0;
         }
 
         private void OnAnimatorMove()
@@ -23,6 +31,8 @@ namespace DS
             enemyManager.enemyRigidbody.velocity = velocity;
         }
         
+        #region Animation Events
+        
         public void EnableCombo()
         {
             // SetBool("canDoCombo", true);
@@ -32,5 +42,7 @@ namespace DS
         {
             // SetBool("canDoCombo", false);
         }
+        
+        #endregion
     }
 }

@@ -4,11 +4,11 @@ namespace DS
 {
     public class EnemyStats : CharacterStats
     {
-        private EnemyAnimationManager animationManager;
+        private EnemyAnimatorManager animatorManager;
 
         private void Awake()
         {
-            animationManager = GetComponentInChildren<EnemyAnimationManager>();
+            animatorManager = GetComponentInChildren<EnemyAnimatorManager>();
         }
 
         private void Start()
@@ -28,11 +28,22 @@ namespace DS
             {
                 currentHealth = 0;
                 isDead = true;
-                animationManager.PlayTargetAnimation("Death", true);
+                animatorManager.PlayTargetAnimation("Death", true);
             }
             else
             {
-                animationManager.PlayTargetAnimation("Damage", true);
+                animatorManager.PlayTargetAnimation("Damage", true);
+            }
+        }
+
+        public void TakeDamageWithoutAnimation(int damage)
+        {
+            currentHealth -= damage;
+            
+            if (currentHealth <= 0)
+            {
+                currentHealth = 0;
+                isDead = true;
             }
         }
     }

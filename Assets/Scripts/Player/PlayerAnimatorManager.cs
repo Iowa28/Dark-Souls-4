@@ -2,7 +2,7 @@
 
 namespace DS
 {
-    public class AnimatorHandler : AnimatorManager
+    public class PlayerAnimatorManager : AnimatorManager
     {
         private PlayerManager playerManager;
         private PlayerLocomotion playerLocomotion;
@@ -91,6 +91,12 @@ namespace DS
             canRotate = false;
         }
 
+        public override void TakeCriticalDamage()
+        {
+            playerStats.TakeDamageWithoutAnimation(playerManager.pendingCriticalDamage);
+            playerManager.pendingCriticalDamage = 0;
+        }
+
         private void OnAnimatorMove()
         {
             if (!playerManager.isInteracting)
@@ -103,6 +109,8 @@ namespace DS
             Vector3 velocity = deltaPosition / delta;
             playerLocomotion.rigidbody.velocity = velocity;
         }
+        
+        #region Animation Events
 
         public void EnableCombo()
         {
@@ -128,5 +136,7 @@ namespace DS
         {
             SetBool("isInvulnerable", false);
         }
+        
+        #endregion
     }
 }

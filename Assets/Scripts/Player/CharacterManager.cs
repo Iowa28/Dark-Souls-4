@@ -14,6 +14,8 @@ namespace DS
 
         protected BackStabCollider backStabCollider;
 
+        public int pendingCriticalDamage { get; set; }
+
         #region Getters
 
         public Transform GetLockOnTransform() => lockOnTransform;

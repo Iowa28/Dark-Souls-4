@@ -8,19 +8,19 @@ namespace DS
         [SerializeField]
         private int healAmount;
 
-        public override void AttemptToCastSpell(AnimatorHandler animatorHandler, WeaponSlotManager weaponSlotManager)
+        public override void AttemptToCastSpell(PlayerAnimatorManager playerAnimatorManager, WeaponSlotManager weaponSlotManager)
         {
-            base.AttemptToCastSpell(animatorHandler, weaponSlotManager);
+            base.AttemptToCastSpell(playerAnimatorManager, weaponSlotManager);
             GameObject rightHandWeapon = weaponSlotManager.rightHandSlot.currentWeaponModel;
             GameObject instantiatedWarmUpSpellFX = Instantiate(spellWarmUpFx, rightHandWeapon.transform.GetChild(0));
             Destroy(instantiatedWarmUpSpellFX, 4f);
-            animatorHandler.PlayTargetAnimation(spellAnimation, true);
+            playerAnimatorManager.PlayTargetAnimation(spellAnimation, true);
         }
 
-        public override void SuccessfullyCastSpell(AnimatorHandler animatorHandler, PlayerStats playerStats)
+        public override void SuccessfullyCastSpell(PlayerAnimatorManager playerAnimatorManager, PlayerStats playerStats)
         {
-            base.SuccessfullyCastSpell(animatorHandler, playerStats);
-            GameObject instantiatedSpellFX = Instantiate(spellCastFx, animatorHandler.transform);
+            base.SuccessfullyCastSpell(playerAnimatorManager, playerStats);
+            GameObject instantiatedSpellFX = Instantiate(spellCastFx, playerAnimatorManager.transform);
             Destroy(instantiatedSpellFX, 2f);
             playerStats.HealPlayer(healAmount);
         }

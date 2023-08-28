@@ -24,12 +24,12 @@ namespace DS
         [TextArea]
         protected string spellDescription;
 
-        public virtual void AttemptToCastSpell(AnimatorHandler animatorHandler, WeaponSlotManager weaponSlotManager)
+        public virtual void AttemptToCastSpell(PlayerAnimatorManager playerAnimatorManager, WeaponSlotManager weaponSlotManager)
         {
             Debug.Log("Attempting to cast spell...");
         }
 
-        public virtual void SuccessfullyCastSpell(AnimatorHandler animatorHandler, PlayerStats playerStats)
+        public virtual void SuccessfullyCastSpell(PlayerAnimatorManager playerAnimatorManager, PlayerStats playerStats)
         {
             playerStats.DeductFocusPoints(focusPointCost);
             Debug.Log("Spell cast successful");

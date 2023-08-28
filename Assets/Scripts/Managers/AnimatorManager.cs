@@ -21,6 +21,13 @@ namespace DS
             SetBool("isInteracting", isInteracting);
             animator.CrossFade(targetAnimation, fadeDuration);
         }
+
+        public virtual void TakeCriticalDamage()
+        {
+            
+        }
+        
+        #region Setters/Getters
         
         public void SetBool(string parameterName, bool value)
         {
@@ -37,9 +44,11 @@ namespace DS
             animator.SetFloat(parameterName, value, dampTime, delta);
         }
         
-        public void SetFloat(int parameterHash, float value, float delta)
+        protected void SetFloat(int parameterHash, float value, float delta)
         {
             animator.SetFloat(parameterHash, value, dampTime, delta);
         }
+        
+        #endregion
     }
 }

@@ -9,7 +9,7 @@ namespace DS
         [SerializeField]
         private PursueTargetState pursueTargetState;
 
-        public override State Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimationManager animationManager)
+        public override State Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorManager animationManager)
         {
             HandleRotateTowardsTarget(enemyManager);
         
